@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 /**
  * Created by AU on 2017/06/30.
  */
-public class Fortune_type2_trycatch_comment {
+public class Numbers_type2_trycatch {
     /**
      * タイトル：数当てHit&Brow
      * Rule--------------------------------------
@@ -31,15 +31,12 @@ public class Fortune_type2_trycatch_comment {
         //タイトルとルールを表示
         System.out.println(title);
         System.out.println(rule);
-        // -----------------------------------------------タイトル&ルール
 
         //ゲーム開始------------------------------------------------------
-        // もう一度ゲームを実行するか判定結果を格納する変数
         Boolean morePlay = false;
 
         do {
-            // 答えを作成
-            int answer = new java.util.Random().nextInt(10);
+            int answer = new java.util.Random().nextInt(9) + 1;
 
             // hitとbrowの変数の初期化、ゲームカウントとユーザ入力値の初期化
             int hit = 0, blow = 0, gamePlaycount = 0, userInput = 0;
@@ -53,7 +50,6 @@ public class Fortune_type2_trycatch_comment {
                         // 入力値の初期化
                         userInput = 0;
 
-                        // 入力説明　+　入力
                         System.out.print("数値を入力 : ");
                         userInput = new java.util.Scanner(System.in).nextInt();
 
@@ -73,7 +69,6 @@ public class Fortune_type2_trycatch_comment {
                     blow++;
                 }
                 System.out.println("ヒット" + hit + " ブロー" + blow);
-                //------------------------------------------------------答え判断
 
                 //終了判断------------------------------------------------------
                 String result = "*** 結果 *** ";
@@ -94,16 +89,13 @@ public class Fortune_type2_trycatch_comment {
                         System.out.println();
                     }
                 }
-                //------------------------------------------------------終了判断
             }
 
             //再挑戦するか尋ねる--------------------------------------------------
-
             // 入力値の初期化
             int userIntention = 2;
             do {
                 try{
-                    // 入力説明　+　入力
                     System.out.printf("%14s%n", "もう１度ゲームをする場合：1");
                     System.out.printf("%16s%n", "            やめまーす：2");
                     System.out.printf("%15s"  , "     どちらにしますか？：");
@@ -118,7 +110,6 @@ public class Fortune_type2_trycatch_comment {
                 }
                 // 入力チェック(チェック観点：数値の値)
             } while (userIntention == 0 || userIntention >= 3);
-            //--------------------------------------------------再挑戦するか尋ねる
 
         }while (morePlay);
     }

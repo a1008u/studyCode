@@ -1,66 +1,21 @@
-package part1;
+package part1.part1_2;
 
 
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 
 /**
  * Created by AU on 2017/06/30.
  */
-public class Fortune_type3_method {
-    /**
-     * タイトル：数当てHit&Brow
-     * Rule--------------------------------------
-     * ・3回以内にランダムで設定されている数字（1〜9）を当てよ
-     * ・入力した数値が想定内の数値の場合：HIT　→　ゲーム終了
-     * ・打鍵できる回数：3回まで
-     * ・入力した数値が想定内の数値でないの場合：Browのカウントアップ
-     * 応援：なるべくBrowのカウントアップせずにクリアしよう
-     *
-     * @param args
-     */
-    public static void main(String[] args) {
-        // タイトル&ルール-----------------------------------------------
-        String title = "*** タイトル：数当てHit&Brow ***";
-        String rule = "Rule--------------------------------------\n"
-                + "\t・3回以内にランダムで設定されている数字（1〜9）を当てよ\n"
-                + "\t・打鍵できる回数：3回まで\n"
-                + "\t・入力した数値が想定内の数値の場合：HIT　→　ゲーム終了\n"
-                + "\t・入力した数値が想定内の数値でないの場合：Browのカウントアップ\n"
-                + "\t応援：なるべくBrowのカウントアップせずにクリアしよう\n";
-
-        //タイトルとルールを表示
-        System.out.println(title);
-        System.out.println(rule);
-
-        //ゲーム開始------------------------------------------------------
-        do {
-            // 答えを作成
-            int answer = new java.util.Random().nextInt(10);
-
-            // hit_browを配列として準備
-            int[] hit_blow = new int[2];
-            hit_blow[0] = 0;
-            hit_blow[1] = 0;
-
-            // ユーザが数値を入力し、その結果を判定し、結果を表示する
-            for (int gamePlaycount = 1; gamePlaycount < 4; ++gamePlaycount) {
-                System.out.println("*** " + gamePlaycount + "回目 ***");
-
-                int userInput = getUserInput();
-
-                checkUserinput(answer, hit_blow, userInput);
-
-                resultConfirm(answer, hit_blow, gamePlaycount);
-            }
-        }while (isMoreplay());
-    }
+public class Numbers_type5_O_Number {
 
     /**
      * ユーザ入力値を取得
      * @return  userInput
      *
      */
-    private static int getUserInput() {
+    public int getUserInput() {
 
         int userInput;
         do {
@@ -84,30 +39,30 @@ public class Fortune_type3_method {
     /**
      * 入力値と設定している答えが一致しているか確認する
      * @param answer
-     * @param hit_blow
      * @parm userInput
      * @return  userInput
      *
      */
-    private static void checkUserinput(int answer, int[] hit_blow, int userInput) {
+    public void checkUserinput(Numbers_type5_O_player player, int answer, int userInput) {
         if (userInput == answer) {
-            hit_blow[0]++;
+            int hit = player.getHit();
+            player.setHit(++hit);
         } else {
-            hit_blow[1]++;
+            int blow = player.getBlow();
+            player.setBlow(++blow);
         }
-        System.out.println("ヒット" + hit_blow[0] + " ブロー" + hit_blow[1]);
+        System.out.println("ヒット" + player.getHit() + " ブロー" + player.getBlow());
     }
 
     /**
      * 数値判定後の結果を表示する。
      * @param answer
-     * @param hit_blow
      * @param gamePlaycount
      *
      */
-    private static void resultConfirm(int answer, int[] hit_blow, int gamePlaycount) {
+    public void resultConfirm(Numbers_type5_O_player player, int answer, int gamePlaycount) {
         String result = "*** 結果 *** ";
-        if (hit_blow[0] == 1) {
+        if (player.getHit() == 1) {
             System.out.println();
             System.out.println(result);
             System.out.println("おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ");
@@ -115,7 +70,7 @@ public class Fortune_type3_method {
         } else {
             System.out.println();
 
-            if(hit_blow[0] == 0 && gamePlaycount >=3 ){
+            if(player.getHit() == 0 && gamePlaycount >=3 ){
                 System.out.println();
                 System.out.println(result);
                 System.out.println("残念でした(；一ω一||)");
@@ -130,7 +85,7 @@ public class Fortune_type3_method {
      * @return  morePlay
      *
      */
-    private static boolean isMoreplay() {
+    public boolean isMoreplay(Numbers_type5_O_player player) {
 
         // 入力値の初期化(終了状態)
         int morePlay = 2;
@@ -152,7 +107,11 @@ public class Fortune_type3_method {
             } while (true);
 
             // ゲームを続けるか確認
-            if(morePlay == 1) return true;
+            if(morePlay == 1) {
+                player.setHit(0);
+                player.setBlow(0);
+                return true;
+            }
 
         } catch(InputMismatchException e)  {
             System.out.println("入力値の型が違います：" + e);

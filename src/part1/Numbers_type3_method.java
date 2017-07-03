@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 /**
  * Created by AU on 2017/06/30.
  */
-public class Fortune_type3_method_comment {
+public class Numbers_type3_method {
     /**
      * タイトル：数当てHit&Brow
      * Rule--------------------------------------
@@ -35,24 +35,21 @@ public class Fortune_type3_method_comment {
         //ゲーム開始------------------------------------------------------
         do {
             // 答えを作成
-            int answer = new java.util.Random().nextInt(10);
+            int answer = new java.util.Random().nextInt(9) + 1;
 
             // hit_browを配列として準備
             int[] hit_blow = new int[2];
             hit_blow[0] = 0;
             hit_blow[1] = 0;
 
+            // ユーザが数値を入力し、その結果を判定し、結果を表示する
             for (int gamePlaycount = 1; gamePlaycount < 4; ++gamePlaycount) {
-                // ゲーム回数を表示(毎回インクリメント)
                 System.out.println("*** " + gamePlaycount + "回目 ***");
 
-                // インプット
                 int userInput = getUserInput();
 
-                // 答え判断
                 checkUserinput(answer, hit_blow, userInput);
 
-                // 終了判断
                 resultConfirm(answer, hit_blow, gamePlaycount);
             }
         }while (isMoreplay());
@@ -68,7 +65,6 @@ public class Fortune_type3_method_comment {
         int userInput;
         do {
             try{
-                // 入力説明　+　入力
                 System.out.print("数値を入力 : ");
                 userInput = new java.util.Scanner(System.in).nextInt();
 
@@ -131,7 +127,7 @@ public class Fortune_type3_method_comment {
 
     /**
      * ゲームを続けるかどうか判定する
-     * @return  false ゲームをやめる（続ける場合はtrue）
+     * @return  morePlay
      *
      */
     private static boolean isMoreplay() {
@@ -147,18 +143,15 @@ public class Fortune_type3_method_comment {
 
             // 入力値の確認
             do {
-                // 入力
                 morePlay = new java.util.Scanner(System.in).nextInt();
 
-                // 入力値の判定
                 if(!(morePlay == 0) && !(morePlay >= 3)) break;
 
-                // 入力値の型は正しいが値が不正の場合にサイド入力を求める
                 System.out.println("注意：1(続ける)または2(やめる)どちらかの値を入力してください。");
                 System.out.printf("%15s"  , "     どちらにしますか？：");
             } while (true);
 
-            // もう一度ゲームを実施するか判定(1：ゲームを続ける)
+            // ゲームを続けるか確認
             if(morePlay == 1) return true;
 
         } catch(InputMismatchException e)  {
