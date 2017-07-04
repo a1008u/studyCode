@@ -25,6 +25,10 @@ fun main(args: Array<String>){
     println(hanako.age)  // 25
     println(hanako.nameLength) //6
 
+    var tom = Person2()
+    tom.name = "tom"
+    println(tom.name)
+
 }
 
 class Greeter{
@@ -39,6 +43,18 @@ class Person {
 
     // バッキングフィールド：
     val nameLength: Int
-    get() : Int {return this.name.length}
+    get() : Int {return this.name.length} // custom getter：対応プロパティが参照された時に呼び出されr、値を返す。
 
+}
+
+class Person2 {
+    var name: String = ""
+        set(value) {
+            println("${value}がセットされました")
+            // fieldはパッキングフィールドを表す暗黙変数
+            field = value // name = value とするとカスタムセッターが無限に呼び出される
+        }
+    var age: Int = 0
+    val nameLength: Int
+        get() = this.name.length // custom getter：対応プロパティが参照された時に呼び出されr、値を返す。
 }
