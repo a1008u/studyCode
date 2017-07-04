@@ -1,9 +1,7 @@
-package part1.part1_2;
+package part1_3;
 
 
-import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 /**
  * Created by AU on 2017/06/30.
@@ -60,14 +58,13 @@ public class Numbers_type5_O_Number {
      * @param gamePlaycount
      *
      */
-    public boolean resultConfirm(Numbers_type5_O_player player, int answer, int gamePlaycount) {
+    public void resultConfirm(Numbers_type5_O_player player, int answer, int gamePlaycount) {
         String result = "*** 結果 *** ";
         if (player.getHit() == 1) {
             System.out.println();
             System.out.println(result);
             System.out.println("おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ");
             System.out.println();
-            return true;
         } else {
             System.out.println();
 
@@ -78,7 +75,6 @@ public class Numbers_type5_O_Number {
                 System.out.println("答えは【" + answer + "】");
                 System.out.println();
             }
-            return false;
         }
     }
 

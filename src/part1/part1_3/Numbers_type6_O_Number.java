@@ -1,14 +1,12 @@
-package part1.part1_2;
+package part1.part1_3;
 
 
-import java.util.HashMap;
 import java.util.InputMismatchException;
-import java.util.Map;
 
 /**
  * Created by AU on 2017/06/30.
  */
-public class Numbers_type5_O_Number {
+public class Numbers_type6_O_Number {
 
     /**
      * ユーザ入力値を取得
@@ -43,7 +41,7 @@ public class Numbers_type5_O_Number {
      * @return  userInput
      *
      */
-    public void checkUserinput(Numbers_type5_O_player player, int answer, int userInput) {
+    public void checkUserinput(Numbers_type6_O_player player, int answer, int userInput) {
         if (userInput == answer) {
             int hit = player.getHit();
             player.setHit(++hit);
@@ -60,7 +58,7 @@ public class Numbers_type5_O_Number {
      * @param gamePlaycount
      *
      */
-    public boolean resultConfirm(Numbers_type5_O_player player, int answer, int gamePlaycount) {
+    public boolean resultConfirm(Numbers_type6_O_player player, int answer, int gamePlaycount) {
         String result = "*** 結果 *** ";
         if (player.getHit() == 1) {
             System.out.println();
@@ -78,6 +76,7 @@ public class Numbers_type5_O_Number {
                 System.out.println("答えは【" + answer + "】");
                 System.out.println();
             }
+
             return false;
         }
     }
@@ -87,7 +86,7 @@ public class Numbers_type5_O_Number {
      * @return  morePlay
      *
      */
-    public boolean isMoreplay(Numbers_type5_O_player player) {
+    public boolean isMoreplay(Numbers_type6_O_player player) {
 
         // 入力値の初期化(終了状態)
         int morePlay = 2;

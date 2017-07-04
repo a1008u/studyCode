@@ -1,13 +1,13 @@
-package part1.part1_2;
+package part1.part1_3;
 
 import java.util.Random;
 
 /**
  * Created by AU on 2017/07/03.
  */
-public class Numbers_type5_O_Game {
+public class Numbers_type6_O_Game {
 
-	public Numbers_type5_O_Game() {
+	public Numbers_type6_O_Game() {
 
 	}
 
@@ -24,20 +24,14 @@ public class Numbers_type5_O_Game {
 	 * @param Number
 	 *
 	 */
-	public void numbers(Numbers_type5_O_player player, Numbers_type5_O_Number Number){
+	public void numbers(Numbers_type6_O_player player, Numbers_type6_O_Number Number){
 
 		// タイトル&ルール-----------------------------------------------
-		String title = "*** タイトル：数当てHit&Brow ***";
-		String rule = "Rule--------------------------------------\n"
-						+ "\t・3回以内にランダムで設定されている数字（1〜9）を当てよ\n"
-						+ "\t・打鍵できる回数：3回まで\n"
-						+ "\t・入力した数値が想定内の数値の場合：HIT　→　ゲーム終了\n"
-						+ "\t・入力した数値が想定内の数値でないの場合：Browのカウントアップ\n"
-						+ "\t応援：なるべくBrowのカウントアップせずにクリアしよう\n";
 
-		//タイトルとルールを表示
-		System.out.println(title);
-		System.out.println(rule);
+		// タイトルとルールを表示
+		Numbers_type6_O_Text text = Numbers_type6_O_Text.Numbers_type6_O_Text;
+		System.out.println(text.getTitle());
+		System.out.println(text.getExplain());
 
 		do {
 			// 答えを作成
@@ -55,6 +49,7 @@ public class Numbers_type5_O_Game {
 
 				if(again) break;
 			}
+
 		} while (Number.isMoreplay(player));
 	}
 }

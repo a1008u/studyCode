@@ -1,4 +1,4 @@
-package part1.part1_2;
+package part1_3;
 
 import java.util.Random;
 
@@ -51,9 +51,7 @@ public class Numbers_type5_O_Game {
 
 				Number.checkUserinput(player, answer, userInput);
 
-				boolean again = Number.resultConfirm(player, answer, gamePlaycount);
-
-				if(again) break;
+				Number.resultConfirm(player, answer, gamePlaycount);
 			}
 		} while (Number.isMoreplay(player));
 	}
