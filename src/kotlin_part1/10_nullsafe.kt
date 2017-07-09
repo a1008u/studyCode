@@ -64,13 +64,13 @@ fun main(args: Array<String>){
     // NotNullな引数をとる関数にNullableを渡す
     fun square3(i:Int): Int = i * i
     val a3: Int? = 5
-    if(a3 != null) square(a3) else null
+    if(a3 != null) square3(a3) else null
 
     // NotNullな引数をとる関数にNullableを渡す(let+安全呼び出し)
     // 構文：public inline fun <T, R> T.let(block: (T) -> R): R = block(this)
     // letとは、任意の型Tに対する拡張関数です。(T)->Rという関数オブジェクトを引数blockに取り、
     // そのblockに対して、letのレシーバとなるオブジェクトを引数として与えて呼び出す。
-    val aSquare = a3?.let{ square(it)}
+    val aSquare = a3?.let{ square3(it)}
 
     // !!演算子(Nullableな参照を、NotNullに強制的に変換する操作)----------------------------------------------
     val foo: String? = "Hello"
