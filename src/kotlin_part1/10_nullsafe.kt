@@ -89,9 +89,34 @@ fun main(args: Array<String>){
     println(fuga2.toUpperCase()) //java.lang.IllegalArgumentException: hogeはnullであってはダメ
 
     //　エルビス演算子----------------------------------------------
+    // normal
+    val foo4: String? = "Hello"
+    (if(foo4 != null) foo4 else "default").toUpperCase() // HELLO
+    val hoge4: String? = null
+    (if(hoge4 != null) hoge4 else "default") //default
 
+    // エルビス演算子というNullableに対する操作が提供
+    // 「?:」の前にNullableを取り、後にデフォルト値を取ります。
+    val foo5: String? = "Hello"
+    (foo5 ?: "default").toUpperCase() // HELLO
+
+    val hoge5: String? = null
+    hoge5 ?: "default" // default
+
+    // NullableからNotNullへの変換を行い、変換できない場合に任意の例外をスローすることもできる
+    val foo6: String? = "Hello"
+    foo6 ?: throw AssertionError() // Hello
+
+    val hoge6: String? = null
+    hoge6 ?: throw AssertionError() // Exception in thread "main" java.lang.AssertionError
 
     // 安全キャスト----------------------------------------------
+    // 「as?」キャストに失敗した場合、nullを返す。
+
+    val str : Any = "本当は文字列"
+    println(str as String)
+    // println(str as Int) // Exception in thread "main" java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
+    println(str as? Int) // null
 
 
 }
