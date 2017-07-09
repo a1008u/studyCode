@@ -32,7 +32,7 @@ fun main(args: Array<String>){
     println("sの中身はnullとなる:"+ s)
     // println("sはコンパイルエラーとなる:"+ s.toUpperCase())
 
-    // スマートキャスト（対象の型へのキャストが安全であることを確認できるとき、自動的にキャストされるような機能）
+    // スマートキャスト（対象の型へのキャストが安全であることを確認できるとき、自動的にキャストされるような機能）----------------------------------------------
     // Nullable(nullとなり得る型) NotNull(nullにはなり得ない型)
     val a: String? = null
     val b: String? = "Hello"
@@ -41,14 +41,57 @@ fun main(args: Array<String>){
     if(b != null) println("bの結果：" + b.toUpperCase())
 
     val list: List<Any> = listOf(1, 'a', false)
-        for(e in list){
-            val result: Any? = when(e){
-                is Int -> e+5
-                is Char -> e.toUpperCase()
-                is Boolean -> e.not()
-                else -> null
-            }
-            println("resultの結果:" + result)
+    for(e in list){
+        val result: Any? = when(e){
+            is Int -> e+5
+            is Char -> e.toUpperCase()
+            is Boolean -> e.not()
+            else -> null
         }
+        println("resultの結果:" + result)
+    }
+
+    // 安全呼び出し----------------------------------------------
+    // nullならnullを返すだけ
+    val a2: Int? =5
+    val aInc : Int? = if(a2 != null) a2.inc() else null
+
+    // 安全呼び出し(.の前に?を付ける)
+    // レシーバとなるオブジェクトへの参照がnullでない場合はメンバアクセスに成功し、
+    // nullであるばいは何もせずに単にnullを返すだけです。
+    val aInc2: Int? = a2?.inc()
+
+    // NotNullな引数をとる関数にNullableを渡す
+    fun square3(i:Int): Int = i * i
+    val a3: Int? = 5
+    if(a3 != null) square(a3) else null
+
+    // NotNullな引数をとる関数にNullableを渡す(let+安全呼び出し)
+    // 構文：public inline fun <T, R> T.let(block: (T) -> R): R = block(this)
+    // letとは、任意の型Tに対する拡張関数です。(T)->Rという関数オブジェクトを引数blockに取り、
+    // そのblockに対して、letのレシーバとなるオブジェクトを引数として与えて呼び出す。
+    val aSquare = a3?.let{ square(it)}
+
+    // !!演算子(Nullableな参照を、NotNullに強制的に変換する操作)----------------------------------------------
+    val foo: String? = "Hello"
+    val bar: String = foo!!
+    println(bar.toUpperCase()) // HELLO
+
+    // val hoge: String? = null
+    // val fuge: String = hoge!! // kotlin.KotlinNullPointerException
+
+    val foo2: String? ="Hello"
+    val bar2: String = requireNotNull(foo2,{"nullなわけがない"})
+    println(bar2.toUpperCase()) // HELLO
+
+    val hoge2: String? = null
+    val fuga2: String = requireNotNull(hoge2,{"hogeはnullであってはダメ"})
+    println(fuga2.toUpperCase()) //java.lang.IllegalArgumentException: hogeはnullであってはダメ
+
+    //　エルビス演算子----------------------------------------------
+
+
+    // 安全キャスト----------------------------------------------
+
 
 }
