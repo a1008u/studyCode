@@ -7,10 +7,14 @@ import com.sun.tools.doclint.DocLint
  */
 
 
-// -------------------------------------------------------------------------
-// -------------------------------------------------------------------------
-// -------------------------------------------------------------------------
+// クラスの継承--------------------------------------------------------------
+// メンバのオーバライド-------------------------------------------------------
+// スーパタイプとサブタイプ----------------------------------------------------
+// Any----------------------------------------------------------------------
+// 抽象クラス-----------------------------------------------------------------
+// 可視性--------------------------------------------------------------------
 
+// クラスの継承--------------------------------------------------------------
 // 継承の基本
 // Person1のスーパークラスはAnyクラスです。（JavaのObjectかな）
 // openをつけることで、継承ができる
@@ -24,6 +28,7 @@ class Student(name: String, val id: Long) : Person1(name)
 
 fun main(args: Array<String>){
 
+    // クラスの継承--------------------------------------------------------------
     val person: Person1 = Person1("key")
     person.introduceMyself() // Iam key.
 
@@ -32,22 +37,30 @@ fun main(args: Array<String>){
     println(student.name)     // kumi
     student.introduceMyself() // I am kumi.
 
-    // メンバのオーバライド
+    // メンバのオーバライド-------------------------------------------------------
     val student2: Student2 = Student2("tim", 123)
     student2.introduceMyself() // Iam tim(id=123)
 
-    // スーパタイプ(スーパークラス)とサブタイプ(サブクラス)
+    // スーパタイプ(スーパークラス)とサブタイプ(サブクラス)---------------------------
     val person3: Person1 = Student("oby", 456)
     person3.introduceMyself() // I am oby(id=456)
     // person3.id err
 
-    // 抽象クラス
+    // Any----------------------------------------------------------------------
+    /*
+     Anyは全てのオブジェクトに共通する基本的なメソッドを提供するクラス。
+     open fun toString(): String
+     open operator fun equals(other:Any?):Boolean
+     open fun hashCode():Int
+     */
+
+    // 抽象クラス-----------------------------------------------------------------
     EnglishGreeter("kotlin").sayHello() // Hello, Kotlin
     JapaneseGreeter("Java").sayHello() //  こんにちは、Java
 
 }
 
-// メンバのオーバライド
+// メンバのオーバライド-------------------------------------------------------
 class Student2(name: String, val id: Long) : Person1(name){
     override fun introduceMyself() {
 
@@ -76,7 +89,7 @@ class Student2_1(override val name: String, val id: Long) : Person1(name){
     }
 }
 
-// 抽象クラス
+// 抽象クラス-----------------------------------------------------------------
 abstract class Greeter1(val target: String){
     abstract fun sayHello()
 }
@@ -88,7 +101,7 @@ class JapaneseGreeter(target: String): Greeter1(target){
     override fun sayHello() = println("こんにちは、$target!")
 }
 
-// 可視性
+// 可視性--------------------------------------------------------------------
 /* パッケージにより名前空間を区切り、直下には、プログラム構成要素を宣言できる。
  * 　ー　method
  * 　ー　プロパティ
@@ -159,6 +172,5 @@ class  Baz{
     // fun execute(foo: Bar) = foo.protectedMethod コンパイルエラー
 }
 
-/*  */
 open class Hoge private constructor()
 // class Fuga: Hoge() コンパイルエラー
