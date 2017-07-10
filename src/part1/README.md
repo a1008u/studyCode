@@ -31,12 +31,9 @@
     <h2>ファイル構成</h2>
     <div>
     　1)　Numbers_type1.java (comment記載バージョンも作成)<br />
-
       2)　Numbers_type2_trycatch.java (comment記載バージョンも作成)<br />
-
       3)　Numbers_type3_method.java (comment記載バージョンも作成)<br />
-
-      4)　Numbers_type4_O_main.java / Numbers_type4_O_Number.java<br />
+      4)　Numbers_type4_O_main.java  Numbers_type4_O_Number.java<br />
      </div>
 </section>
 
