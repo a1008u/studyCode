@@ -1,51 +1,59 @@
-【ソフト名】   数当てゲーム
-【著作権者】　　AU
-【制作日】　　　2017/07/07
-【種　別】	　ゲーム
-【転載の可否】　可
-【動作環境】　　macOS Sierra ver10.12.5
-【開発環境】　　macOS Sierra ver10.12.5
+<section>
+【ソフト名】   数当てゲーム<br />
+【著作権者】　　AU<br />
+【制作日】　　　2017/07/07<br />
+【種　別】	　ゲーム<br />
+【転載の可否】　可<br />
+【動作環境】　　macOS Sierra ver10.12.5<br />
+【開発環境】　　macOS Sierra ver10.12.5<br />
+</section>
+<hr />
 
-―――――――――――――――――――――――――――――――――――――
-≪目的≫
-数当てゲームをベースにJavaの基本を理解する。
-想定レベルとしては、ある程度の文法は知っているが活用法がわからない人
+<section>
+    <h2>≪目的≫</h2>
+    <div>
+        数当てゲームをベースにJavaの基本を理解する。<br />
+        想定レベルとしては、ある程度の文法は知っているが活用法がわからない人<br />
+    </div>
 
-  主な特長：
-  1)　シーケンスベースに1つのファイルに全てを記載
-  2)　try-catchを用いた数当てゲーム
-  3)　method抽出を行った数当てゲーム
-  4)　オブジェクト抽出を行った数当てゲーム
+    <h3>主な特長</h3>
+    <div>
+      1)　シーケンスベースに1つのファイルに全てを記載<br />
+      2)　try-catchを用いた数当てゲーム<br />
+      3)　method抽出を行った数当てゲーム<br />
+      4)　オブジェクト抽出を行った数当てゲーム<br />
+     </div>
+</section>
 
-・ファイル構成
-　1)　Numbers_type1.java
-     *comment記載バージョンも作成
+<section>
+<h3>ファイル構成</h3>
+    <div>
+    　1)　Numbers_type1.java (comment記載バージョンも作成)<br />
 
-  2)　Numbers_type2_trycatch.java
-     *comment記載バージョンも作成
+      2)　Numbers_type2_trycatch.java (comment記載バージョンも作成)<br />
 
-  3)　Numbers_type3_method.java
-     *comment記載バージョンも作成
+      3)　Numbers_type3_method.java (comment記載バージョンも作成)<br />
 
-  4)　Numbers_type4_O_main.java
-      Numbers_type4_O_Number.java
+      4)　Numbers_type4_O_main.java / Numbers_type4_O_Number.java<br />
+     </div>
+</section>
 
-・使用方法
+<h3>使用方法</h3>
 
-・制限事項
+<h3>制限事項</h3>
 
-・補足
+<h3>補足</h3>
 
-・その他
+<h3>その他</h3>
 
-・以前のバージョンからの変更点
+<h3>以前のバージョンからの変更点</h3>
 
-・最後に
-　
-　作成に関係してくださった方々に深く感謝致します。
-　また、本作品を使用してくださっている、皆様にも深く感謝致します。
-
-
+<section>
+    <h3>最後に</h3>
+    <div>
+        作成に関係してくださった方々に深く感謝致します。
+        また、本作品を使用してくださっている、皆様にも深く感謝致します。
+    </div>
+</section>
 
 --以上--
-
