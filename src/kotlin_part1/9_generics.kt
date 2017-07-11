@@ -12,30 +12,31 @@ package kotlin_part1
 // 具象型--------------------------------------------------------------------
 
 
-
+// ジェネリクスの導入----------------------------------------------------------
 // クラスのジェネリックス
 class Container<T>(var value: T)
 
+// ジェネリック制約------------------------------------------------------------
 interface Hoge2
 interface Fuga2
 class Foo2<T>
 class Bar2<T: Hoge2>
 
 interface piyo: Hoge2, Fuga2
-class Baz2<T> where T:Hoge2, T:Fuga2
+class Baz2<T> where T:Hoge2, T:Fuga2 //whereで複数の上限境界を設定する
 
-
-// 関数やプロパティのジェネリックス
-fun <T> box(value: T) : Container<T> = Container(value)
+// ジェネリック関数------------------------------------------------------------
 val <T> T.string: String
     get() = toString()
 
 fun main(args: Array<String>){
-    // ジェネリックス関数
+    // ジェネリック関数------------------------------------------------------------
+    fun <T> box(value: T) : Container<T> = Container(value)
     val Container: Container<Int> = box(5)
+
     println(Container.string)
 
-    // ジェネリック制約
+    // ジェネリック制約------------------------------------------------------------
     Foo2<Hoge2>() // OK
     Foo2<Fuga2>() // OK
 
@@ -44,16 +45,17 @@ fun main(args: Array<String>){
 
     Baz2<piyo>()
 
-    // 変位指定
+    // 変位指定-------------------------------------------------------------------
+    // 型投影（型を投影することで、ジェネリック型の変位を指定すること）
     fun show(container: Container<out Any>){
         println(container.toString())
         println(container.hashCode())
         println(container.value)
     }
-
+    // 操作が無限の場合危険
     val a: Container<String> = Container("Hello")
     val b: Container<out Any> = a
-    // v.value = 123 NG
+    // .value = 123 NG　共変だと代入できてしまう
 
     class Container3<T>(var value: T){
         fun copyTo(to: Container3<in T>){
@@ -78,14 +80,14 @@ fun main(args: Array<String>){
         println(container.value)
     }
 
-    // スター投影
+    // スター投影-----------------------------------------------------------------
     val a6: Container<*> = Container<Int>(5)
     val b6: Container<*> = Container<String>("ABC")
 
     println(a6.value) // 5
     println(b6.value) // ABC
 
-    // 具象型
+    // 具象型--------------------------------------------------------------------
     // inline fun <reified T> Any.instanceOf(): Boolean = this is T
     // "String".instanceOf<String>()
 

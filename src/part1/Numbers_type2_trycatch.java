@@ -39,10 +39,10 @@ public class Numbers_type2_trycatch {
             int answer = new java.util.Random().nextInt(9) + 1;
 
             // hitとbrowの変数の初期化、ゲームカウントとユーザ入力値の初期化
-            int hit = 0, blow = 0, gamePlaycount = 0, userInput = 0;
-            for (int k = 0; k < 3; k++) {
+            int hit = 0, blow = 0, userInput = 0;
+            for (int k = 0, gamePlaycount =0; k < 3; k++, gamePlaycount++) {
                 // ゲーム回数を表示(毎回インクリメント)
-                System.out.println("*** " + ++gamePlaycount + "回目 ***");
+                System.out.println("*** " + gamePlaycount + "回目 ***");
 
                 //インプット------------------------------------------------
                 do {
@@ -101,8 +101,8 @@ public class Numbers_type2_trycatch {
                     System.out.printf("%15s"  , "     どちらにしますか？：");
                     userIntention = new java.util.Scanner(System.in).nextInt();
 
-                    // もう一度ゲームを実施するか判定
-                    if(userIntention == 1) morePlay = true;
+                    // もう一度ゲームを実施するか判定(三項演算子)
+                    morePlay = userInput == 1 ? true: false;
 
                 } catch(InputMismatchException e)  {
                     System.out.println("入力値の型が違います：" + e);

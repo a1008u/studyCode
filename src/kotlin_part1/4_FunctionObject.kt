@@ -129,7 +129,7 @@ fun firstWhitespace(str: String): Int{
 
 // どちらでも上記と同じ動作となる
 fun firstWhitespace2(str: String): Int = first(str, {it.isWhitespace()})
-fun firstWhitespace3(str: String): Int = first(str) {it.isWhitespace()}
+fun firstWhitespace3(str: String): Int = first(str) {it.isWhitespace()} // 構文糖衣（ラムダ式を引数リストから出す）
 
 // ラムダ式--------------------------------------------------------------------------------
 // ラムダの記載(return不要)
@@ -166,6 +166,7 @@ fun bar(): Int{
 
 
 // インライン関数--------------------------------------------------------------------------
+// 引数の関数オブジェクトがコンパイル時にインライン展開される関数のこと。
 inline fun log2(debug: Boolean = true, message: ()-> String){
     if(debug) println(message())
 }
@@ -177,7 +178,7 @@ inline fun forEach(str: String, f:(Char) -> Unit){
     for (c in str) f(c)
 }
 
-// ラベルへのリターン(forEachからの出る)ß
+// ラベルへのリターン(forEachからの出る)
 fun containsDigit(str : String): Boolean {
     var result = false
     forEach(str) here@ {
