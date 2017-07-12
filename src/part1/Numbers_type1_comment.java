@@ -96,7 +96,7 @@ public class Numbers_type1_comment {
             System.out.printf("%14s%n", "もう１度ゲームをする場合：1");
             System.out.printf("%16s%n", "            やめまーす：2");
             System.out.printf("%15s"  , "     どちらにしますか？：");
-            if(new java.util.Scanner(System.in).nextInt() == 1) morePlay = true;
+            morePlay = new java.util.Scanner(System.in).nextInt() == 1? true: false;
 
         }while (morePlay);
     }

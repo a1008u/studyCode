@@ -110,7 +110,7 @@ public class Numbers_type2_trycatch_comment {
                     userIntention = new java.util.Scanner(System.in).nextInt();
 
                     // もう一度ゲームを実施するか判定
-                    if(userIntention == 1) morePlay = true;
+                    morePlay = userIntention == 1 ? true: false;
 
                 } catch(InputMismatchException e)  {
                     System.out.println("入力値の型が違います：" + e);
