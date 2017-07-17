@@ -17,7 +17,7 @@ val rule: String = "Rule-------------------------------------\n " +
 class GameTypeNumbers(val user: User) : GameType(title,rule) {
 
     // -------------------------------------------------------
-    internal fun checkInput(): Unit = user.checkInput()
+    override fun checkInput(): Unit = user.checkInput()
 
     private fun User.checkInput(): Unit {
         do {
@@ -35,14 +35,14 @@ class GameTypeNumbers(val user: User) : GameType(title,rule) {
     }
 
     // -------------------------------------------------------
-    internal fun checkAnswer(answer: Int): Unit = user.checkAnswer(answer)
+    override fun checkAnswer(answer: Int): Unit = user.checkAnswer(answer)
 
     private fun User.checkAnswer(answer: Int): Unit {
         if (this.answer === answer) this.hit++ else this.blow++
     }
 
     // -------------------------------------------------------
-    internal fun confirmUserresult(count: Int, answer: Int): Boolean {
+    override fun confirmUserresult(count: Int, answer: Int): Boolean {
         val resultText: String = "\n ******  結果 ****** \n"
         val congrats: String = "おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ \n"
         val regret: String = "残念でした(；一ω一||)"

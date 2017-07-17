@@ -20,13 +20,16 @@ fun main(args: Array<String>) {
 
         /* gameSet------------------------------------------ */
         val game: GameFoundation = when (Scanner(System.`in`).nextInt()) {
-            0 -> { GameFoundationNumbers() }
-            1 -> { GameFoundationNumbers() }
-            else -> {GameFoundationNumbers()}
+            1 -> { GameFoundationNumbers(GameTypeNumbers(user = User())) }
+            // TODO 他のゲーム
+            2 -> { GameFoundationNumbers(GameTypeNumbers(user = User()))
+            }
+            else -> {GameFoundationNumbers(GameTypeNumbers(user = User()))
+            }
         }
 
         /* game start------------------------------------------ */
-        do game.start(GameTypeNumbers(user = User()))
+        do game.start()
         while (game.doAgain())
 
     } catch(e: InputMismatchException) {
