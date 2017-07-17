@@ -13,18 +13,20 @@ fun main(args: Array<String>) {
         val projectTitle: String = "*** GAME ***"
         val explain: String ="explain-------------------------------------\n " +
                 "\t以下から好きなゲームを選択してください\n" +
-                "\t1,数当てゲーム\n" +
-                "\t2,占い\n"
+                "\t1：数当てゲーム\n" +
+                "\t2：占い\n" +
+                "\t1or2以外の数字：ゲームをしない\n"
         println(projectTitle)
         println(explain)
 
         /* gameSet------------------------------------------ */
         val game: GameFoundation = when (Scanner(System.`in`).nextInt()) {
             1 -> { GameFoundationNumbers(GameTypeNumbers(user = User())) }
-            // TODO 他のゲーム
+            // TODO 占いゲーム
             2 -> { GameFoundationNumbers(GameTypeNumbers(user = User()))
             }
-            else -> {GameFoundationNumbers(GameTypeNumbers(user = User()))
+            // TODO endクラス
+            else -> { GameFoundationNumbers(GameTypeNumbers(user = User()))
             }
         }
 

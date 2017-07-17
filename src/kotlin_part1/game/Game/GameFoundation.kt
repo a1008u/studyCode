@@ -10,7 +10,7 @@ abstract class GameFoundation{
 
     // abstract fun start(gameParts:GameType):Unit
 
-    fun doAgain(): Boolean {
+    open fun doAgain(): Boolean {
         var morePlay: Boolean = false
         try {
             println("もう１度ゲームをする場合：1")
@@ -24,5 +24,5 @@ abstract class GameFoundation{
         return morePlay
     }
 
-    abstract fun start()
+    abstract fun start():Unit
 }
