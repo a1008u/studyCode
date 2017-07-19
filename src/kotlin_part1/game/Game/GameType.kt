@@ -6,7 +6,7 @@ package kotlin_part1.game.Game
  */
 
 abstract class GameType(val title:String, val rule:String){
-    abstract fun checkInput()
-    abstract fun checkAnswer(answer: Int)
+    abstract fun checkInput() :Unit
+    abstract fun checkAnswer(answer: Int) :Unit
     abstract fun confirmUserresult(count: Int, answer: Int): Boolean
 }

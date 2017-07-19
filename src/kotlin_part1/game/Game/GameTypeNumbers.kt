@@ -6,8 +6,8 @@ import java.util.*
  * Created by AU on 2017/07/14.
  */
 
-val title: String = "*** タイトル：数当てHit&Brow ***"
-val rule: String = "Rule-------------------------------------\n " +
+private val title: String = "*** タイトル：数当てHit&Brow ***"
+private val rule: String = "Rule-------------------------------------\n " +
         "\t・3回以内にランダムで設定されている数字（1〜9）を当てよ\n" +
         "\t・打鍵できる回数：3回まで\n" +
         "\t・入力した数値が想定内の数値の場合：HIT　→　ゲーム終了\n" +
