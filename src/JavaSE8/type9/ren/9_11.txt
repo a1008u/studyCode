@@ -1,0 +1,2 @@
+Read all lines from a file. 
+Bytes from the file are decoded into characters using the UTF-8 charset.
