@@ -11,15 +11,16 @@ abstract class GameFoundation{
     // abstract fun start(gameParts:GameType):Unit
 
     open fun doAgain(): Boolean {
-        var morePlay: Boolean = false
-        try {
+
+        var morePlay: Boolean = try {
             println("もう１度ゲームをする場合：1")
             println("やめまーす：1以外の数値")
             println("どちらにしますか？：")
-            morePlay = Scanner(System.`in`).nextInt() == 1
+            Scanner(System.`in`).nextInt() == 1
         } catch(e: InputMismatchException) {
             println("入力値の型が違います： $e")
             println("注意：強制的に終了します。")
+            false
         }
         return morePlay
     }
