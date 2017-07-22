@@ -1,5 +1,6 @@
 package kotlin_part1.game.Game
 
+import com.sun.org.apache.xpath.internal.operations.Bool
 import java.util.*
 
 /**
@@ -46,23 +47,32 @@ class GameTypeNumbers(val user: User) : GameType(title,rule) {
         val resultText: String = "\n ******  結果 ****** \n"
         val congrats: String = "おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ \n"
         val regret: String = "残念でした(；一ω一||)"
-        var uncorrect: String = "不正解(；一ω一||) \n"
+        val uncorrect: String = "不正解(；一ω一||) \n"
 
         println(resultText)
-        if (user.hit === 1) {
-            println(congrats)
-            return true
-        } else {
-            if (user.hit === 0 && count === 3) {
-                println(regret)
-                println("答えは【$answer】\n")
-            } else {
-                println(uncorrect)
-                println("$user \n")
+        var result:Boolean = user.run {
+            when {
+                this.hit === 1 -> trueEnd(congrats)
+                this.hit === 0 && count === 3 -> falseEnd(regret, answer)
+                else -> falseAgain(uncorrect)
             }
         }
-        return false
+        return result
     }
-
 }
 
+private val falseAgain:(String) -> Boolean = {
+    println(it)
+    false
+}
+
+private val falseEnd:(String,Int) -> Boolean = {regret, answer ->
+    println(regret)
+    println("答えは【$answer】\n")
+    false
+}
+
+private val trueEnd : (String) -> Boolean = {
+    println(it)
+    true
+}
