@@ -7,7 +7,7 @@ public class Sample6_3 {
 	  
 	//	マルチキャッチのコンパイルエラー
 	//	　→　継承関係のある例外クラスは列記できない
-	  
+	 /*
     try {
       FileReader rf = new FileReader("a.txt");
       rf.read();
@@ -15,5 +15,6 @@ public class Sample6_3 {
     //} catch(IOException | FileNotFoundException e) {
       e.printStackTrace();
     }
+    */
   }
 }

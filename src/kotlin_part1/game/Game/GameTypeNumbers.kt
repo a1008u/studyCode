@@ -44,17 +44,12 @@ class GameTypeNumbers(val user: User) : GameType(title,rule) {
 
     // -------------------------------------------------------
     override fun confirmUserresult(count: Int, answer: Int): Boolean {
-        val resultText: String = "\n ******  結果 ****** \n"
-        val congrats: String = "おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ \n"
-        val regret: String = "残念でした(；一ω一||)"
-        val uncorrect: String = "不正解(；一ω一||) \n"
-
-        println(resultText)
+        println("\n ******  結果 ****** \n")
         var result:Boolean = user.run {
             when {
-                this.hit === 1 -> trueEnd(congrats)
-                this.hit === 0 && count === 3 -> falseEnd(regret, answer)
-                else -> falseAgain(uncorrect)
+                this.hit === 1 -> trueEnd("おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ \n")
+                this.hit === 0 && count === 3 -> falseEnd("残念でした(；一ω一||)", answer)
+                else -> falseAgain( "不正解(；一ω一||) \n")
             }
         }
         return result
@@ -66,7 +61,7 @@ private val falseAgain:(String) -> Boolean = {
     false
 }
 
-private val falseEnd:(String,Int) -> Boolean = {regret, answer ->
+private val falseEnd:(String, Int) -> Boolean = {regret, answer ->
     println(regret)
     println("答えは【$answer】\n")
     false

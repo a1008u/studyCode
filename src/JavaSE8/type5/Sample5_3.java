@@ -43,31 +43,51 @@ public class Sample5_3 {
  * 終端操作の主なメソッド
 	メソッド名	 説明 R(R列は、リダクション操作のサポートの有無を記載)
 	boolean allMatch(Predicate<? super T> predicate)	
-		すべての要素が指定された条件に一致するかどうかを返す。一致しているか、ストリームが空の場合はtrue、それ以外の場合はfalse	無
+		すべての要素が指定された条件に一致するかどうかを返す。
+		一致しているか、ストリームが空の場合はtrue、それ以外の場合はfalse
+		無
 	boolean anyMatch(Predicate<? super T> predicate)	
-		いずれかの要素が指定された条件に一致するかどうかを返す。存在する場合はtrue、そうでない場合か、ストリームが空の場合はfalse	無
+		いずれかの要素が指定された条件に一致するかどうかを返す。
+		存在する場合はtrue、そうでない場合か、ストリームが空の場合はfalse
+		無
 	boolean noneMatch(Predicate<? super T> predicate)	
-		どの要素も指定された条件に一致しないか、ストリームが空の場合はtrue、それ以外の場合はfalseを返す	無
+		どの要素も指定された条件に一致しないか、
+		ストリームが空の場合はtrue、
+		それ以外の場合はfalseを返す
+		無
 	<R,A> R collect(Collector<? super T,A,R> collector)	
-		要素に対する可変リダクション操作を実行する	有
+		要素に対する可変リダクション操作を実行する
+		有
 	<R> R collect(Supplier<R> supplier, BiConsumer<R,? super T> accumulator, BiConsumer<R,R> combiner)	
-		要素に対する可変リダクション操作を実行する	有
+		要素に対する可変リダクション操作を実行する
+		有
 	long count()	
-		要素の個数を返す	有
+		要素の個数を返す
+		有
 	Optional<T> findAny()	
-		いずれかの要素を返す。ストリームが空の場合は空のOptional を返す	無
+		いずれかの要素を返す。ストリームが空の場合は空のOptionalを返す
+		無
 	Optional<T> findFirst()	
-		最初の要素を返す。ストリームが空の場合は空のOptional を返す	無
+		最初の要素を返す。ストリームが空の場合は空のOptionalを返す
+		無
 	void forEach(Consumer<? super T> action)	
-		各要素に対して指定されたアクションを実行する	無
+		各要素に対して指定されたアクションを実行する
+		無
 	Optional<T> min(Comparator<? super T> comparator)	
-		指定されたComparator に従って最小要素を返す。ストリームが空の場合は空のOptional を返す	有
+		指定されたComparator に従って最小要素を返す。
+		ストリームが空の場合は空のOptionalを返す
+		有
 	Optional<T> max(Comparator<? super T> comparator)	
-		指定されたComparator に従って最大要素を返す。ストリームが空の場合は空のOptional を返す	有
+		指定されたComparator に従って最大要素を返す。
+		ストリームが空の場合は空のOptionalを返す
+		有
 	T reduce(T identity, BinaryOperator<T> accumulator)	
-		元の値と結合的な累積関数を使ってこのストリームの要素に対してリダクションを実行し、リデュースされた値を返す	有
+		元の値と結合的な累積関数を使ってこのストリームの要素に対してリダクションを実行し、リデュースされた値を返す
+		有
 	Object[] toArray()	
-		要素を含む配列を返す	無
+		要素を含む配列を返す
+		無
 	<A> A[] toArray(IntFunction<A[]> generator)	
-		引数に結果となる配列の要素の型を指定し、配列を返す	無
+		引数に結果となる配列の要素の型を指定し、配列を返す
+		無
 */

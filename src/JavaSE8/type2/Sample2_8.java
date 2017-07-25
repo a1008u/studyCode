@@ -1,10 +1,10 @@
 package JavaSE8.type2;
 
 interface Sample2_8 {
-  int a; //初期化していないためコンパイルエラー
+  // int a; //初期化していないためコンパイルエラー
   void methodA(); //範囲が狭いためコンパイルエラー
-  final void methodB(); // finalは使えない
-  static void methodC(); // staticな抽象メソッドは不可
+  // final void methodB(); // finalは使えない
+  // static void methodC(); // staticな抽象メソッドは不可
 }
 
 // ●SE7、SE8で共通の特徴

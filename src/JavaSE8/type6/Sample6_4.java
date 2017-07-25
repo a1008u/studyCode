@@ -7,13 +7,14 @@ public class Sample6_4 {
 	  
 	  //　マルチキャッチのコンパイルエラー  
 	  //  ●　キャッチした参照変数は暗黙的にfinalとなる
-	  
+
+
     try {
       int a = 10/0;
       FileReader rf = new FileReader("a.txt");
       rf.read();
     } catch( ArithmeticException | FileNotFoundException e) {
-      e.printStackTrace(); e = null;
+     //  e.printStackTrace(); e = null;
     } catch(IOException e) {
       e.printStackTrace(); e = null;
     }

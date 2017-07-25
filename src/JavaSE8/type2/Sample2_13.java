@@ -11,6 +11,6 @@ interface Y1 extends A1 { //Aインタフェースのサブインタフェース
   @Override
   default void method() { System.out.println("Y"); }
 }
-class MyClass1 implements X1, Y1 { } //このクラスが原因でコンパイルエラー
+//class MyClass1 implements X1, Y1 { } //このクラスが原因でコンパイルエラー
 
 // method()に対し、どちらを呼べばいいか不明なため

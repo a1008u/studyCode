@@ -5,22 +5,18 @@ import java.util.stream.*;
 public class Sample5_7 {
   public static void main(String[] args) {
 	  
-	// rangeメソッドは終値を含まない
-	// 構文3
+	// 構文3 rangeメソッドは終値を含まない
     int[] ary1 = IntStream.range(1, 10).toArray();
     
-    // rangeClsedメソッドは終値を含む
-    // 構文3 
+    // 構文3 rangeClsedメソッドは終値を含む
     int[] ary2 = IntStream.rangeClosed(1, 10).toArray();
     
-	// toArray()メソッドは、ストリームから配列に変換します。
+	// 構文1 toArray()メソッドは、ストリームから配列に変換します。
 	// Object[] toArray() 要素を含む配列を返す	無
-    // 構文1
     Object[] ary3 = Stream.of("a", "b").toArray();
     
-    // <A> A[] toArray(IntFunction<A[]> generator)	
-    //  引数に結果となる配列の要素の型を指定し、配列を返す	無
-    // 構文2
+    // 構文2 <A> A[] toArray(IntFunction<A[]> generator)
+    // 引数に結果となる配列の要素の型を指定し、配列を返す	無
     String[] ary4 = Stream.of("a", "b").toArray(String[]::new);
     
     System.out.println("ary1 : " + ary1.length);

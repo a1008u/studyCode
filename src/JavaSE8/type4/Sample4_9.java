@@ -11,6 +11,7 @@ public class Sample4_9 {
 	
 	// どのオブジェクトに対してインスタンスメソッドを呼び出すのかを、
 	// 変数名で指定することができない場合は、クラス名で指定します。
+    // static <T> UnaryOperator<T> identity() { return t -> t; }
     UnaryOperator<String> obj = String::toUpperCase; 
     System.out.println(obj.apply("naoki"));
   }
