@@ -12,7 +12,7 @@ public class Sample5_12 {
     // Stream<T> filter(Predicate<? super T> predicate)	　 抽象メソッド：boolean test(T t);
     // 	指定された条件に一致するものから構成されるストリームを返す
     stream1.filter(s -> s.startsWith("a"))
-           .forEach(x -> System.out.print(x + " "));
+           .forEach(startA -> System.out.print(startA + " "));
     
     System.out.println();
     
