@@ -1,6 +1,9 @@
-package part1.part1_3;
+package part1.part1_4;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * Created by AU on 2017/07/03.
@@ -34,23 +37,18 @@ public class Numbers_type6_O_Game {
 		System.out.println(text.getExplain());
 
 		do {
-			// 答えを作成
 			int answer = new Random().nextInt(9) + 1;
 
 			// ユーザが数値を入力し、その結果を判定し、結果を表示する
-			for (int gamePlaycount = 1; gamePlaycount < 4; ++gamePlaycount) {
-				System.out.println("*** " + gamePlaycount + "回目 ***");
+			for(Integer count : Arrays.asList(1,2,3)){
+				System.out.printf("*** %d回目 ***%n", count);
 
-				int userInput = Number.getUserInput();
+				Number.getUserInput(player);
 
-				Number.checkUserinput(player, answer, userInput);
+				Number.checkUserinput(player, answer);
 
-				boolean again = Number.resultConfirm(player, answer, gamePlaycount);
-
-				if(again) break;
+				if(Number.resultConfirm(player, answer, count)) break;
 			}
-
-
 
 		} while (Number.isMoreplay(player));
 	}
