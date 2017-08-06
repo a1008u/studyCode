@@ -3,6 +3,8 @@ package part1_3;
 
 import java.util.InputMismatchException;
 
+import static java.lang.System.*;
+
 /**
  * Created by AU on 2017/06/30.
  */
@@ -18,12 +20,12 @@ public class Numbers_type5_O_Number {
         int userInput;
         do {
             try{
-                System.out.print("数値を入力 : ");
-                userInput = new java.util.Scanner(System.in).nextInt();
+                out.print("数値を入力 : ");
+                userInput = new java.util.Scanner(in).nextInt();
 
             } catch(InputMismatchException e)  {
-                System.out.println("入力値の型が違います：" + e);
-                System.out.println("注意：1~9の数字を入力してください。");
+                out.println("入力値の型が違います：" + e);
+                out.println("注意：1~9の数字を入力してください。");
 
                 // 入力値の初期化
                 userInput = 0;
@@ -49,7 +51,7 @@ public class Numbers_type5_O_Number {
             int blow = player.getBlow();
             player.setBlow(++blow);
         }
-        System.out.println("ヒット" + player.getHit() + " ブロー" + player.getBlow());
+        out.println("ヒット" + player.getHit() + " ブロー" + player.getBlow());
     }
 
     /**
@@ -61,19 +63,19 @@ public class Numbers_type5_O_Number {
     public void resultConfirm(Numbers_type5_O_player player, int answer, int gamePlaycount) {
         String result = "*** 結果 *** ";
         if (player.getHit() == 1) {
-            System.out.println();
-            System.out.println(result);
-            System.out.println("おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ");
-            System.out.println();
+            out.println();
+            out.println(result);
+            out.println("おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ おめでとー(｡･ω･ﾉﾉﾞﾊﾟﾁﾊﾟﾁ");
+            out.println();
         } else {
-            System.out.println();
+            out.println();
 
             if(player.getHit() == 0 && gamePlaycount >=3 ){
-                System.out.println();
-                System.out.println(result);
-                System.out.println("残念でした(；一ω一||)");
-                System.out.println("答えは【" + answer + "】");
-                System.out.println();
+                out.println();
+                out.println(result);
+                out.println("残念でした(；一ω一||)");
+                out.println("答えは【" + answer + "】");
+                out.println();
             }
         }
     }
@@ -90,18 +92,18 @@ public class Numbers_type5_O_Number {
 
         try{
             // 入力説明
-            System.out.printf("%14s%n", "もう１度ゲームをする場合：1");
-            System.out.printf("%16s%n", "            やめまーす：2");
-            System.out.printf("%15s"  , "     どちらにしますか？：");
+            out.printf("%14s%n", "もう１度ゲームをする場合：1");
+            out.printf("%16s%n", "            やめまーす：2");
+            out.printf("%15s"  , "     どちらにしますか？：");
 
             // 入力値の確認
             do {
-                morePlay = new java.util.Scanner(System.in).nextInt();
+                morePlay = new java.util.Scanner(in).nextInt();
 
                 if(!(morePlay == 0) && !(morePlay >= 3)) break;
 
-                System.out.println("注意：1(続ける)または2(やめる)どちらかの値を入力してください。");
-                System.out.printf("%15s"  , "     どちらにしますか？：");
+                out.println("注意：1(続ける)または2(やめる)どちらかの値を入力してください。");
+                out.printf("%15s"  , "     どちらにしますか？：");
             } while (true);
 
             // ゲームを続けるか確認
@@ -112,8 +114,8 @@ public class Numbers_type5_O_Number {
             }
 
         } catch(InputMismatchException e)  {
-            System.out.println("入力値の型が違います：" + e);
-            System.out.println("注意：強制的に終了します。");
+            out.println("入力値の型が違います：" + e);
+            out.println("注意：強制的に終了します。");
         }
 
         // ゲームをやめる

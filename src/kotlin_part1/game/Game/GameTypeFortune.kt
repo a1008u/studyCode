@@ -33,6 +33,10 @@ class GameTypeFortune(val user: User) : GameType(title,rule) {
 
     // -------------------------------------------------------------------
     override fun checkAnswer(answer: Int): Unit = user.checkAnswer(answer)
+
+    /**
+     *
+     */
     private fun User.checkAnswer(answer: Int){
 
         when (Math.abs(this.answer - answer)) {

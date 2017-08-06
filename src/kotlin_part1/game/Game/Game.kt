@@ -21,11 +21,10 @@ fun main(args: Array<String>) {
 
         /* gameSet------------------------------------------ */
         val game: GameFoundation = when (Scanner(System.`in`).nextInt()) {
-            1 -> { GameFoundationNumbers(GameTypeNumbers(user = User())) }
-            2 -> { GameFoundationFortune(GameTypeFortune(user = User())) }
+            1 -> GameFoundationNumbers(GameTypeNumbers(user = User()))
+            2 -> GameFoundationFortune(GameTypeFortune(user = User()))
             // TODO endクラス
-            else -> { GameFoundationNumbers(GameTypeNumbers(user = User()))
-            }
+            else -> GameFoundationNumbers(GameTypeNumbers(user = User()))
         }
 
         /* game start------------------------------------------ */
