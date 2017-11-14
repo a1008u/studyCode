@@ -4,7 +4,7 @@ package ch02.person
 // Kotlinではプロパティは第1級の言語機能
 class Person(
         val name: String // 読み取り専用のプロパティ(フィールド + getter)
-        , var isMarried: Boolean // 読み書き先王のプロパティ(フィールド + setter, getter(is))
+        , var isMarried: Boolean // 読み書き専用のプロパティ(フィールド + setter, getter(is))
 )
 
 fun main(args: Array<String>) {
