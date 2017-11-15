@@ -13,5 +13,5 @@ fun Button.showOff() = println("I'm a button!")
 
 fun main(args: Array<String>) {
     val view: View = Button()
-    view.showOff() // I'm a view!
+    view.showOff() // I'm a view! 拡張関数は静的な型に依存
 }
