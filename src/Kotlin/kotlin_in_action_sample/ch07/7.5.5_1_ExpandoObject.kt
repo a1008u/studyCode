@@ -14,7 +14,6 @@ class Person {
 fun main(args: Array<String>) {
     val p = Person()
     val data = mapOf("name" to "Dmitry", "company" to "JetBrains")
-    for ((attrName, value) in data)
-       p.setAttribute(attrName, value)
-    println(p.name)
+    for ((attrName, value) in data) p.setAttribute(attrName, value)
+    println(p.name) // Dmitry
 }

@@ -16,9 +16,7 @@ open class PropertyChangeAware {
     }
 }
 
-class ObservableProperty(
-    var propValue: Int, val changeSupport: PropertyChangeSupport
-) {
+class ObservableProperty(var propValue: Int, val changeSupport: PropertyChangeSupport) {
     operator fun getValue(p: Person, prop: KProperty<*>): Int = propValue
 
     operator fun setValue(p: Person, prop: KProperty<*>, newValue: Int) {
@@ -27,10 +25,8 @@ class ObservableProperty(
         changeSupport.firePropertyChange(prop.name, oldValue, newValue)
     }
 }
-class Person(
-    val name: String, age: Int, salary: Int
-) : PropertyChangeAware() {
 
+class Person(val name: String, age: Int, salary: Int) : PropertyChangeAware() {
     var age: Int by ObservableProperty(age, changeSupport)
     var salary: Int by ObservableProperty(salary, changeSupport)
 }
@@ -38,11 +34,17 @@ class Person(
 fun main(args: Array<String>) {
     val p = Person("Dmitry", 34, 2000)
     p.addPropertyChangeListener(
-        PropertyChangeListener { event ->
-            println("Property ${event.propertyName} changed " +
-                    "from ${event.oldValue} to ${event.newValue}")
+        PropertyChangeListener { event -> println("Property ${event.propertyName} changed " +
+                                                                      "from ${event.oldValue} to ${event.newValue}")
         }
     )
     p.age = 35
     p.salary = 2100
 }
+
+/*
+Property age changed from 34 to 35
+Property salary changed from 2000 to 2100
+*/
+
+

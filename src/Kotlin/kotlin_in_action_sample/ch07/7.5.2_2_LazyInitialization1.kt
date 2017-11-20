@@ -6,12 +6,15 @@ fun loadEmails(person: Person): List<Email> {
     return listOf(/*...*/)
 }
 
+// lazy関数は、byと利用することで、委譲プロパティを作成できる。 スレッドセーフ
+// @kotlin.jvm.JvmVersion
+// public fun <T> lazy(initializer: () -> T): Lazy<T> = SynchronizedLazyImpl(initializer)
 class Person(val name: String) {
     val emails by lazy { loadEmails(this) }
 }
 
 fun main(args: Array<String>) {
     val p = Person("Alice")
-    p.emails
+    p.emails // Load emails for Alice
     p.emails
 }

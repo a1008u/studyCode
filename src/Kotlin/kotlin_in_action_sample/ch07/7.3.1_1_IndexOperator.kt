@@ -2,6 +2,7 @@ package ch07.ex3_1_1_IndexOperator
 
 data class Point(val x: Int, val y: Int)
 
+// indexによるアクセス
 operator fun Point.get(index: Int): Int {
     return when(index) {
         0 -> x
@@ -13,5 +14,5 @@ operator fun Point.get(index: Int): Int {
 
 fun main(args: Array<String>) {
     val p = Point(10, 20)
-    println(p[1])
+    println(p[1]) // 20
 }

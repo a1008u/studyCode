@@ -13,6 +13,6 @@ operator fun MutablePoint.set(index: Int, value: Int) {
 
 fun main(args: Array<String>) {
     val p = MutablePoint(10, 20)
-    p[1] = 42
-    println(p)
+    p[1] = 42 // x[a,b] = c -> x.set(a,b,c) となる
+    println(p) // MutablePoint(x=10, y=42)
 }

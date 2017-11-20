@@ -16,20 +16,16 @@ open class PropertyChangeAware {
 }
 
 class ObservableProperty(
-    val propName: String, var propValue: Int,
-    val changeSupport: PropertyChangeSupport
-) {
-    fun getValue(): Int = propValue
-    fun setValue(newValue: Int) {
-        val oldValue = propValue
-        propValue = newValue
-        changeSupport.firePropertyChange(propName, oldValue, newValue)
-    }
+    val propName: String
+    , var propValue: Int
+    , val changeSupport: PropertyChangeSupport) { fun getValue(): Int = propValue
+                                                  fun setValue(newValue: Int) { val oldValue = propValue
+                                                                                propValue = newValue
+                                                                                changeSupport.firePropertyChange(propName, oldValue, newValue)
+                                                                              }
 }
 
-class Person(
-    val name: String, age: Int, salary: Int
-) : PropertyChangeAware() {
+class Person(val name: String, age: Int, salary: Int) : PropertyChangeAware() {
 
     val _age = ObservableProperty("age", age, changeSupport)
     var age: Int
@@ -45,11 +41,17 @@ class Person(
 fun main(args: Array<String>) {
     val p = Person("Dmitry", 34, 2000)
     p.addPropertyChangeListener(
-        PropertyChangeListener { event ->
-            println("Property ${event.propertyName} changed " +
-                    "from ${event.oldValue} to ${event.newValue}")
+        PropertyChangeListener { event -> println("Property ${event.propertyName} changed " +
+                                                                       "from ${event.oldValue} to ${event.newValue}")
         }
     )
     p.age = 35
     p.salary = 2100
 }
+
+/*
+Property age changed from 34 to 35
+Property salary changed from 2000 to 2100
+*/
+
+
