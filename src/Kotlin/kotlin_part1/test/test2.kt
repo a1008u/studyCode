@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
     //リスト
     val strList: java.util.ArrayList<String> = arrayListOf("1st", "2nd")
 
-    // 不変------------------------------------------------------------
+    // 共変------------------------------------------------------------
     /*
         - Java
         //配列
@@ -42,8 +42,8 @@ fun main(args: Array<String>) {
      */
 
     val intArray2: Array<Int> = arrayOf(1,2)
-    val numArray: Array<out Any?> = intArray2
-    // numArray[0] = 1 コンパイルエラー(実体はStringのため)
+    val numArray: Array<out Any?> = intArray2 // outキーワードで型パラメータ指定
+    println(numArray[0]) // 1
 
     // 反変------------------------------------------------------------
     /*
