@@ -1,0 +1,6 @@
+{
+    "compilerOptions": {"target":"ES6"
+                        ,"sourceMap": true},
+    "browser": {"entry": {"entries": "./src/js/main.js", "debug": true},
+                   "output": {"filename": "./src/js/bundle.js"}}
+}

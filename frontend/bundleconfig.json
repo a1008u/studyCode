@@ -1,0 +1,6 @@
+[
+  {
+    "outputFileName": "app.min.js",
+    "inputFiles":["src/ts/*.ts"]
+  }
+]
