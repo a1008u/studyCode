@@ -1,0 +1,27 @@
+/**
+ * 02-04　簡易的なイメージギャラリー
+ */
+.gallery
+  width: 510px
+  margin: 0 auto
+  padding: 20px
+  background: #ededed
+  border-radius: 5px
+  line-height: 0
+
+  .mainimage
+    text-align: center
+
+    &> img
+      max-width: 100%
+
+  .thumbnails
+    margin: 10px 0 0 0
+
+    li
+      float: left
+      margin: 0 2px 0 0
+      border: 2px solid #ededed
+
+    &.selected
+      border: 2px solid #8ac2d0

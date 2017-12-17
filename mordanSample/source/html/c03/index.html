@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<title>c03-07-c | Chapter 3 | jQuero</title>
+	<link rel="stylesheet" href="../../css/c03/layout.css"><!-- ページレイアウト用CSS -->
+	<link rel="stylesheet" href="../../css/c03/dynamic.css"><!-- jQueryで操作する部分のCSS -->
+	<script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../js/c03/main.js"></script>
+</head>
+<body>
+<div class="wrapper-header">
+	<div class="header">
+		<!-- ==============dropdown-menu============== -->
+		<div class="wrapper-menubar">
+			<ul class="menubar">
+				<li class="dropdown-menu">
+					<a href="#">LANGUAGE</a>
+					<ul class="items">
+						<li><a href="#">Japanese</a></li>
+						<li><a href="#">English</a></li>
+						<li><a href="#">Chinese</a></li>
+						<li><a href="#">Russian</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div><!-- /.wrapper-menubar -->
+		<!-- ==============/dropdown-menu============== -->
+		<h1>jQuero!</h1>
+	</div><!-- /.header --> 
+</div><!-- /.wrapper-header -->
+
+<div class="wrapper-nav-global">
+	<ul class="nav-global clear">
+		<li><a href="#">ABOUT</a></li>
+		<li><a href="#">GROW</a></li>
+		<li><a href="#">PLAN</a></li>
+		<li><a href="#">SHARE</a></li>
+		<li><a href="#">CONTACT</a></li>
+	</ul>
+</div><!-- /.wrapper-nav-global -->
+
+<div class="wrapper-slide">
+	<!-- ==============slide============== -->
+	<div class="slide">
+		<ul class="container">
+			<li class="current"><img src="../../images/slide-01.jpg"></li>
+			<li><img src="../../images/slide-02.jpg"></li>
+			<li><img src="../../images/slide-03.jpg"></li>
+		</ul>
+		<a href="#" class="prev">前の画像</a>
+		<a href="#" class="next">次の画像</a>
+	</div><!-- /.slide -->
+	<!-- ==============/slide============== -->
+</div><!-- /.wrapper-slide -->
+
+<div class="wrapper-main">
+	<div class="main clear">
+		<!-- ==============btn-action============== -->
+		<ul class="shortcut clear">
+			<li class="first">
+				<a href="#" class="btn-action">
+					<img src="../../images/shortcut1.png">
+					<p>SAVE</p>
+				</a>
+			</li>
+			<li class="second">
+				<a href="#" class="btn-action">
+					<img src="../../images/shortcut2.png">
+					<p>FORECAST</p>
+				</a>
+			</li>
+			<li class="third">
+				<a href="#" class="btn-action">
+					<img src="../../images/shortcut3.png">
+					<p>CREATE</p>
+				</a>
+			</li>
+		</ul><!-- /.shortcut -->
+		<!-- ==============/btn-action============== -->
+		
+		<div class="news">
+			<h1>NEWS</h1>
+			<!-- ==============accordion============== -->
+			<ul class="accordion">
+				<li>
+					<h2>オープンソースで自然とともに</h2>
+					<div class="content">
+						<p>jQuero（ジェイクエロ）は、できるだけ自然に負荷をかけずにソフトウェア開発に取り組むプロジェクトです。</p>
+					</div>
+				</li>
+				<li>
+					<h2>電力使用量を減らそう</h2>
+					<div class="content">
+						<p>できるかぎり消費電力の少ないPCを使うことはもちろん、仕事は時間が来たら切り上げて、照明を消しています。</p>
+					</div>
+				</li>
+				<li>
+					<h2>コラボレーションから生まれたプロダクツ</h2>
+					<div class="content">
+						<p>常識を覆すサステイナブルな製品は、コラボレーションから生まれました。</p>
+					</div>
+				</li>
+				<li>
+					<h2>多くのことをより簡単に</h2>
+					<div class="content">
+						<p>ある程度使えるようになれば、プラグインを探すよりも自分で書いたほうが手間がかかりません。</p>
+					</div>
+				</li>
+				<li>
+					<h2>最初は少しずつ</h2>
+					<div class="content">
+						<p>上達のコツは、ちょっと書いては確認、ちょっと書いてはまた確認、というように、少し記述して動作を調べてみることです。</p>
+					</div>
+				</li>
+			</ul>
+			<!-- ==============/accordion============== -->
+		</div><!-- /.news -->
+		
+		<div class="articles">
+			<h1>ARTICLES</h1>
+			<!-- ==============ajax============== -->
+			<ul id="ajax-list">
+				
+			</ul>
+			<div class="btn">
+				<a href="../../js/c03/ajax/article1.json" class="btn-details" id="fetch">more</a>
+			</div><!-- /.btn-->	
+			<!-- ==============/ajax============== -->
+		</div><!-- /.articles-->
+	</div><!-- /.main -->
+	
+</div><!-- /.wrapper-main -->
+<div class="wrapper-footer">
+	<div class="footer">
+		<p>©jQuero</p>
+	</div><!-- /.footer --> 
+</div><!-- /.wrapper-footer -->
+</body>
+</html>

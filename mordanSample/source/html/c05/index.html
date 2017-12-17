@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>c05-04-b | Chapter 5 | jQuero</title>
+	<link rel="stylesheet" href="../../css/c05/layout.css"><!-- ページレイアウト用CSS -->
+	<link rel="stylesheet" href="../../css/c05/dynamic.css"><!-- jQueryで操作する部分のCSS -->
+	<script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../js/c05/main.js"></script>
+</head>
+<body>
+<div class="wrapper-header">
+	<div class="header">
+		<h1>jQuero!</h1>
+	</div><!-- /.header --> 
+</div><!-- /.wrapper-header -->
+
+<div class="wrapper-nav-global">
+	<ul class="nav-global clear">
+		<li><a href="#">ABOUT</a></li>
+		<li><a href="#">GROW</a></li>
+		<li><a href="#">PLAN</a></li>
+		<li><a href="#">SHARE</a></li>
+		<li><a href="#">CONTACT</a></li>
+	</ul>
+</div><!-- /.wrapper-nav-global -->
+
+<div class="wrapper-category">
+	<div class="category">
+		<p>SHARE</p>
+	</div><!-- /.category --> 
+</div><!-- /.wrapper-category -->
+
+<div class="wrapper-main">
+	<div class="main">
+		<div class="main-contents">
+			<p>情報交換に、技術のブラッシュアップに。全国のjQueroカフェに気軽にお立ちよりください。全店wifi完備です。もちろん住所や電話番号は架空です。</p>
+			<!-- ==============filter-btn============== -->
+			<div class="wrapper-filter-btn">
+				<ul class="filter-btn clear">
+					<li id="all" class="all"><a href="#">全店舗</a></li>
+					<li id="solar" class="solar off"><a href="#">太陽光発電</a></li>
+					<li id="kids" class="kids off"><a href="#">kids menu</a></li>
+					<li id="natural" class="natural off"><a href="#">自家栽培</a></li>
+				</ul>
+			</div><!-- /.wrapper-filter-btn -->
+			<!-- ==============/filter-btn============== -->
+			<!-- ==============table============== -->
+			<table id="shop">
+				<tr>
+					<th>店名</th>
+					<th>住所</th>
+					<th>電話番号</th>
+					<th colspan="3">設備</th>
+				</tr>
+			</table>
+			<!-- ==============/table============== -->
+		</div><!-- /.main-contents --> 
+	</div><!-- /.main --> 
+</div><!-- /.wrapper-main -->
+<div class="wrapper-footer">
+	<div class="footer">
+		<p>©jQuero</p>
+	</div><!-- /.footer --> 
+</div><!-- /.wrapper-footer -->
+</body>
+</html>

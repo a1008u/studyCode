@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>c06-05-a | Chapter 6 | jQuero</title>
+	<link rel="stylesheet" href="../../css/c06/layout.css"><!-- ページレイアウト用CSS -->
+	<link rel="stylesheet" href="../../css/c06/dynamic.css"><!-- jQueryで操作する部分のCSS -->
+	<script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../js/c06/main.js"></script>
+</head>
+<body>
+<div class="wrapper-header">
+	<div class="header">
+		<h1>jQuero!</h1>
+	</div>
+	<!-- /.header --> 
+</div>
+<!-- /.wrapper-header -->
+
+<div class="wrapper-nav-global">
+	<ul class="nav-global clear">
+		<li><a href="#">ABOUT</a></li>
+		<li><a href="#">GROW</a></li>
+		<li><a href="#">PLAN</a></li>
+		<li><a href="#">SHARE</a></li>
+		<li><a href="#">CONTACT</a></li>
+	</ul>
+</div><!-- /.wrapper-nav-global -->
+
+<div class="wrapper-category">
+	<div class="category">
+		<p>PHOTO GALLERY</p>
+	</div><!-- /.category --> 
+</div><!-- /.wrapper-category -->
+
+<div class="wrapper-main">
+	<div class="main">
+		<!-- ==============gallery============== -->
+		<div class="wrapper-gallery">
+			<div class="gallery">
+				<div class="mainimage">
+					<img class="front" src="../../images/photo-01.jpg">
+				</div><!-- /.mainimage -->
+				<div class="caption">
+				にんじん欲しい！
+				</div><!-- /.caption -->
+				<div class="carousel" id="carousel">
+					<div class="thumbs clear">
+						<ul class="thumbs-list">
+							<li data-caption="にんじん欲しい！"><img src="../../images/thumbnail-01.jpg" data-imgpath="../../images/photo-01.jpg"></li>
+							<li data-caption="ひまわり"><img src="../../images/thumbnail-02.jpg" data-imgpath="../../images/photo-02.jpg"></li>
+							<li data-caption="ポストとたぬき"><img src="../../images/thumbnail-03.jpg" data-imgpath="../../images/photo-03.jpg"></li>
+							<li data-caption="30分に一度"><img src="../../images/thumbnail-04.jpg" data-imgpath="../../images/photo-04.jpg"></li>
+							<li data-caption="夜景"><img src="../../images/thumbnail-05.jpg" data-imgpath="../../images/photo-05.jpg"></li>
+							<li data-caption="草うまい"><img src="../../images/thumbnail-06.jpg" data-imgpath="../../images/photo-06.jpg"></li>
+							<li data-caption="速いヤツら"><img src="../../images/thumbnail-07.jpg" data-imgpath="../../images/photo-07.jpg"></li>
+							<li data-caption="これから絵を描く"><img src="../../images/thumbnail-08.jpg" data-imgpath="../../images/photo-08.jpg"></li>
+							<li data-caption="笹うまい"><img src="../../images/thumbnail-09.jpg" data-imgpath="../../images/photo-09.jpg"></li>
+							<li data-caption="動かない"><img src="../../images/thumbnail-10.jpg" data-imgpath="../../images/photo-10.jpg"></li>
+							<li data-caption="スイスイ"><img src="../../images/thumbnail-11.jpg" data-imgpath="../../images/photo-11.jpg"></li>
+							<li data-caption="愛される引退後"><img src="../../images/thumbnail-12.jpg" data-imgpath="../../images/photo-12.jpg"></li>
+						</ul>
+					</div><!-- /.thumbs -->
+					<div class="thumbs-nav">
+						<a href="#" class="prev"></a><a href="#" class="next"></a>
+					</div><!-- /.thumbs-nav -->
+				</div><!-- /.carousel -->
+			</div><!-- /.gallery -->
+		</div><!-- /.wrapper-gallery --> 
+		<!-- ==============/gallery============== -->
+
+	</div><!-- /.main --> 
+</div><!-- /.wrapper-main -->
+<div class="wrapper-footer">
+	<div class="footer">
+		<p>©jQuero</p>
+	</div><!-- /.footer --> 
+</div><!-- /.wrapper-footer -->
+</body>
+</html>

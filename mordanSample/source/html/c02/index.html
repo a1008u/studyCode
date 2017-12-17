@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>c02-04-d | Chapter 2 | jQuero</title>
+    <link rel="stylesheet" href="../../css/c02/layout02.css"><!-- ページレイアウト用CSS -->
+    <link rel="stylesheet" href="../../css/c02/dynamic02.css"><!-- jQueryで操作する部分のCSS -->
+	<script src="../../../../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../js/c02/main.js"></script>
+
+	<script type="text/javascript">
+        $(() => {
+            $.ajaxSetup({cache:false})
+            $(".header").load("header.html")
+            $(".footer").load("footer.html")
+        })
+	</script>
+</head>
+<body>
+
+	<div class="header"></div>
+
+	<div class="wrapper-category">
+		<div class="category">
+		<p>ABOUT</p>
+		</div><!-- /.category -->
+	</div><!-- /.wrapper-category -->
+
+	<div class="wrapper-main">
+		<div class="main">
+			<div class="main-contents">
+				<h1>おどろきに満ちあふれたUI/UXを</h1>
+				<p class="lead">ユーザーにはスムーズで直感的な操作性を。開発者にはパワフルで使いやすい環境を。jQueroで。</p>
+				<p>プロジェクトにも自分たちにも、自然にも過度な負担のかからないワークフローを。洗練されたツールで開発して、素早くリリース。日々の改善を主眼に置いたワークフローを実現しましょう。</p>
+
+				<!-- ==============gallery============== -->
+				<div class="gallery">
+					<div class="mainimage">
+						<img src="../../images/photo-01.jpg">
+					</div><!-- /.mainimage -->
+
+					<ul class="thumbnails clear">
+						<li class="selected"><a href="#" data-img="../../images/photo-01.jpg"><img src="../../images/thumbnail-01.jpg"></a></li>
+						<li><a href="#" data-img="../../images/photo-02.jpg"><img src="../../images/thumbnail-02.jpg"></a></li>
+						<li><a href="#" data-img="../../images/photo-03.jpg"><img src="../../images/thumbnail-03.jpg"></a></li>
+						<li><a href="#" data-img="../../images/photo-04.jpg"><img src="../../images/thumbnail-04.jpg"></a></li>
+						<li><a href="#" data-img="../../images/photo-05.jpg"><img src="../../images/thumbnail-05.jpg"></a></li>
+					</ul>
+				</div><!-- /.gallery -->
+
+				<!-- ==============/gallery============== -->
+				<h2>コラボレーションから生まれたプロダクツ</h2>
+				<p>PCの冷却ファンの風力を利用して発電し、その電力で充電する無停電電源装置LOHA-upSをはじめとして、常識を覆すサステイナブルな製品は、コラボレーションから生まれました。</p>
+				<h2>1人より2人、2人より…大勢！</h2>
+				<p>世界中の$()使用量をカウントし、その数によって貯蓄する$OPEN.Deposit、その貯蓄をオープンソース組織に分配する$SHARE.Fundなどのクラウド・ソリューションは、1人では決して生まれませんでした。</p>
+
+				<!-- ==============tab============== -->
+				<div class="tab">
+					<ul class="tab-menu clear">
+						<li class="selected"><a href="#" data-tabid="1">TIP1</a></li>
+						<li><a href="#" data-tabid="2">TIP2</a></li>
+						<li><a href="#" data-tabid="3">TIP3</a></li>
+					</ul><!-- /.tabmenu -->
+					<div class="tab-contents">
+						<div data-contentid="1">
+							<h3>多くのことをより簡単に</h3>
+							<p>ある程度使えるようになれば、プラグインを探すよりも自分で書いたほうが手間がかからなくなる。プラグインの動作で妥協することもなくなる……かもしれない。</p>
+						</div>
+						<div class="hidden" data-contentid="2">
+							<h3>仕組みがわかると面白い</h3>
+							<p>動作の根本的な仕組みがわかったからといって、より良いものが作れるわけではないかもしれない。でも、作るのが楽しくなるのは間違いない。</p>
+						</div>
+						<div class="hidden" data-contentid="3">
+							<h3>最初は少しずつ</h3>
+							<p>上達のコツは、ちょっと書いては確認、ちょっと書いてはまた確認、というように、少し記述して動作を調べてみること。動きがわかり、動かなかったときの原因究明も簡単だ。</p>
+						</div>
+					</div><!-- /.tabcontents -->
+				</div><!-- /.tab -->
+				<!-- ==============/tab============== -->
+
+			</div><!-- /.main-contents -->
+		</div><!-- /.main -->
+	</div><!-- /.wrapper-main -->
+
+	<div class="footer"></div>
+
+</body>
+</html>
