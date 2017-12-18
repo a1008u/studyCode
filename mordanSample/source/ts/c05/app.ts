@@ -67,23 +67,79 @@ let filterData = (data, filterName) => {
 
 $(function(){
 
+    let shopdata: Array<json>
+
     /**
      * 05-01　JSONデータを取得する
      */
+
     //フィルタした結果の新たなデータを作成して返す
-    $.ajax({
-        type: 'GET',
-        url: '../../js/c05/shopdata.json',
-        dataType: 'json',
-        success: json => {
-            shopdata = json
-            renderTable(shopdata)
-            console.log(shopdata)
-        },
-        error:() => {
+    // $.ajax({
+    //     type: 'GET',
+    //     url: '../../js/c05/shopdata.json',
+    //     dataType: 'json',
+    //     success: json =>  {
+    //         shopdata = json
+    //         renderTable(shopdata)
+    //         console.log(shopdata)
+    //     },
+    //     error:() => {
+    //         alert('店舗データをダウンロードできませんでした。しばらく経ってからまたお試しください。')
+    //     }
+    // })
+
+
+    // $.ajax({
+    //     type: 'GET',
+    //     url: '../../js/c05/shopdata.json',
+    //     dataType: 'json'
+    // }).then(
+    //     json => {
+    //         shopdata = json
+    //         renderTable(shopdata)
+    //         console.log(shopdata)
+    //     },
+    //         error =>  alert('店舗データをダウンロードできませんでした。しばらく経ってからまたお試しください。')
+    // )
+
+
+
+
+    async function executeAjax() {
+        try {
+
+            // let result = await $.ajax({
+            //     type: 'GET',
+            //     url: '../../js/c05/shopdata.json',
+            //     dataType: 'json'
+            // })
+            //
+            // return result
+
+            return new Promise(
+                ( resolve:(result:Array<json>) => void , reject) => {
+
+                    let result = $.ajax({type: 'GET', url: '../../js/c05/shopdata.json', dataType: 'json'})
+                    resolve(result)
+                })
+
+        } catch (error) {
+            console.error(error)
             alert('店舗データをダウンロードできませんでした。しばらく経ってからまたお試しください。')
         }
-    })
+    }
+
+    async function exec() {
+        console.log('asyncとawaitで非同期処理を実装')
+
+        // awaitで待つ関数は、必ずPromiseオブジェクトを生成して返す
+        await executeAjax().then( json => {shopdata = json
+                                                     renderTable(shopdata)
+                                                     console.log(shopdata)})
+        console.log('asyncとawaitで非同期処理を実装完了')
+    }
+
+    exec()
 
     //データをフィルタする
     $('.filter-btn')

@@ -2,15 +2,11 @@
   "name": "frontend",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {"test": "echo \"Error: no test specified\" && exit 1"},
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-babel": "^7.0.0"
-  },
+  "devDependencies": {"gulp": "^3.9.1"
+                      , "gulp-babel": "^7.0.0"},
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
@@ -48,5 +44,6 @@
     "vinyl-paths": "^2.1.0",
     "vinyl-source-stream": "^1.1.0"
   },
+
   "description": ""
 }

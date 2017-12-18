@@ -366,9 +366,10 @@ function promiseWithInterface() : Promise<IPromiseMessage> {
 function awaitDelayed() : Promise<void> {
     return new Promise<void> (
         ( resolve: () => void, reject: () => void )
-            => { function afterWait() {console.log(`calling resolve`);
-            resolve();}
-            setTimeout(afterWait, 1000);
+            => { function afterWait() { console.log(`calling resolve`)
+                                        resolve()
+                                      }
+            setTimeout(afterWait, 1000)
         }
     )
 }
@@ -390,8 +391,9 @@ after awaitDelayed2
 function awaitError() : Promise<string> {
     return new Promise<string> (
         ( resolve: (message: string) => void, reject: (error: string) => void )
-            => { function afterWait() {console.log(`calling reject`)
-            reject("an error occurred")}
+            => { function afterWait() { console.log(`calling reject`)
+                                        reject("an error occurred")
+                                      }
             setTimeout(afterWait, 1000)
         }
     )
@@ -422,7 +424,7 @@ function asyncWithMessage() : Promise<string> {
     return new Promise<string> (
         ( resolve: (message: string ) => void, reject: (message: string) => void)
             => { function afterWait() { resolve("resolve_message") }
-            setTimeout(afterWait, 1000);
+            setTimeout(afterWait, 1000)
         }
     )
 }

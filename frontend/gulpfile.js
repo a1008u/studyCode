@@ -89,17 +89,6 @@ gulp.task('altjs', function() {
 });
 
 
-gulp.task('tsify', () => {
-    return browserify().add('./src/js/main.js')
-        .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(gulp.dest('./src/js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./src/js'));
-});
-
 gulp.task('scripts', function(){
 
     let bundler = browserify({basedir: './src/ts/', debug:true}).add('app.ts').plugin('tsify', {noImplicitAny: true, declaration:true});

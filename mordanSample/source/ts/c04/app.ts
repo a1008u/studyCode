@@ -4,7 +4,7 @@
 //モーダルウィンドウを開く
 namespace modalWindow{
 
-	// main
+    // main
     let showModal = (event) => {
         event.preventDefault()
 
@@ -34,18 +34,21 @@ namespace modalWindow{
 
 
 $(() => {
-	$('.show-modal').on('click', modalWindow.showModal)
+    $('.show-modal').on('click', modalWindow.showModal)
 })
 
 /**
  * 04-02　ウィンドウ上端でグローバルナビゲーションを固定する
  * 04-03　指定した位置でサイドメニューを固定する
  */
+
+
+
 $(() => {
 
-	function mediaDetect(query: string) : boolean{
-		return (window.matchMedia) ? window.matchMedia(query).matches : false
-	}
+    function mediaDetect(query: string) : boolean{
+        return (window.matchMedia) ? window.matchMedia(query).matches : false
+    }
 
     $(window).on('scroll', event => {
         let scrollValue = $(event.currentTarget).scrollTop()
@@ -57,7 +60,7 @@ $(() => {
             let $this = $(this)
             $this.data('initial', $this.offset().top)
         })
-        .on('customScroll', (event, object) => {
+        .on('customScroll', function(event, object){
             let $this = $(event.currentTarget)
 
             if($this.hasClass('noresponsive') && mediaDetect('(max-width:600px)')){
@@ -71,13 +74,13 @@ $(() => {
                     if(!$this.hasClass('fixed')) {
 
                         let $substitute = $('<div></div>').css({'margin':'0', 'padding':'0', 'font-size':'0', 'height':'0'})
-                                                          .addClass('substitute')
-                                                          .height($this.outerHeight(true))
-                                                          .width($this.outerWidth(true))
+                            .addClass('substitute')
+                            .height($this.outerHeight(true))
+                            .width($this.outerWidth(true))
 
                         $this.after($substitute)
-                             .addClass('fixed')
-                             .css({top: offsetTop})
+                            .addClass('fixed')
+                            .css({top: offsetTop})
                     }
                 } else {
                     //要素の固定を解除
@@ -93,15 +96,15 @@ $(() => {
  * 04-05　スクロールしてページトップに戻る
  */
 $(() => {
-	$('a.scroll-link').on('click', event => {
-		event.preventDefault()
-		
-		let $this = $(event.currentTarget)
-		let linkTo = $this.attr('href')
+    $('a.scroll-link').on('click', event => {
+        event.preventDefault()
+
+        let $this = $(event.currentTarget)
+        let linkTo = $this.attr('href')
         let pos = (linkTo != '#top') ? $(linkTo).offset().top - $(linkTo).data('offsettop') : 0
 
-         $('html,body').animate({scrollTop: pos}, 400)
-	})
+        $('html,body').animate({scrollTop: pos}, 400)
+    })
 })
 
 /**
