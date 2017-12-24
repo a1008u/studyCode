@@ -44,7 +44,7 @@ $(()=> {
 
         let $target = $(event.currentTarget)
         let count = 37
-        let newString : stirng = `このリストを${ count + 1 }回クリックしました。`
+        let newString : stirng = `このリストを${count+1}回クリックしました。`
 
         $target.text(newString)
 
