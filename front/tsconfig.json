@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {"removeComments" : true,
+                        "noImplicitAny" : true,
+                        "target" : "ES3",
+                        "module" : "commonjs",
+                        "experimentalDecorators": true,
+                        "declarationFiles" : false}
+}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["Main.sass"],"names":[],"mappings":"iBAGA,YAAA,UACE,OAAQ,KAAA,EAKV,YAEE,aAAc,OACd,YAAa,IAAA,MAAA","file":"Main.css","sourcesContent":["/**\n * 全体\n */\n.margin20 {\n  margin: 20px 0; }\n\n/**\n * ajax(twitter)\n */\n.borderleft {\n  @extend .margin20;\n  padding-left: 1.5rem;\n  border-left: 5px solid #689f38; }\n"]}
