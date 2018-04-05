@@ -50,7 +50,10 @@ export PATH=$PATH:./node_modules/.bin
 
  - mocha-webpackの実行(testの実施)
     ```$npm
-    mocha-webpack --webpack-config webpack.config.test.js  
+    mocha-webpack --webpack-config webpack.config.test.js 
+    
+    // scriptを設定しているのでこっちでいい
+    npm run test
     ```
     
  - webpackの実行（productionコード生成）

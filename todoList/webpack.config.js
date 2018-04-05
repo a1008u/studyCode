@@ -7,7 +7,7 @@ module.exports = {
         filename: './js/bundle.js'
     },
 
-    // package.jsonにprodとdevのコマンドを記載しているので「npm run dev」or「npm run build」で実行できる
+    // package.jsonにprodとdevのコマンドを記載しているので「npm run test」or「npm run build」で実行できる
     // もし上記記載がない場合は、以下を記載
     // webpack4から追加(modeはproductionかdevelopmentを設定する必要がある)
     // ファイルの圧縮や、モジュールの最適化などの設定が有効になる。
