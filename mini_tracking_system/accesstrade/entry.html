@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script>
+    // 5秒後に広告主ページに移動
+      setTimeout(function(){
+        window.location.href = "../MerchantSite/LandingPage.html";
+      }, 5000);
+
+      //パートナーID, バナーIDを取得
+      var arg = new Object;
+      var pair=location.search.substring(1).split('&');
+      for(var i=0;pair[i];i++) {
+          var kv=pair[i].split('=');
+          arg[kv[0]]=kv[1];
+      }
+
+      // クッキーに「どのパートナーのページのどのバナー広告からきたか」の情報を保存
+      document.cookie = 'accesstrade-tracking='+'partnerID'+':'+arg['partnerID']+','+'bannerID'+':'+arg['bannerID'] + "; path=/; expires=Thu, 1-Jan-2030 00:00:00 GMT";
+	  console.log(document.cookie);
+
+    </script>
+  </head>
+  <body>
+    広告主のページにジャンプします。クッキーに情報を付与しています。
+  </body>
+</html>
