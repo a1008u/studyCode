@@ -17,7 +17,7 @@ console.log(addToZ(3, 5)) // 108
 // Function Types ======================================================================================================
 // Typing the function  ------------------------------------------------------------------------------------------------
 // 関数の引数や戻り値の型を指定することができます。
-// この時、TypeScriptはretur 文から戻り値の型を推測するため、大抵の場合で戻り値の型を省略することができます。
+// この時、TypeScriptはreturn文から戻り値の型を推測するため、大抵の場合で戻り値の型を省略することができます。
 function add2(x: number, y: number): number {return x + y}
 console.log(add2(3, 5)) // 8
 
@@ -27,7 +27,7 @@ console.log(myAdd2(3, 5)) // 8
 // Writing the function type  ------------------------------------------------------------------------------------------
 // (x: number, y: number) => number の部分が関数の型
 // 関数の型では戻り値の型も必須なため、戻り値を持たない関数の場合には戻り値の型として void を使用します。
-let myAdd3: (x: number, y: number) => number = function(x: number, y: number): number { return x+y }
+let myAdd3: (x: number, y: number) => number = (x: number, y: number): number => x+y 
 console.log(myAdd3(3, 5)) // 8
 let myAdd4: (baseValue:number, increment:number) => number = function(x: number, y: number): number { return x + y }
 console.log(myAdd4(3, 5)) // 8
@@ -35,11 +35,11 @@ console.log(myAdd4(3, 5)) // 8
 // Inferring the types  ------------------------------------------------------------------------------------------------
 // 文脈に基づく型付け: 代入元/先のどちらからで型が省略された場合でも、TypeScript は型推論を行ってくれます。
 // myAdd は関数の型として推論される
-let myAdd5 = function(x: number, y: number): number { return  x + y }
+let myAdd5 = (x: number, y: number): number => x + y
 console.log(myAdd5(3, 5)) // 8
 
 // 引数 'x'、'y' は数値型として推論される
-let myAdd6: (baseValue:number, increment:number) => number = function(x, y) { return x + y }
+let myAdd6: (baseValue:number, increment:number) => number = (x, y) => x + y 
 console.log(myAdd6(3, 5)) // 8
 
 // Optional and Default Parameters -------------------------------------------------------------------------------------
@@ -86,7 +86,7 @@ function buildName5(firstName: string, ...restOfName: string[]) {return firstNam
 let employeeName = buildName5("Joseph", "Samuel", "Lucas", "MacKinzie")
 console.log(employeeName) // Joseph Samuel Lucas MacKinzie
 
-function buildName6(firstName: string, ...restOfName: string[]) {return firstName + " " + restOfName.join(" ")}
+let buildName6 = (firstName: string, ...restOfName: string[]) => firstName + " " + restOfName.join(" ")
 let buildNameFun: (fname: string, ...rest: string[]) => string = buildName6
 console.log(buildNameFun("aaaa", "bbbb")) // aaaa bbbbbbb
 
@@ -205,7 +205,7 @@ function pickCard(x): any {
         return pickedCard; // 戻り値はデッキ内のインデックス
     }
     // それ以外の場合、指定されたカードを引く
-    else if (typeof x == "number") {
+    if (typeof x == "number") {
         let pickedSuit = Math.floor(x / 13);
         return { suit: suits[pickedSuit], card: x % 13 }; // 戻り値は引いたカード (object)
     }

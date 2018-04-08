@@ -7,7 +7,7 @@ let myObj = {size: 10, label: "Size 10 Object"}
 printLabel(myObj)
 
 interface LabelledValue {label: string}
-function printLabel2(labelledObj: LabelledValue) {console.log(labelledObj.label)}
+let printLabel2 = (labelledObj: LabelledValue) => console.log(labelledObj.label)
 let myObj2 = {size: 10, label: "Size 10 Object"}
 printLabel2(myObj2)
 
@@ -28,10 +28,10 @@ function createSquare(config: SquareConfig): {color: string; area: number} {
 let mySquare = createSquare({color: "black"})
 
 // Readonly properties -------------------------------------------------------------------------------------------------
-interface Point {
-    readonly x: number
-    readonly y: number
-}
+// interface Point {
+//     readonly x: number
+//     readonly y: number
+// }
 let p1: Point = { x: 10, y: 20 }
 console.log(p1);
 // p1.x = 5 エラー
@@ -84,20 +84,20 @@ class Animal {name: string}
 class Dog extends Animal {breed: string}
 
 // エラー。文字列型でアクセスするとAnimalが返ってくることがある。
-interface NotOkay {
-    [x: number]: Animal
-    [x: string]: Dog
-}
+// interface NotOkay {
+//     [x: number]: Animal
+//     [x: string]: Dog
+// }
 
 // インデックスシグネチャはすべてのプロパティの型を統一させる
 interface NumberDictionary {
     [index: string]: number;
     length: number;    // OK。length は数値型
-    name: string;      // エラー。name は数値型またはそのサブクラスではない
+    //name: string;      // エラー。name は数値型またはそのサブクラスではない
 }
 
 interface ReadonlyStringArray {readonly [index: number]: string}
-let myArray: ReadonlyStringArray = ["Alice", "Bob"];
+// let myArray: ReadonlyStringArray = ["Alice", "Bob"];
 // myArray[2] = "Mallory" エラー! Readonlyのため
 
 // Class Types -------------------------------------------------------------------------------------------------
@@ -204,7 +204,7 @@ class Control {private state: any}
 interface SelectableControl extends Control {select(): void}
 class Button extends Control implements SelectableControl {select() { }}
 class TextBox extends Control {}
-class Location {}
+// class Location {}
 /* -----------------------------------------------------
 エラー: 'state' プロパティが 'Image' クラスに存在しない
 class Image implements SelectableControl {select() { }}

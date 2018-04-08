@@ -20,7 +20,9 @@ console.log(obj[sym]); // value
 
 // 計算されたプロパティとして使用することも可能です。
 const getClassNameSymbol = Symbol()
-class C {[getClassNameSymbol](){return "C"}}
+class C {
+    [getClassNameSymbol](){return "C"}
+}
 let c = new C()
 let className = c[getClassNameSymbol]()
 console.log(className) // C

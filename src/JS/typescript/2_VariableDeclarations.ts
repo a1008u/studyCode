@@ -168,12 +168,16 @@ let o2 = {
 
 // Default values ------------------------------------------------------------------------------------------------------
 // プロパティが指定されていない場合のデフォルト値
-function keepWholeObject(wholeObject: { aC: string, bC?: number }) {
-    // 'wholeObject' に 'b' プロパティがなければ '1001' になる
+let keepWholeObject = (wholeObject: { aC: string, bC?: number }) =>  {
     let { aC, bC = 1001 } = wholeObject;
+    console.log(aC)
+    console.log(bC)
+    return { aC, bC }
 }
 
+console.log(keepWholeObject({ aC: "a"}));
 console.log(keepWholeObject({ aC: "a", bC: 1 }));
+
 
 // Function declarations -----------------------------------------------------------------------------------------------
 // 変数分割はメソッドの引数にも使うことができます。
