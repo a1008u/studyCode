@@ -67,20 +67,3 @@ export PATH=$PATH:./node_modules/.bin
     ```
 --------
 
-## node.jsでWebアプリケーションサーバ
- - docker-composeでmongoの起動
-    ```$docker
-    docker-compose up
-    ```
-    
- - tsのコンパイル
-    ```$npm
-    npm run server
-    npm run db
-    ```
- 
- - serverの起動
-   ```$node
-   node ./ts/server/app.js
-   node ./ts/server/mongoapp.js
-   ```

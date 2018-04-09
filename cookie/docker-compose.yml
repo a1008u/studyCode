@@ -30,18 +30,17 @@ services:
     image: mongo-express
 
   nginx:
-    image: nginx:latest
-    # Dockerfileが格納されているpathを指定
-    # build: ./conf
+    # Dockerfileで設定している設定ファイルを格納したnginxを利用する（設定なしの場合：image: nginx:latest）
+    build: ./ts/server/nginx
+    environment:
+          TZ: Asia/Tokyo
     ports:
-        - "8080:80"
-    #links:
-    #    - php5
-    # マウントするディレクトリを指定
+        - "8888:80"
+    # マウントするディレクトリを指定(フロントの資材)
     volumes:
-        - /Users/akira/IdeaProjects/studyCode/cookie/nginx:/etc/nginx/sites-enabled/default
         - /Users/akira/IdeaProjects/studyCode/cookie/dist:/var/www/
-        - /Users/akira/IdeaProjects/studyCode/cookie/dist:/usr/share/nginx
+        # - /Users/akira/IdeaProjects/studyCode/cookie/dist:/usr/share/nginx
+
 
 
 volumes:
