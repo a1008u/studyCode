@@ -5,7 +5,9 @@
     "sourceMap": true,
     "lib": [
       "es2015.promise",
-      "dom"
+      "dom",
+      "es2015",
+      "webworker"
     ],
     "types" : ["node"]
   },

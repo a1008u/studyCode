@@ -7,7 +7,8 @@ class Main {
 
         const server: http.Server = http.createServer(
             (req: http.IncomingMessage, rep: http.ServerResponse) =>
-                this.htmlHandler(req, rep)
+                // this.htmlHandler(req, rep)
+                this.requestHandler(req, rep)
         )
 
         // const server: http.Server = http.createServer(
