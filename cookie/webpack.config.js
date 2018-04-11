@@ -2,6 +2,7 @@ module.exports = {
     // webpackがビルドを始める際の開始点となるtsファイル
     entry: {
         "at":'./ts/at/getcookie.ts',
+        "p":'./ts/p/chart.ts',
         "m":'./ts/m/checkcookie.ts'
     },
 
