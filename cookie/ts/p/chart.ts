@@ -9,6 +9,11 @@ let chart = c3.generate({
     }
     ,donut: {title:'Macの使いやすさについて'}
     ,onmouseover() {
-        console.log('マウスが。。。。');
+        console.log('マウスが。。。。')
     }
 })
+
+setTimeout(() => {chart.load({columns:[['best',25], ['better',25], ['good',25], ['bad',25]]})}, 1000)
+setTimeout(() => {chart.unload({ids:['best','better']})}, 3000)
+
+

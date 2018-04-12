@@ -2,7 +2,7 @@ module.exports = {
     // webpackがビルドを始める際の開始点となるtsファイル
     entry: {
         "at":'./ts/at/getcookie.ts',
-        "p":'./ts/p/chart.ts',
+        "p":['./ts/p/chart.ts','./ts/p/todo/todoMain.ts'],
         "m":'./ts/m/checkcookie.ts'
     },
 
@@ -27,6 +27,14 @@ module.exports = {
     // 開発環境：cheap-module-eval-source-map
     // 本番環境：source-map
     devtool: 'inline-source-map',
+
+    // チャンク機能
+    optimization: {
+        splitChunks: {
+            name: 'vendor',
+            chunks: 'initial',
+        }
+    },
 
     // ビルド対象に含めたい拡張子を設定する
     resolve: {
