@@ -1,0 +1,19 @@
+<div id="search-component">
+  <h4>Hero Search</h4>
+
+  <!-- テキストボックス内でユーザーがタイプする度、
+       テキストボックスの値、検索語と共にsearch()を呼び出します。
+       searchTermsは検索語の安定したストリームを発行するObservableになります。 -->
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+
+  <ul class="search-result">
+    <!-- $はheroes$が配列ではなくObservableであることを示すために慣例でつけられるものです。
+         *ngForはObservableについて何もできません。
+         しかしパイプ文字(|)に続くasyncもあり、これはAngularのAsyncPipeを意味します。
+         AsyncPipeは自動的にObservableをsubscribeするので、
+         コンポーネントクラスで何もする必要はありません。 -->
+    <li *ngFor="let hero of heroes$ | async" >
+      <a routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
+    </li>
+  </ul>
+</div>
