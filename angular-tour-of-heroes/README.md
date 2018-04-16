@@ -34,4 +34,9 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
+## sass+bootstrap4の利用方法
+参考：https://stackoverflow.com/questions/45660802/how-to-use-bootstrap-4-with-sass-in-angular
+
+## ngx-bootstrap4の利用方法
+参考：https://github.com/valor-software/ngx-bootstrap/blob/development/docs/getting-started/ng-cli.md
 

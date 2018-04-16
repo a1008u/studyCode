@@ -24,10 +24,12 @@
 <!--<app-messages></app-messages>-->
 
 <h1>{{title}}</h1>
+<alert type="success">hello</alert>
+<button type="button" class="btn btn-primary">Primary</button>
 <nav>
   <!-- ルータリンクを設定 -->
   <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
+  <div routerLink="/heroes" type="button" class="btn btn-primary">Heroes</div>
 </nav>
 <router-outlet></router-outlet>
 <app-messages></app-messages>

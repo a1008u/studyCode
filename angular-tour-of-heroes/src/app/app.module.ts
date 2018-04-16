@@ -19,8 +19,11 @@ import {InMemoryDataService} from './mock/server/in-memory-data.service';
 import {HeroService} from './service/hero.service';
 import {MessageService} from './service/message.service';
 
+import { AlertModule } from 'ngx-bootstrap';
+
 @NgModule({
   imports: [
+    AlertModule.forRoot(),
     BrowserModule,
     FormsModule,
     AppRoutingModule,
