@@ -20,10 +20,12 @@ import {HeroService} from './service/hero.service';
 import {MessageService} from './service/message.service';
 
 import { AlertModule } from 'ngx-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
     AlertModule.forRoot(),
+    CarouselModule.forRoot(),
     BrowserModule,
     FormsModule,
     AppRoutingModule,

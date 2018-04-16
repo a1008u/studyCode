@@ -1,10 +1,18 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4" routerLink="/detail/{{hero.id}}">
-    <div class="module hero">
-      <h4>{{hero.name}}</h4>
+<carousel >
+  <slide *ngFor="let hero of heroes" >
+
+    <div class="text-center py-5 bg-dark text-white">
+
+      <div class="lead">
+        <h2>{{hero.name}}</h2>
+        <p>this is our favorite Hero and he has a lot of .....</p>
+      </div>
+
+      <button type="button" class="btn btn-primary">
+        <a class="Eclipse" routerLink="/detail/{{hero.id}}">{{hero.name}}</a>
+      </button>
     </div>
-  </a>
-</div>
+  </slide>
+</carousel>
 
 <app-hero-search></app-hero-search>
