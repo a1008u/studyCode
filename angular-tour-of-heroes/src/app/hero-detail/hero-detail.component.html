@@ -1,4 +1,4 @@
-<div *ngIf="hero">
+<div *ngIf="hero" class="container "> 
   <h2>{{ hero.name | uppercase }} Details</h2>
   <div><span>id: </span>{{hero.id}}</div>
   <div>
@@ -6,6 +6,6 @@
       <input [(ngModel)]="hero.name" placeholder="name"/>
     </label>
   </div>
-  <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+  <button type="button" class="btn btn-primary" (click)="goBack()">go back</button>
+  <button type="button" class="btn btn-success" (click)="save()">save</button>
 </div>

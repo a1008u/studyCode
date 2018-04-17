@@ -1,18 +1,24 @@
-<h2>My Heroes</h2>
-
-<div>
-  <label>Hero name:
+<section class="container">
+  <div>
+    <h2>My Heroes</h2>
+    <label>Hero name:
     <input #heroName />
-  </label>
-  <!-- (click) 入力値をadd()に渡したあと、入力をクリアする -->
-  <button (click)="add(heroName.value); heroName.value=''">add</button>
-</div>
+    </label>
+    <!-- (click) 入力値をadd()に渡したあと、入力をクリアする -->
+    <button (click)="add(heroName.value); heroName.value=''">add</button>
+  </div>
 
-<ul class="heroes list-group" >
-  <li *ngFor="let hero of heroes" class="list-group-item">
-    <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
-    </a>
-    <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
-  </li>
-</ul>
+<div class="heroess list-group">
+    <li *ngFor="let hero of heroes" class="list-group-item list-group-item-action flex-column align-items-start active">
+        <a routerLink="/detail/{{hero.id}}" >
+          <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{hero.id}} + {{hero.name}}</h5>
+          </div>
+          <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+          <small>Donec id elit non mi porta.</small>
+        </a>
+        <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+    </li>
+  </div>
+</section>
+  
