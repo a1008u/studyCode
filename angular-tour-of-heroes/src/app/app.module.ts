@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -21,6 +21,7 @@ import {MessageService} from './service/message.service';
 
 import { AlertModule } from 'ngx-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap';
+import { MakeheroComponent } from './makehero/makehero.component';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { CarouselModule } from 'ngx-bootstrap';
     CarouselModule.forRoot(),
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
 
@@ -44,7 +46,8 @@ import { CarouselModule } from 'ngx-bootstrap';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    MakeheroComponent
   ],
   providers: [ HeroService, MessageService ],
   bootstrap: [ AppComponent ]

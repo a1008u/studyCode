@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'Tour of Heroes';
   dashboard = 'Dashboard';
   heroList = 'HeroList';
+  makehero = 'Makehero';
 }
 
 

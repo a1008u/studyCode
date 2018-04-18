@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {HeroesComponent} from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeroesComponent } from './heroes/heroes.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { MakeheroComponent } from './makehero/makehero.component';
 
 const routes: Routes = [
   // デフォルトルートを設定する
@@ -11,6 +12,7 @@ const routes: Routes = [
   , { path: 'dashboard', component: DashboardComponent }
   , { path: 'detail/:id', component: HeroDetailComponent }
   , { path: 'heroes', component: HeroesComponent }
+  , { path: 'makehero', component: MakeheroComponent }
 ];
 
 @NgModule({

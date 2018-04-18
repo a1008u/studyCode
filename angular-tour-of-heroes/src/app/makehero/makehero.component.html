@@ -1,0 +1,33 @@
+<h2>make new hero</h2>
+
+<section class="container">
+<form [formGroup]="form" (ngSubmit)="submitHandler(form.value)">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" formControlName="password">
+  </div>
+  <div class="form-group">
+    <label for="exampleSelect1">what language do u love?????</label>
+    <select class="form-control" id="exampleSelect1" formControlName="lang">
+      <option>Kotlin</option>
+      <option>TypeScript</option>
+      <option>Java</option>
+      <option>Node</option>
+      <option>JavaScript</option>
+    </select>
+  </div>
+
+  <div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" formControlName="privacyAndPolicy">
+      privacyAndPolicy
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</section>
