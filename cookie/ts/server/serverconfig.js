@@ -10,3 +10,4 @@ var db;
     db.host = '0.0.0.0';
     db.nodedb = 'nodedb';
 })(db = exports.db || (exports.db = {}));
+//# sourceMappingURL=serverconfig.js.map

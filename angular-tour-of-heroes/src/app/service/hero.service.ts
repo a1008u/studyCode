@@ -27,8 +27,9 @@ export class HeroService {
    * observableの結果をpipe()で拡張して、エラーハンドリングを行う
    */
   getHeroes (): Observable<Hero[]> {
+    const urlnode = 'http://127.0.0.1:8081/ListUsers';
     return this.http
-      .get<Hero[]>(this.heroesUrl)
+      .get<Hero[]>(urlnode)
       .pipe(
         tap(heroes => this.log(`fetched heroes`))
         , catchError(this.handleError('getHeroes', []))
@@ -41,8 +42,9 @@ export class HeroService {
    */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
+    const urlnode = 'http://127.0.0.1:8081/ListUsers';
     return this.http
-      .get<Hero[]>(url)
+      .get<Hero[]>(urlnode)
       .pipe(
         map(heroes => heroes[0]), // {0|1} 要素の配列を返す
         tap(h => {
@@ -64,8 +66,9 @@ export class HeroService {
    */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
+    const urlnode = `http://127.0.0.1:8081/User/${id}`;
     return this.http
-      .get<Hero>(url)
+      .get<Hero>(urlnode)
       .pipe(
         tap(_ => this.log(`fetched hero id=${id}`))
         , catchError(this.handleError<Hero>(`getHero id=${id}`))
@@ -77,11 +80,14 @@ export class HeroService {
    */
   searchHeroes(term: string): Observable<Hero[]> {
 
+    const urlnode = `http://127.0.0.1:8081/Users/${term}`;
+    const url = `api/heroes/?name=${term}`;
+
     // 検索語がない場合、空のヒーロー配列を返す
     if (!term.trim()) { return of([]); }
 
     return this.http
-      .get<Hero[]>(`api/heroes/?name=${term}`)
+      .get<Hero[]>(urlnode)
       .pipe(
         tap(_ => this.log(`found heroes matching "${term}"`)),
         catchError(this.handleError<Hero[]>('searchHeroes', []))
