@@ -13,7 +13,7 @@
     "copy-img": "cpx \"./img/{*.png,*gif}\" ./dist/img",
     "copy-html": "cpx \"./html/**\" ./dist/html",
     "app": "tsc ts/server/app.ts",
-    "server": "tsc --sourcemap ts/server/server.ts",
+    "server": "tsc ts/server/server.ts",
     "db": "tsc ts/server/mongoapp.ts"
   },
   "keywords": [

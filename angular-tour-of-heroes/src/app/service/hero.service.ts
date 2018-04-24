@@ -27,7 +27,7 @@ export class HeroService {
    * observableの結果をpipe()で拡張して、エラーハンドリングを行う
    */
   getHeroes (): Observable<Hero[]> {
-    const urlnode = 'http://127.0.0.1:8081/ListUsers';
+    const urlnode = 'http://127.0.0.1:8082/ListUsers';
     return this.http
       .get<Hero[]>(urlnode)
       .pipe(
@@ -42,7 +42,7 @@ export class HeroService {
    */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
-    const urlnode = 'http://127.0.0.1:8081/ListUsers';
+    const urlnode = 'http://127.0.0.1:8082/listUsers';
     return this.http
       .get<Hero[]>(urlnode)
       .pipe(
@@ -66,7 +66,7 @@ export class HeroService {
    */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
-    const urlnode = `http://127.0.0.1:8081/User/${id}`;
+    const urlnode = `http://127.0.0.1:8082/User/${id}`;
     return this.http
       .get<Hero>(urlnode)
       .pipe(
@@ -80,7 +80,7 @@ export class HeroService {
    */
   searchHeroes(term: string): Observable<Hero[]> {
 
-    const urlnode = `http://127.0.0.1:8081/Users/${term}`;
+    const urlnode = `http://127.0.0.1:8082/Users/${term}`;
     const url = `api/heroes/?name=${term}`;
 
     // 検索語がない場合、空のヒーロー配列を返す
