@@ -28,6 +28,8 @@ class Item {
     }
 }
 
+// select ---------------------------------------------------------------------------------------------
+
 app.get('/listUsers',  (req, res) => {
 
     let nameList : {id: number, name: string }[] = [];
@@ -51,20 +53,29 @@ app.get('/listUsers',  (req, res) => {
         });
 });
 
-
 app.get('/User/:id', (req, res) => {
 
+    let userId = req.params.id;
+    let nameList : {id: number, name: string }[] = [];
     headerSetting(res);
-    fs.readFile(
-        __dirname + "/" + "users.json"
-        , 'utf8'
-        , (err, data) => {
-            let id = 'user'+ req.params.id
-            console.log(JSON.parse(data)[`user${req.params.id}`]);
-            res.json(JSON.parse(data)[`user${req.params.id}`]);
-        }
-    );
-})
+    let li = showList(res);
+    li.then(client => {
+            console.log('connected to db  これを起動したのかなid＞＞＞＞');
+            let db = client.db(config.db.nodedb);
+
+            db.collection('user', (err, collection) => {
+                let stream = collection.find({ id: Number.parseInt(userId)}).stream();
+                stream.on("data", (item: { id: number, name: string }) => {
+                    console.log(item)
+                    nameList.push(new Item(item.id, item.name));
+                });
+                stream.on('end', () => { res.json(nameList); })
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        });
+});
 
 app.get('/Users/:name', (req, res) => {
 
@@ -99,14 +110,14 @@ app.get('/Users/:name', (req, res) => {
      * promise approach
      * @returns {any}
      */
-    function show() {
+    function show(userName) {
         return mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`)
             .then(client => {
-                console.log('connected to db')
-                let db = client.db(config.db.nodedb)
+                console.log('connected to db');
+                let db = client.db(config.db.nodedb);
 
                 db.collection('user',(err, collection)=> {
-                    let stream = collection.find().stream()
+                    let stream = collection.find(userName).stream()
                     stream.on("data",(item) => {console.log(item)})
                     stream.on('end',()=>{console.log('end')})
                 })
@@ -117,9 +128,13 @@ app.get('/Users/:name', (req, res) => {
     }
 
     headerSetting(res);
-    show();
+    let userName = req.params.name
+    let query = ({name: new RegExp(".*" + userName + ".*" , "i")})
+    show(query);
 
 });
+
+// Insert ---------------------------------------------------------------------------------------------
 
 app.put('/UserInsert', (req, res) =>{
     let insert = () => {
@@ -160,11 +175,11 @@ app.put('/UserInsert', (req, res) =>{
     res.end();
 });
 
+// update ---------------------------------------------------------------------------------------------
 
-
+// delete ---------------------------------------------------------------------------------------------
 
 // server -----------------------------
-
 let server = app.listen(8082,  () => {
 
     let host = server.address().address
