@@ -42,9 +42,7 @@ app.get('/listUsers',  (req, res) => {
 
         db.collection('user', (err, collection) => {
             let stream = collection.find().stream();
-            stream.on("data", (item: { id: number, name: string }) => {
-                nameList.push(new Item(item.id, item.name));
-            });
+            stream.on("data", (item: { id: number, name: string }) => { nameList.push(new Item(item.id, item.name)); });
             stream.on('end', () => { res.json(nameList); })
             })
         })
@@ -78,34 +76,6 @@ app.get('/User/:id', (req, res) => {
 });
 
 app.get('/Users/:name', (req, res) => {
-
-    // fs.readFile(
-    //     __dirname + "/" + "users.json"
-    //     , 'utf8'
-    //     , (err, data) => {
-    //         let name : string = req.params.name
-    //         let nameList: { id: number; name: string }[] = [];
-    //
-    //         // 検索
-    //         // for (let i of JSON.parse(data)){
-    //         //     if (i.name.match(name) != null) {
-    //         //         nameList.push(i);
-    //         //     }
-    //         // }
-    //
-    //         JSON.parse(data)
-    //             .filter((item, index) => {
-    //                 if (item.name.match(name)!= null)
-    //                     nameList.push(item);
-    //                 }
-    //             );
-    //
-    //
-    //
-    //         res.end(JSON.stringify(nameList));
-    //     }
-    // );
-
     /**
      * promise approach
      * @returns {any}
@@ -115,11 +85,14 @@ app.get('/Users/:name', (req, res) => {
             .then(client => {
                 console.log('connected to db');
                 let db = client.db(config.db.nodedb);
+                let nameList : {id: number, name: string }[] = [];
 
                 db.collection('user',(err, collection)=> {
                     let stream = collection.find(userName).stream()
-                    stream.on("data",(item) => {console.log(item)})
-                    stream.on('end',()=>{console.log('end')})
+                    stream.on("data",(item: { _id:string, id: number, name: string })=> {
+                        console.log(item)
+                        nameList.push(new Item(item.id, item.name));})
+                    stream.on('end',()=>{ res.json(nameList); })
                 })
             })
             .catch(err => {
@@ -135,7 +108,6 @@ app.get('/Users/:name', (req, res) => {
 });
 
 // Insert ---------------------------------------------------------------------------------------------
-
 app.put('/UserInsert', (req, res) =>{
     let insert = () => {
         return mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`)
@@ -176,8 +148,60 @@ app.put('/UserInsert', (req, res) =>{
 });
 
 // update ---------------------------------------------------------------------------------------------
+app.put('/update/:name', (req, res) =>{
 
+    let nameList : {id: number, name: string }[] = [];
+    let userName = req.params.name
+    let query = ({name: userName})
+
+    headerSetting(res);
+    let li = showList(res);
+
+    li.then(client => {
+        console.log('connected to db  これを起動したのかな＞＞＞＞');
+        let db = client.db(config.db.nodedb);
+
+        db.collection('user').updateMany({id:11},{$set: query}, () =>  {
+                let stream = db.collection('user').find({ id: 11}).stream();
+                stream.on("data", (item: { id: number, name: string }) => {
+                    console.log(item)
+                    nameList.push(new Item(item.id, item.name));
+                });
+                stream.on('end', () => { res.json(nameList); })
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        });
+
+})
 // delete ---------------------------------------------------------------------------------------------
+app.delete('/delete/:id', (req, res) =>{
+
+    let nameList : {id: number, name: string }[] = [];
+
+    headerSetting(res);
+    let li = showList(res);
+
+    li.then(client => {
+        console.log('connected to db  これを起動したのかな＞＞＞＞');
+        let db = client.db(config.db.nodedb);
+
+        db.collection('user').deleteMany({id: Number.parseInt(req.params.id)})
+            .then( () => {
+                let stream = db.collection('user').find().stream();
+                stream.on("data", (item: { id: number, name: string }) => {
+                    console.log(item)
+                    nameList.push(new Item(item.id, item.name));
+                });
+                stream.on('end', () => { res.json(nameList); })
+            })
+        })
+      .catch(err => {
+          console.log(err)
+      });
+})
+
 
 // server -----------------------------
 let server = app.listen(8082,  () => {
