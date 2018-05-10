@@ -23,11 +23,11 @@ export class HeroesComponent implements OnInit {
       .subscribe(heroes => this.heroes = heroes);
   }
 
-  add(name: string): void {
-    const trimName: string = name.trim();
-    if (!trimName) { return; }
+  add(title: string): void {
+    const trimTitle: string = title.trim();
+    if (!trimTitle) { return; }
     this.heroService
-      .addHero({ name } as Hero)
+      .addHero({ title } as Hero)
       .subscribe(hero => {this.heroes.push(hero); });
   }
 

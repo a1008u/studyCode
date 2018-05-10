@@ -34,33 +34,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var mongodb = require("mongodb");
 var config = require("./serverconfig");
 var Main = /** @class */ (function () {
     function Main() {
     }
-    // constructor() {
-    //
-    //     // mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`, (err, client) => {
-    //     //     if(err) {return console.dir(err)}
-    //     //     console.log('connected to db')
-    //     //
-    //     //     let db = client.db(config.db.nodedb)
-    //     //     db.collection('user',(err, collection)=>{
-    //     //         let docs = [
-    //     //             {name:'taguchi', score:40},
-    //     //             {name:'fkoji', score:80},
-    //     //             {name:'ichigawa', score:60}
-    //     //         ]
-    //     //
-    //     //         collection.insertMany(docs, (err,result) => {
-    //     //             console.dir(result)
-    //     //         })
-    //     //     })
-    //     // })
-    //
-    // }
     /**
      * promise approach
      * @returns {any}
@@ -80,10 +59,15 @@ var Main = /** @class */ (function () {
                     console.dir(result);
                 });
             });
-        })["catch"](function (err) {
+        })
+            .catch(function (err) {
             console.log(err);
         });
     };
+    /**
+     * promise approach
+     * @returns {any}
+     */
     Main.prototype.show = function () {
         return mongodb.MongoClient.connect("mongodb://" + config.db.host + "/" + config.db.port)
             .then(function (client) {
@@ -99,10 +83,15 @@ var Main = /** @class */ (function () {
             //         console.log(items)
             //     })
             // })
-        })["catch"](function (err) {
+        })
+            .catch(function (err) {
             console.log(err);
         });
     };
+    /**
+     * async await approach
+     * @returns {Promise<MongoClient>}
+     */
     Main.prototype.show2 = function () {
         return __awaiter(this, void 0, void 0, function () {
             var client, db, error_1;
@@ -110,7 +99,7 @@ var Main = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, mongoConnect()];
+                        return [4 /*yield*/, mongo.connect()];
                     case 1:
                         client = _a.sent();
                         console.log('connected to db');
@@ -132,30 +121,14 @@ var Main = /** @class */ (function () {
     };
     return Main;
 }());
-function mongoConnect() {
-    var client = mongodb.MongoClient.connect("mongodb://" + config.db.host + "/" + config.db.port);
-    return client;
-}
-// async function s(url: string){
-//
-//     let client = await mongodb.MongoClient.connect(url)
-//     return new Promise((resolve) => {
-//         resolve(client)
-//     })
-//
-// }
-// let promise = new Promise((resolve, reject) => {
-//     mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`, (err, db) => {
-//         if(err) reject(err);
-//         resolve(db);
-//     });
-// });
-//
-// promise.then(db=> {db(config.db.nodedb).collection('user',(err, collection)=> {
-//     let stream = collection.find().stream()
-//     stream.on("data",(item) => {console.log(item)})
-//     stream.on('end',()=>{console.log('end')})
-// })})
+var mongo;
+(function (mongo) {
+    mongo.connect = function () {
+        var client = mongodb.MongoClient.connect("mongodb://" + config.db.host + "/" + config.db.port);
+        return client;
+    };
+})(mongo || (mongo = {}));
 var main = new Main();
 main.show();
 main.show2();
+//# sourceMappingURL=mongoapp.js.map

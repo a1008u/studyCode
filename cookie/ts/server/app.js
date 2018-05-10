@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var http = require("http");
 var config = require("./serverconfig");
 var fs = require("fs");
@@ -7,7 +7,8 @@ var Main = /** @class */ (function () {
     function Main() {
         var _this = this;
         var server = http.createServer(function (req, rep) {
-            return _this.htmlHandler(req, rep);
+            // this.htmlHandler(req, rep)
+            return _this.requestHandler(req, rep);
         });
         // const server: http.Server = http.createServer(
         //     (req: http.IncomingMessage, rep: http.ServerResponse) =>
@@ -55,3 +56,4 @@ var Main = /** @class */ (function () {
     return Main;
 }());
 var main = new Main();
+//# sourceMappingURL=app.js.map

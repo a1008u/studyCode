@@ -27,7 +27,7 @@ export class HeroService {
    * observableの結果をpipe()で拡張して、エラーハンドリングを行う
    */
   getHeroes (): Observable<Hero[]> {
-    const urlnode = 'http://127.0.0.1:8082/ListUsers';
+    const urlnode = 'http://127.0.0.1:9000/libraryAlljson';
     return this.http
       .get<Hero[]>(urlnode)
       .pipe(
@@ -42,7 +42,7 @@ export class HeroService {
    */
   getHeroNo404<Data>(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/?id=${id}`;
-    const urlnode = 'http://127.0.0.1:8082/listUsers';
+    const urlnode = 'http://127.0.0.1:9000/libraryAlljson';
     return this.http
       .get<Hero[]>(urlnode)
       .pipe(
@@ -66,7 +66,7 @@ export class HeroService {
    */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
-    const urlnode = `http://127.0.0.1:8082/User/${id}`;
+    const urlnode = `http://127.0.0.1:9000/library/getid/${id}`;
     return this.http
       .get<Hero>(urlnode)
       .pipe(
@@ -80,7 +80,7 @@ export class HeroService {
    */
   searchHeroes(term: string): Observable<Hero[]> {
 
-    const urlnode = `http://127.0.0.1:8082/Users/${term}`;
+    const urlnode = `http://127.0.0.1:9000/libraryAlljson/${term}`;
     const url = `api/heroes/?name=${term}`;
 
     // 検索語がない場合、空のヒーロー配列を返す
@@ -117,10 +117,11 @@ export class HeroService {
    */
   deleteHero (hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
-    const url = `${this.heroesUrl}/${id}`;
+    const html = 'http://127.0.0.1:9000/library/delete'
+    const url = `${html}/${id}`;
 
     return this.http
-      .delete<Hero>(url, httpOptions)
+      .delete<Hero>(url)
       .pipe(
         tap(_ => this.log(`deleted hero id=${id}`))
         , catchError(this.handleError<Hero>('deleteHero'))

@@ -14,38 +14,35 @@ let headerSetting = (res) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 }
 
-async function showList(res) {
+async function mongodbConnector() {
     return await mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`);
 }
 
-class Item {
-    id:number;
-    name:string;
-
-    constructor(id:number, name:string){
-        this.id = id;
-        this.name = name;
-    }
-}
-
 // select ---------------------------------------------------------------------------------------------
-
 app.get('/listUsers',  (req, res) => {
 
     let nameList : {id: number, name: string }[] = [];
 
-    headerSetting(res);
-    let li = showList(res);
-    li.then(client => {
-        console.log('connected to db  これを起動したのかな＞＞＞＞');
-        let db = client.db(config.db.nodedb);
-
-        db.collection('user', (err, collection) => {
-            let stream = collection.find().stream();
-            stream.on("data", (item: { id: number, name: string }) => { nameList.push(new Item(item.id, item.name)); });
-            stream.on('end', () => { res.json(nameList); })
+    let c = (client) => {
+        console.log('select listUserを実行＞＞＞＞');
+        client
+            .db(config.db.nodedb)
+            .collection('user', (err, collection)
+                => {
+                let stream = collection.find().stream();
+                stream.on("data"
+                    , (item: { id: number, name: string }) => {
+                        nameList.push(new Item(item.id, item.name));
+                    });
+                stream.on('end', () => {
+                    res.json(nameList);
+                })
             })
-        })
+    }
+
+    headerSetting(res);
+    let mongodbConnector = mongodbConnector();
+    mongodbConnector.then(c(client))
         .catch(err => {
             console.log(err)
         });
@@ -56,7 +53,7 @@ app.get('/User/:id', (req, res) => {
     let userId = req.params.id;
     let nameList : {id: number, name: string }[] = [];
     headerSetting(res);
-    let li = showList(res);
+    let li = mongodbConnector();
     li.then(client => {
             console.log('connected to db  これを起動したのかなid＞＞＞＞');
             let db = client.db(config.db.nodedb);
@@ -108,7 +105,11 @@ app.get('/Users/:name', (req, res) => {
 });
 
 // Insert ---------------------------------------------------------------------------------------------
-app.put('/UserInsert', (req, res) =>{
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.post('/UserInsert', (req, res) =>{
+    res.setHeader('Content-Type', 'text/plain')
     let insert = () => {
         return mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`)
             .then(client => {
@@ -116,20 +117,8 @@ app.put('/UserInsert', (req, res) =>{
                 let db = client.db(config.db.nodedb)
 
                 db.collection('user',(err, collection)=>{
-                    let docs = [
-                        { "id": 11, "name": "Mr. Nice" },
-                        { "id": 12, "name": "Narco" },
-                        { "id": 13, "name": "Bombasto" },
-                        { "id": 14, "name": "Celeritas" },
-                        { "id": 15, "name": "Magneta" },
-                        { "id": 16, "name": "RubberMan" },
-                        { "id": 17, "name": "Dynama" },
-                        { "id": 18, "name": "Dr IQ" },
-                        { "id": 19, "name": "Magma" },
-                        { "id": 20, "name": "Tornado" }
-                    ];
-
-                    collection.insertMany(docs, (err, result) => {
+                    console.log(req.body);
+                    collection.insertMany(req.body, (err, result) => {
                         console.dir(result)
                     })
                 });
@@ -148,14 +137,14 @@ app.put('/UserInsert', (req, res) =>{
 });
 
 // update ---------------------------------------------------------------------------------------------
-app.put('/update/:name', (req, res) =>{
+app.put('/update/:id', (req, res) =>{
 
     let nameList : {id: number, name: string }[] = [];
     let userName = req.params.name
     let query = ({name: userName})
 
     headerSetting(res);
-    let li = showList(res);
+    let li = mongodbConnector(res);
 
     li.then(client => {
         console.log('connected to db  これを起動したのかな＞＞＞＞');
@@ -181,7 +170,7 @@ app.delete('/delete/:id', (req, res) =>{
     let nameList : {id: number, name: string }[] = [];
 
     headerSetting(res);
-    let li = showList(res);
+    let li = mongodbConnector(res);
 
     li.then(client => {
         console.log('connected to db  これを起動したのかな＞＞＞＞');
@@ -221,9 +210,12 @@ interface user {
     name:string
 }
 
-namespace  mongo{
-    export let connect = () => {
-        let client = mongodb.MongoClient.connect(`mongodb://${config.db.host}/${config.db.port}`)
-        return client
+class Item {
+    id:number;
+    name:string;
+
+    constructor(id:number, name:string){
+        this.id = id;
+        this.name = name;
     }
 }
