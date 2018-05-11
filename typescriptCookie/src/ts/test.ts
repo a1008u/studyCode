@@ -36,6 +36,35 @@ namespace  dddom {
         localStorage.clear();
     };
 
+    
+    // 1.処理の流れ　aタグ formタグを見つける
+    // 2.&で区切る(クエリーを区切る)
+    // 3.=で区切る(key valueを分ける)
+    // 4.atnctが付与しているvalueを取得
+    // 5.valueをtagとrkに分けて保持
+    // 6.
+    export const aTagChange = () => {
+
+        let a: string = location.search;
+        console.log(`変更前::::${a}`)
+        let queryList : string[] = a.substring(1).split("&");
+
+        queryList.forEach( query => {
+
+            let [b, c] : string[] = query.split("=")
+
+            // 要素を取得
+            let aElement : NodeListOf<HTMLAnchorElement> =  document.getElementsByTagName("a") ;
+
+            // a要素のタグ名を取得 ( → "A" )
+            let atagName : string = aElement[0].href;
+            let changeName : string = atagName + '?' + b + '_' + c
+            console.log(changeName);
+            aElement[0].href = changeName;
+
+        })
+    }
+
     let getURL = () =>   {
         // URLからクエリパラメタを取得
         let a: string = location.search;
@@ -53,6 +82,7 @@ namespace  dddom {
 
 dddom.useCookie();
 dddom.useLocalStorage();
+dddom.aTagChange();
 
 
 

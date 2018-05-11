@@ -28,3 +28,8 @@
       ```$npm 
         export PATH=$PATH:./node_modules/.bin 
       ``` 
+
+  - 実行コマンド
+     ```$npm
+webpack --config ./webpack.config.js
+      ``` 
