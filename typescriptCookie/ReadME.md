@@ -32,4 +32,5 @@
   - 実行コマンド
      ```$npm
 webpack --config ./webpack.config.js
+npm run build-dev
       ``` 

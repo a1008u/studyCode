@@ -1,6 +1,8 @@
+import { itp as ITP }  from "../service/itp";
+import { cookies as COOKIES }  from "../service/cookies";
+
 namespace  dddom {
     export const useCookie = () =>{
-
         let [b, c] : string[] = getURL();
         console.log(`変更後::::${b}`);
         console.log(`変更後::::${c}`);
@@ -44,7 +46,6 @@ namespace  dddom {
     // 5.valueをtagとrkに分けて保持
     // 6.
     export const aTagChange = () => {
-
         let a: string = location.search;
         console.log(`変更前::::${a}`)
         let queryList : string[] = a.substring(1).split("&");
@@ -63,7 +64,7 @@ namespace  dddom {
             aElement[0].href = changeName;
 
         })
-    }
+    };
 
     let getURL = () =>   {
         // URLからクエリパラメタを取得
@@ -74,7 +75,7 @@ namespace  dddom {
         return a.substring(1).split("=")
     };
 
-    // HTMLの解釈が終了した時点で発火するイベント
+    // -----------------------------------------------------------
     document.addEventListener('DOMContentLoaded',  (event)  => {
         console.log(' ______event: onLoad______');
     });
@@ -83,6 +84,3 @@ namespace  dddom {
 dddom.useCookie();
 dddom.useLocalStorage();
 dddom.aTagChange();
-
-
-

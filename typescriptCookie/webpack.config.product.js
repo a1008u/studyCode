@@ -1,13 +1,13 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/ts/lpcompletion.ts'
+        "ts":'./src/ts/test.ts'
     },
 
     output: {
         filename: "./js/[name]_bundle.js"
     },
-    mode: 'development'
+    mode: 'production'
     ,
     resolve: {
         extensions: ['.ts', '.js']
