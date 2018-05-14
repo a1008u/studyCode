@@ -1,34 +1,20 @@
-import {TargetObj} from "../model/TargetObj";
-import { localstorageatpmjson as localStorageAtpmJson } from "../model/localstorageatpmjson";
+import { paramjson } from "../model/paramjson";
 
 export namespace localstorage {
 
-    // localStorageに[atpm]として、連想配列（_atpm:::{jsonでパースした形の値({tag:rk})}）
-    export let storeRkInLocalStorage = (targetObj: TargetObj) => {
-        let lsJson : localStorageAtpmJson = JSON.parse(localStorage.getItem('_atpm')) || new localStorageAtpmJson();
-        lsJson.tag = targetObj.tag;
-        lsJson.rk = targetObj.rk;
-        localStorage.setItem('_atpm', JSON.stringify(lsJson));
+    export let storejsonInLocalStorage = (paramJson: paramjson ) => {
+        let json : paramjson = JSON.parse(localStorage.getItem('_atpm')) || {};
+        json = paramJson;
+        localStorage.setItem('_atpm', JSON.stringify(json));
     };
 
-    // localstorageから値を取得する
-    export let getLocalStrageParam = (key: string) : TargetObj => {
+    export let getLocalStrageJson = (key: string) : paramjson => {
         let value : string = localStorage.getItem(key);
-        let tag: string ='';
-        let rk: string ='';
         if (value !== null) {
-            let jsonlocalStorage = JSON.parse(value);
-            console.log(`cookieのバリュー：：：：${jsonlocalStorage}`);
-
-            Object.keys(jsonlocalStorage).forEach(tmptag =>  {
-                console.log(`[localstorage][item] == ${tmptag}`);
-                console.log(`[localstorage]][value] == ${jsonlocalStorage[tmptag]}`);
-                tag = tmptag;
-                rk = jsonlocalStorage[tmptag];
-                return;
-            });
+            let jsonlocalStorage : paramjson = JSON.parse(value);
+            return jsonlocalStorage;
         }
-        return new TargetObj(tag, rk);
+        return null;
     };
 
 }

@@ -1,21 +1,28 @@
-// urlのクエリパラメータからatnctを取得
-import {TargetObj} from "../model/TargetObj";
+import {paramjson} from "../model/paramjson";
 
 export namespace url  {
-    export let getAtnctParam = (query: string) : TargetObj => {
+    //
+    export let getParam = (query: string) : paramjson => {
         let queryList : string[] = query.split("&");
-        let tag: string ='';
-        let rk: string ='';
+        let json: paramjson = {};
         queryList.forEach( query => {
-            // 各queryパラメタを取得
-            let [key, value] : string[] = query.split("=")
-            if (decodeURIComponent(key) === 'atnct') {
-                let [tmptag, tmprk]: string[] = decodeURIComponent(value).split('_');
-                tag = tmptag;
-                rk = tmprk;
-                return;
-            }
+            let [key, value] : string[] = query.split("=");
+            json[key] = value;
         });
-        return new TargetObj(tag, rk);
+        return json;
     };
+
+    export let checkParam = (query: string) : boolean => query !== '';
+
+    export let containKey = (paramJson: paramjson, keys: string[]) => {
+        let result = false;
+        for (let key of keys) {
+            if ((key in paramJson)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    };
+
 }
