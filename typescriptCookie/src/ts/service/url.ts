@@ -1,7 +1,6 @@
 import {paramjson} from "../model/paramjson";
 
 export namespace url  {
-    //
     export let getParam = (query: string) : paramjson => {
         let queryList : string[] = query.split("&");
         let json: paramjson = {};

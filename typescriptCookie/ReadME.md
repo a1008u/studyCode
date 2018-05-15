@@ -19,7 +19,6 @@
     npm install @types/mocha --save-dev
     ```
  
- 
   - test用のコマンド
      ```$npm
      mocha-webpack --webpack-config webpack.config.test.js
@@ -29,8 +28,10 @@
         export PATH=$PATH:./node_modules/.bin 
       ``` 
 
-  - 実行コマンド
+  - 実行方法
      ```$npm
-webpack --config ./webpack.config.js
-npm run build-dev
+    export PATH=$PATH:./node_modules/.bin 
+    npm run build-dev // 開発環境用
+    npm run build-pro // 本番環境用
+    docker-compose --build
       ``` 
