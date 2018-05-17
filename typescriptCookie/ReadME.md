@@ -1,6 +1,3 @@
-
-
-
 ## typescriptの始め方  
 
  - pakage.jsonの作成
@@ -28,10 +25,18 @@
         export PATH=$PATH:./node_modules/.bin 
       ``` 
 
-  - 実行方法
+## 実行方法(テスト)
+  - 開発用
      ```$npm
+    npm install // npm_moduleを取得していない場合
     export PATH=$PATH:./node_modules/.bin 
     npm run build-dev // 開発環境用
+    docker-compose up --build
+    ``` 
+  - 本番用
+    ```$npm
+    npm install // npm_moduleを取得していない場合
+    export PATH=$PATH:./node_modules/.bin 
     npm run build-pro // 本番環境用
-    docker-compose --build
-      ``` 
+    docker-compose up --build　// もし動作を見たいのなら。。
+    ``` 

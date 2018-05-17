@@ -5,47 +5,25 @@ import { url } from "./service/url";
 import { paramjson } from "./model/paramjson";
 
 namespace lpcompletion {
-
-    // jsの後ろについているクエリを取得する
-    export let getTargetParams = () => {
-        let keys: string[] = [];
-        [].forEach.call(document.getElementsByTagName('script'), (script) => {
-            let scriptSrc: string = script.src;
-            if (scriptSrc != '') {
-                let [jsfiles, querys] = scriptSrc.split('?');
-                let jsfile: string[] = jsfiles.split('/');
-                if (jsfile[jsfile.length - 1] === 'ts_bundle.js') {
-                    let queryList: string[] = querys.split('&');
-                    queryList.forEach(query => {
-                        let [key, value]: string[] = query.split('=');
-                        keys.push(value);
-                    });
-                    console.log(keys);
-                }
-            }
-        });
-        return keys;
-    };
-
-
-    export let setAtg = (paramJson: paramjson, keys: string[]) => {
-
-        let queryValue : string = '';
+    let getQueryParam = (paramJson: paramjson) : string[]  =>  {
+        let formParam: string[] = [];
         Object.keys(paramJson).forEach((jsonKey) => {
             let key: string = jsonKey;
             let value: string = paramJson[jsonKey];
-            if (decodeURIComponent(key) !== '') {
-                if (decodeURIComponent(key) === 'atnct') {
-                    if(ITP.hasITP(window.navigator.userAgent)) {
-                        queryValue += `${key}=${value}&`;
-                    }
-                } else {
-                    queryValue += `${key}=${value}&`;
-                }
+            if (decodeURIComponent(key) === '') return;
+            if (decodeURIComponent(key) !== 'atnct') {
+                formParam.push(`${key}=${value}`);
+                return;
+            }
+            if (ITP.hasITP(window.navigator.userAgent)) {
+                formParam.push(`${key}=${value}`);
             }
         });
+        return formParam;
+    };
 
-        // a要素のタグ名を取得 ( → "A" )
+    let setAtg = (paramJson: paramjson) => {
+        let queryValue : string[] =getQueryParam(paramJson);
         [].forEach.call(document.getElementsByTagName("a"), (aTag) => {
             console.log(`設定前(aタグ)：：：：：：${aTag.innerText}`);
             let baseAtag : string = aTag.href;
@@ -56,25 +34,8 @@ namespace lpcompletion {
         });
     };
 
-    // Formタグの設定
-    export let setFormtg = (paramJson: paramjson, keys: string[]) => {
-
-        let formParam: string[] = [];
-        Object.keys(paramJson).forEach((jsonKey) => {
-            let key: string = jsonKey;
-            let value: string = paramJson[jsonKey];
-            if (decodeURIComponent(key) !== '') {
-                if (decodeURIComponent(key) === 'atnct') {
-                    if(ITP.hasITP(window.navigator.userAgent)) {
-                        formParam.push(`${key}=${value}`);
-                    }
-                } else {
-                    formParam.push(`${key}=${value}`);
-                }
-            }
-        });
-
-        // formタグ
+    let setFormtg = (paramJson: paramjson) => {
+        let formParam : string[] = getQueryParam(paramJson);
         [].forEach.call(document.getElementsByTagName("form"), (formTag) => {
             console.log(formTag);
             formParam.forEach(param => {
@@ -88,6 +49,54 @@ namespace lpcompletion {
         });
     };
 
+    let getParam = (keys : string[], paramJson: paramjson, beforeResult: boolean = false) : boolean => {
+        if (paramJson && !beforeResult ) {
+            if (url.containKey(paramJson, keys)) {
+                setAtg(paramJson);
+                setFormtg(paramJson);
+                return true;
+            }
+        }
+        return false;
+    };
+
+    // jsの後ろについているクエリを取得する
+    export let getJsParams = () => {
+        let keys: string[] = [];
+        [].forEach.call(document.getElementsByTagName('script'), (script) => {
+            let scriptSrc: string = script.src;
+            if (scriptSrc !== '') {
+                let [jsfiles, querys] = scriptSrc.split('?');
+                let jsfile: string[] = jsfiles.split('/');
+                if (jsfile[jsfile.length - 1] === 'ts_bundle.js') {
+                    querys.split('&').forEach(query => {
+                        let [_, value]: string[] = query.split('=');
+                        keys.push(value);
+                    });
+                    console.log(`jsに記載されているクエリ:::${keys}`);
+                }
+            }
+        });
+        return keys;
+    };
+
+    export let autoParamComplement = (keys : string[]) =>  {
+        //　URL取得
+        if (url.checkParam(location.search.substring(1))) {
+            let paramJson: paramjson = url.getParam(location.search.substring(1));
+            if (getParam(keys, paramJson)) {
+                localstorage.storejsonInLocalStorage(paramJson);
+                cookies.storeJsonInCookie(paramJson);
+                return 'we use URL';
+            }
+        }
+
+        // localStorage or cookieから取得
+        let result = getParam(keys, localstorage.getLocalStrageJson('_atpm'));
+        getParam(keys, cookies.getCookieJson('_atpm'), result);
+
+        return 'we use localstorage or cookie';
+    };
 
 }
 
@@ -98,36 +107,14 @@ namespace lpcompletion {
 // 4.Cookieに保持
 // 5.atag確認 + 設定
 // 6.form確認 + 設定
-document.addEventListener('DOMContentLoaded',  (kes)  => {
+document.addEventListener('DOMContentLoaded',  (event)  => {
 
-    let keys = lpcompletion.getTargetParams();
+    // jsの後ろに付いているパラメータを取得（）
+    let keys : string[] = lpcompletion.getJsParams();
     if (keys.length != 0) {
-        let checkResult: boolean = url.checkParam(location.search.substring(1));
-        // URLから取得
-        if (checkResult) {
-            let paramJson : paramjson = url.getParam(location.search.substring(1));
-            if (url.containKey(paramJson, keys)) {
-                localstorage.storejsonInLocalStorage(paramJson);
-                cookies.storeJsonInCookie(paramJson);
-                lpcompletion.setAtg(paramJson, keys);
-                lpcompletion.setFormtg(paramJson, keys);
-            }
-        }　else {
-            // localstorageから取得
-            let paramJson : paramjson = localstorage.getLocalStrageJson('_atpm');
-            if(paramJson) {
-                lpcompletion.setAtg(paramJson, keys);
-                lpcompletion.setFormtg(paramJson, keys);
-            } else {
-                // cookieから取得
-                let paramJson2 : paramjson = cookies.getCookieJson('_atpm');
-                if(paramJson2) {
-                    lpcompletion.setAtg(paramJson2, keys);
-                    lpcompletion.setFormtg(paramJson2, keys);
-                }
-            }
-        }
+        console.log(lpcompletion.autoParamComplement(keys));
     }
+
     console.log(window.navigator.userAgent);
     console.log(' ______event: onLoad______');
 }, false);

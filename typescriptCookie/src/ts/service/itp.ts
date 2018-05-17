@@ -8,15 +8,18 @@ export namespace  itp{
              && ua.indexOf('chrome') === -1
              && ua.indexOf('firefox') === -1
              && ua.indexOf('edge') === -1) {
+
             let iosVersion = ua.match(/os (\d{2})_/);
             if (iosVersion !== null && +iosVersion[1] >= 11) {
                 return true;
             }
+
             let macVersion = ua.match(/mac os x 10_(\d{2})/);
             if (macVersion !== null && +macVersion[1] >= 13) {
                 return true;
             }
         }
+
         console.log("itp対応の端末かブラウザでないです")
         return false;
     }

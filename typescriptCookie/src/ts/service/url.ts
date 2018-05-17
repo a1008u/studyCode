@@ -2,9 +2,8 @@ import {paramjson} from "../model/paramjson";
 
 export namespace url  {
     export let getParam = (query: string) : paramjson => {
-        let queryList : string[] = query.split("&");
         let json: paramjson = {};
-        queryList.forEach( query => {
+        query.split("&").forEach( query => {
             let [key, value] : string[] = query.split("=");
             json[key] = value;
         });
@@ -13,11 +12,18 @@ export namespace url  {
 
     export let checkParam = (query: string) : boolean => query !== '';
 
-    export let containKey = (paramJson: paramjson, keys: string[]) => {
-        let result = false;
+    // urlのクエリパラメータとjsのクエリパラメータが一致するか確認（完全一致）
+    export let containKey = (paramJson: paramjson, keys: string[]) : boolean => {
+        let result = true;
+
+        let paramJsonkeys : string[] = [];
+        Object.keys(paramJson).forEach((paramJsonKey) => {
+            paramJsonkeys.push(paramJsonKey);
+        });
+
         for (let key of keys) {
-            if ((key in paramJson)) {
-                result = true;
+            if (paramJsonkeys.indexOf(key) == -1) {
+                result = false;
                 break;
             }
         }
