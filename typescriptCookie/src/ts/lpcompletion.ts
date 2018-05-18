@@ -23,14 +23,15 @@ namespace lpcompletion {
     };
 
     let setAtg = (paramJson: paramjson) => {
-        let queryValue : string[] =getQueryParam(paramJson);
+        let queryValues : string[] = getQueryParam(paramJson);
         [].forEach.call(document.getElementsByTagName("a"), (aTag) => {
-            console.log(`設定前(aタグ)：：：：：：${aTag.innerText}`);
-            let baseAtag : string = aTag.href;
-            let query: string = baseAtag.indexOf('?') == -1 ? `&${queryValue.slice( 0, -1 )}`: `?${queryValue.slice( 0, -1 )}`;
-            let changeAtagName : string = baseAtag + query;
-            console.log(`設定後(aタグ)：：：：：：${changeAtagName}`);
-            aTag.href = changeAtagName;
+            queryValues.forEach(queryValue => {
+                console.log(`設定前(aタグ)：：：：：：${aTag.innerText}`);
+                let baseAtag : string = aTag.href;
+                let query: string = aTag.href.indexOf('?') == -1 ? `?${queryValue.slice( 0, -1 )}`: `&${queryValue.slice( 0, -1 )}`;
+                aTag.href += query;
+                console.log(`設定後(aタグ)：：：：：：${aTag.href}`);
+            })  
         });
     };
 
@@ -51,11 +52,10 @@ namespace lpcompletion {
 
     let getParam = (keys : string[], paramJson: paramjson, beforeResult: boolean = false) : boolean => {
         if (paramJson && !beforeResult ) {
-            if (url.containKey(paramJson, keys)) {
-                setAtg(paramJson);
-                setFormtg(paramJson);
-                return true;
-            }
+            let x: paramjson = url.containKey(keys, paramJson);
+            setAtg(x);
+            setFormtg(x);
+            return true;
         }
         return false;
     };
@@ -84,11 +84,12 @@ namespace lpcompletion {
         //　URL取得
         if (url.checkParam(location.search.substring(1))) {
             let paramJson: paramjson = url.getParam(location.search.substring(1));
-            if (getParam(keys, paramJson)) {
+            if (true) {
                 localstorage.storejsonInLocalStorage(paramJson);
                 cookies.storeJsonInCookie(paramJson);
-                return 'we use URL';
+                getParam(keys, paramJson);
             }
+           return 'we use URL';
         }
 
         // localStorage or cookieから取得

@@ -13,21 +13,22 @@ export namespace url  {
     export let checkParam = (query: string) : boolean => query !== '';
 
     // urlのクエリパラメータとjsのクエリパラメータが一致するか確認（完全一致）
-    export let containKey = (paramJson: paramjson, keys: string[]) : boolean => {
-        let result = true;
-
+    export let containKey = (keys: string[], paramJson: paramjson) : paramjson => {
         let paramJsonkeys : string[] = [];
         Object.keys(paramJson).forEach((paramJsonKey) => {
             paramJsonkeys.push(paramJsonKey);
         });
 
+        let x : paramjson = {};
         for (let key of keys) {
-            if (paramJsonkeys.indexOf(key) == -1) {
-                result = false;
-                break;
+            for (let paramJsonkey of paramJsonkeys) {
+                if (paramJsonkey === key) {
+                    x[paramJsonkey] = paramJson[paramJsonkey];
+                    break;
+                }
             }
         }
-        return result;
+        return x;
     };
 
 }
