@@ -1,7 +1,6 @@
 module.exports = {
-
     entry: {
-        "ts":'./test/ts/test.ts'
+        "ts":'./src/ts/lpcompletion.ts'
     },
     resolve: {
         extensions: ['.ts', '.js']

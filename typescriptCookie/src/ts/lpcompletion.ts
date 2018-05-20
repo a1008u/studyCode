@@ -1,10 +1,14 @@
-import { itp as ITP }  from "./service/itp";
+import { itp }  from "./service/itp";
 import { cookies } from "./service/cookies";
 import { localstorage } from "./service/localstorage";
 import { url } from "./service/url";
 import { paramjson } from "./model/paramjson";
+import { atag } from "./service/atag";
+import { formtag } from "./service/formtag";
 
-namespace lpcompletion {
+export namespace lpcompletion {
+
+    //
     let getQueryParam = (paramJson: paramjson) : string[]  =>  {
         let formParam: string[] = [];
         Object.keys(paramJson).forEach((jsonKey) => {
@@ -15,50 +19,41 @@ namespace lpcompletion {
                 formParam.push(`${key}=${value}`);
                 return;
             }
-            if (ITP.hasITP(window.navigator.userAgent)) {
+            if (itp.hasITP(window.navigator.userAgent)) {
                 formParam.push(`${key}=${value}`);
             }
         });
         return formParam;
     };
 
-    let setAtg = (paramJson: paramjson) => {
-        let queryValues : string[] = getQueryParam(paramJson);
-        [].forEach.call(document.getElementsByTagName("a"), (aTag) => {
-            queryValues.forEach(queryValue => {
-                console.log(`設定前(aタグ)：：：：：：${aTag.innerText}`);
-                let baseAtag : string = aTag.href;
-                let query: string = aTag.href.indexOf('?') == -1 ? `?${queryValue.slice( 0, -1 )}`: `&${queryValue.slice( 0, -1 )}`;
-                aTag.href += query;
-                console.log(`設定後(aタグ)：：：：：：${aTag.href}`);
-            })  
-        });
+    //
+    let confirmJson = (paramJson: paramjson) : boolean => {
+        let count = 0;
+        for (let i in paramJson) {
+            ++count;
+            if (paramJson[i] === undefined) {
+                count = 0;
+                break;
+            }
+        }
+        return (count !== 0);
     };
 
-    let setFormtg = (paramJson: paramjson) => {
-        let formParam : string[] = getQueryParam(paramJson);
-        [].forEach.call(document.getElementsByTagName("form"), (formTag) => {
-            console.log(formTag);
-            formParam.forEach(param => {
-                let [key ,value] : string[] = param.split("=");
-                let inputElement : HTMLInputElement = document.createElement('input');
-                inputElement.type = 'hidden';
-                inputElement.name = key;
-                inputElement.value = value;
-                formTag.appendChild(inputElement);
-            });
-        });
-    };
+    //
+    let setParam = (keys : string[], paramJson: paramjson, beforeResult: boolean = false) : boolean => {
+        if (!beforeResult) {
+            if (!confirmJson(paramJson)) {
+                return false;
+            }
 
-    let getParam = (keys : string[], paramJson: paramjson, beforeResult: boolean = false) : boolean => {
-        if (paramJson && !beforeResult ) {
-            let x: paramjson = url.containKey(keys, paramJson);
-            setAtg(x);
-            setFormtg(x);
+            let targetParamJson: paramjson = url.containKey(keys, paramJson);
+            atag.setAtg(getQueryParam(targetParamJson));
+            formtag.setFormtg(getQueryParam(targetParamJson));
             return true;
         }
         return false;
     };
+
 
     // jsの後ろについているクエリを取得する
     export let getJsParams = () => {
@@ -80,43 +75,37 @@ namespace lpcompletion {
         return keys;
     };
 
+    // 2-1 URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納
+    // 2-2 URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換
+    // 2-3　URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換
+    // ex:　2-1から3までで、ない場合はaタグやformタグ変換をせずに終了
     export let autoParamComplement = (keys : string[]) =>  {
-        //　URL取得
         if (url.checkParam(location.search.substring(1))) {
             let paramJson: paramjson = url.getParam(location.search.substring(1));
-            if (true) {
+            let result = setParam(keys, paramJson);
+            if (result) {
                 localstorage.storejsonInLocalStorage(paramJson);
                 cookies.storeJsonInCookie(paramJson);
-                getParam(keys, paramJson);
             }
-           return 'we use URL';
+            return 'we use URL';
         }
 
-        // localStorage or cookieから取得
-        let result = getParam(keys, localstorage.getLocalStrageJson('_atpm'));
-        getParam(keys, cookies.getCookieJson('_atpm'), result);
-
+        let result = setParam(keys, localstorage.getLocalStorageJson('_atpm'));
+        setParam(keys, cookies.getCookieJson('_atpm'), result);
         return 'we use localstorage or cookie';
     };
 
 }
 
-// HTMLの解釈が終了した時点で発火するイベント
-// 1.ITP対応のブラウザ確認
-// 2.atnctにひもづく情報(tagとrk)を保持
-// 3.localStrageに保持
-// 4.Cookieに保持
-// 5.atag確認 + 設定
-// 6.form確認 + 設定
+// 処理の流れ
+// 1.jsのクエリを取得(検索用)
+// 2.aタグやformタグのパラメータを変更
 document.addEventListener('DOMContentLoaded',  (event)  => {
 
-    // jsの後ろに付いているパラメータを取得（）
+    // jsの後ろに付いているパラメータを取得
     let keys : string[] = lpcompletion.getJsParams();
     if (keys.length != 0) {
         console.log(lpcompletion.autoParamComplement(keys));
     }
-
-    console.log(window.navigator.userAgent);
-    console.log(' ______event: onLoad______');
 }, false);
 

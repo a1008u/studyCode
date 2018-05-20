@@ -52,7 +52,6 @@ export namespace cookies  {
     // jsonを保持
     export let storeJsonInCookie = (paramjson: paramjson) => {
         setItem('_atpm', JSON.stringify(paramjson), Infinity, '/', location.hostname, false);
-        console.log('cookie保持完了');
     };
 
 }
