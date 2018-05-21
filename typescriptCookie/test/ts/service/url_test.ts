@@ -1,7 +1,9 @@
 import { url } from "../../../src/ts/service/url";
 import {paramjson} from "../../../src/ts/model/paramjson";
+import {cookies} from "../../../src/ts/service/cookies";
 
 describe('【url】getParamのテスト', () =>  {
+
     it('?を除くクエリパラメータを取得した場合、&と=でパラメタを連想配列にできている', () =>  {
 
         let paramJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
@@ -26,6 +28,7 @@ describe('【url】getParamのテスト', () =>  {
 });
 
 describe('【url】checkParamのテスト', () =>  {
+
     it('checkParamの引数設定場合trueを返す', () =>  {
         expect(url.checkParam("test")).toBe(true);
     });

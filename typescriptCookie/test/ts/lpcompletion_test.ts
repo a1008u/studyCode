@@ -1,38 +1,29 @@
-import { lpcompletion } from "../../src/ts/lpcompletion";
+import {lpcompletion} from "../../src/ts/lpcompletion";
+import autoParamComplement = lpcompletion.autoParamComplement;
 
-describe('【lpcompletion】テスト', () =>  {
+describe('【lpcompleteion】のテスト', () =>  {
+    beforeEach(() =>  {
+        history.pushState('', '', '?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=thisistest&not=thisisnottest');
+        let s: HTMLScriptElement = document.createElement("script");
+        s.innerHTML = "keys=['test','test2']";
+    });
 
-    it('【jsの後ろのquery取得】正確に取得できている', () =>  {
-        // before
-        [].forEach.call(document.getElementsByTagName("head"), (head) => {
-            let scriptElement : HTMLScriptElement = document.createElement('script');
-            scriptElement.src = './ts_bundle.js?key=&key=test2';
-            head.appendChild(scriptElement);
-        });
-        let params : string[] =lpcompletion.getJsParams();
-        console.log(params);
-        expect(params.length).toBe(2);
-        for (let param of params) {
-            if (param === '') {
-                expect(param).toBe('');
-                break;
-            }
-            expect(param).toBe('test2');
-        }
+    it('【url利用の確認】', () =>  {
+        // execute
+        let value1 = 'atnct';
+        let value2 = 'this';
+        let value3 = 'not';
+        let beforequeryList  = [`${value1}`, `${value2}`, `${value3}`];
+        let after : string = autoParamComplement(beforequeryList);
+        expect(after).toEqual('we use URL');
 
 
     });
 
-    // it('【jsの後ろのquery取得】正確に取得できない', () =>  {
-    //     // before
-    //     [].forEach.call(document.getElementsByTagName("head"), (head) => {
-    //         let scriptElement : HTMLScriptElement = document.createElement('script');
-    //         scriptElement.src = './ts_bundle.js?key=test2&key=test2&key=test2';
-    //         head.appendChild(scriptElement);
-    //     });
-    //     let params : string[] =lpcompletion.getJsParams();
-    //     expect(params.length).toBe(3);
-    // });
+    afterEach(() =>  {
+        let date1 : Date = new Date();
+        date1.setTime(0);
+        document.cookie = "_atpm=;expires="+date1.toUTCString();
+        localStorage.clear();
+    });
 });
-
-

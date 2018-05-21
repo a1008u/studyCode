@@ -54,27 +54,6 @@ export namespace lpcompletion {
         return false;
     };
 
-
-    // jsの後ろについているクエリを取得する
-    export let getJsParams = () => {
-        let keys: string[] = [];
-        [].forEach.call(document.getElementsByTagName('script'), (script) => {
-            let scriptSrc: string = script.src;
-            if (scriptSrc !== '') {
-                let [jsfiles, querys] = scriptSrc.split('?');
-                let jsfile: string[] = jsfiles.split('/');
-                if (jsfile[jsfile.length - 1] === 'ts_bundle.js') {
-                    querys.split('&').forEach(query => {
-                        let [_, value]: string[] = query.split('=');
-                        keys.push(value);
-                    });
-                    console.log(`jsに記載されているクエリ:::${keys}`);
-                }
-            }
-        });
-        return keys;
-    };
-
     // 2-1 URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納
     // 2-2 URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換
     // 2-3　URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換
@@ -103,7 +82,7 @@ export namespace lpcompletion {
 document.addEventListener('DOMContentLoaded',  (event)  => {
 
     // jsの後ろに付いているパラメータを取得
-    let keys : string[] = lpcompletion.getJsParams();
+    let keys : string[] = (<any>window).keys;
     if (keys.length != 0) {
         console.log(lpcompletion.autoParamComplement(keys));
     }
