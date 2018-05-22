@@ -9,11 +9,9 @@ module.exports = function(config) {
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
 
-
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
-
+        frameworks: ['jasmine', 'karma-typescript'],
 
         // list of files / patterns to load in the browser
         files: [
@@ -23,19 +21,17 @@ module.exports = function(config) {
             , 'test/ts/service/*.ts'
         ],
 
-
         // list of files / patterns to exclude
         exclude: [
         ],
 
-
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/ts/lpcompletion.ts': ['webpack','sourcemap','coverage']
-            , 'test/ts/lpcompletion_test.ts': ['webpack','sourcemap']
-            , 'src/ts/service/*.ts': ['webpack','sourcemap','coverage']
-            ,'test/ts/service/*.ts': ['webpack','sourcemap']
+            'src/ts/lpcompletion.ts': ['webpack',"karma-typescript",'coverage']
+            , 'test/ts/lpcompletion_test.ts': ['webpack',"karma-typescript"]
+            , 'src/ts/service/*.ts': ['webpack',"karma-typescript",'coverage']
+            ,'test/ts/service/*.ts': ['webpack',"karma-typescript"]
         },
 
         webpack: {
@@ -53,7 +49,7 @@ module.exports = function(config) {
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
         // テスト結果
-        reporters: ['mocha','coverage','spec', 'kjhtml'],
+        reporters: ['mocha','coverage','spec', 'kjhtml', "karma-typescript"],
 
         // web server port
         port: 9876,
