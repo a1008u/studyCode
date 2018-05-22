@@ -1,24 +1,25 @@
 import { itp }  from "../../../src/ts/service/itp";
 
-describe('【itp】containKeyのテスト', () =>  {
-
+describe('【itp】containKeyのテスト1', () =>  {
     it('【mac_safari以外のブラウザ】', () =>  {
         let result: boolean  = itp.hasITP(window.navigator.userAgent);
         let ua = window.navigator.userAgent.toLowerCase();
 
+        console.log(ua + ' ======== ' + result);
         if ((ua.indexOf('macintosh') === 1 || ua.indexOf('iphone') === 1 || ua.indexOf('ipad') === 1)
             && ua.indexOf('safari') !== 1) {
             expect(result).toBe(false);
         }
-
     });
+});
 
+describe('【itp】containKeyのテスト2', () =>  {
     it('【mac_safari】OSX10.3以上', () =>  {
         let result: boolean  = itp.hasITP(window.navigator.userAgent);
         let ua = window.navigator.userAgent.toLowerCase();
 
-        if ((ua.indexOf('macintosh') === 1 )
-            && ua.indexOf('safari') === 1) {
+        console.log(ua);
+        if ((ua.indexOf('macintosh') === 1 ) && ua.indexOf('safari') === 1) {
 
             let macVersion = ua.match(/mac os x 10_(\d{2})/);
             if (macVersion !== null && +macVersion[1] >= 13) {
@@ -26,11 +27,14 @@ describe('【itp】containKeyのテスト', () =>  {
             }
         }
     });
+});
 
+describe('【itp】containKeyのテスト3', () =>  {
     it('【iphoneやipad_safari】OSX10.3以上', () =>  {
         let result: boolean  = itp.hasITP(window.navigator.userAgent);
         let ua = window.navigator.userAgent.toLowerCase();
 
+        console.log(ua);
         if ((ua.indexOf('iphone') === 1 || ua.indexOf('ipad') === 1)
             && ua.indexOf('safari') === 1) {
 
@@ -40,15 +44,18 @@ describe('【itp】containKeyのテスト', () =>  {
             }
         }
     });
+});
 
+describe('【itp】containKeyのテスト4', () =>  {
     it('【mac以外_safari以外のブラウザ】', () =>  {
         let result: boolean  = itp.hasITP(window.navigator.userAgent);
         let ua = window.navigator.userAgent.toLowerCase();
 
+        console.log(ua);
         if ((ua.indexOf('macintosh') === -1 || ua.indexOf('iphone') === -1 || ua.indexOf('ipad') === -1)
             && ua.indexOf('safari') === 1) {
             expect(result).toBe(false);
         }
-
     });
 });
+

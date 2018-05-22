@@ -82,7 +82,7 @@ export namespace lpcompletion {
 document.addEventListener('DOMContentLoaded',  (event)  => {
 
     // jsの後ろに付いているパラメータを取得
-    let keys : string[] = (<any>window).keys;
+    let keys : string[] = (<any>window).keys || [];
     if (keys.length != 0) {
         console.log(lpcompletion.autoParamComplement(keys));
     }

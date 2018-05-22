@@ -2,8 +2,6 @@ import { cookies } from "../../../src/ts/service/cookies";
 import {paramjson} from "../../../src/ts/model/paramjson";
 
 describe('【cookie】テスト', () =>  {
-
-
     // before
     let paramjson: paramjson = {key:'test'};
     beforeEach(() =>  {

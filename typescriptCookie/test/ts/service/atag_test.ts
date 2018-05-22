@@ -45,16 +45,17 @@ describe('【atag】テスト', () =>  {
 
         // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
         [].forEach.call(document.getElementsByTagName("a"), (afterAtags) => {
-
-            let afterAtag = afterAtags.toString();
-            let [url, afterquerys] : string[] = afterAtag.split('?');
-            if (afterquerys.length >= 50) {
-                expect(afterAtag).toEqual('http://example.com/?test=aaaaaa&test2=sssssss&test3=ddddddd&test=aaaaaa&test2=sssssss&test3=ddddddd');
-                expect(afterquerys).toEqual('test=aaaaaa&test2=sssssss&test3=ddddddd&test=aaaaaa&test2=sssssss&test3=ddddddd');
-            }
-            if (afterquerys.length <= 50) {
-                expect(afterAtag).toEqual('http://example.com/?test=aaaaaa&test2=sssssss&test3=ddddddd');
-                expect(afterquerys).toEqual('test=aaaaaa&test2=sssssss&test3=ddddddd');
+            if (afterAtags.id == anchorId2) {
+                let afterAtag = afterAtags.toString();
+                let [url, afterquerys] : string[] = afterAtag.split('?');
+                if (afterquerys.length >= 50) {
+                    expect(afterAtag).toEqual('http://example.com/?test=aaaaaa&test2=sssssss&test3=ddddddd&test=aaaaaa&test2=sssssss&test3=ddddddd');
+                    expect(afterquerys).toEqual('test=aaaaaa&test2=sssssss&test3=ddddddd&test=aaaaaa&test2=sssssss&test3=ddddddd');
+                }
+                if (afterquerys.length <= 50) {
+                    expect(afterAtag).toEqual('http://example.com/?test=aaaaaa&test2=sssssss&test3=ddddddd');
+                    expect(afterquerys).toEqual('test=aaaaaa&test2=sssssss&test3=ddddddd');
+                }
             }
         });
     });

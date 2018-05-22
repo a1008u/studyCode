@@ -28,7 +28,6 @@ describe('【url】getParamのテスト', () =>  {
 });
 
 describe('【url】checkParamのテスト', () =>  {
-
     it('checkParamの引数設定場合trueを返す', () =>  {
         expect(url.checkParam("test")).toBe(true);
     });

@@ -14,6 +14,7 @@
     ```$npm
     npm i webpack webpack-cli assert chai mocha mocha-webpack ts-loader typings --save-dev
     npm install @types/mocha --save-dev
+    npm i karma-spec-reporter karma-jasmine-html-reporter --save-dev
     ```
  
   - test用のコマンド
@@ -47,10 +48,3 @@
     export PATH=$PATH:./node_modules/.bin 
     npm run test
     ```    
-
-## UTレポート
-```$npm
-  npm i karma-spec-reporter karma-jasmine-html-reporter --save-dev
-```  
-karma.conf.jsに追加
-reporters: ['spec', 'html'],
