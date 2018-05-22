@@ -47,3 +47,10 @@
     export PATH=$PATH:./node_modules/.bin 
     npm run test
     ```    
+
+## UTレポート
+```$npm
+  npm i karma-spec-reporter karma-jasmine-html-reporter --save-dev
+```  
+karma.conf.jsに追加
+reporters: ['spec', 'html'],
