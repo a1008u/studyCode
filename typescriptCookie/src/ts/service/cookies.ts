@@ -10,7 +10,7 @@ export namespace cookies  {
                 .test(document.cookie);
     };
 
-    export let getItem = (sKey) => {
+    let getItem = (sKey) => {
         if (!sKey || !hasItem(sKey)) { return null; }
         return unescape(document.cookie
                 .replace(new RegExp("(?:^|.*;\\s*)"
@@ -29,24 +29,12 @@ export namespace cookies  {
         return null;
     };
 
-    export let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure) => {
+    let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure) => {
         if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return; }
-        let sExpires = "";
-        if (vEnd) {
-            switch (vEnd.constructor) {
-                case Number:
-                    sExpires = vEnd === Infinity ? "; expires=Tue, 19 Jan 2038 03:14:07 GMT" : "; max-age=" + vEnd;
-                    break;
-                case String:
-                    sExpires = "; expires=" + vEnd;
-                    break;
-                case Date:
-                    sExpires = "; expires=" + vEnd.toGMTString();
-                    break;
-            }
-        }
-        // let h : string = `${escape(sKey)}=${escape(sValue)};domain=${(sDomain ? sDomain : "")}; path=${(sPath ? sPath : "")}${(bSecure ? "; secure" : "")}` ;
-        document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${(sPath ? sPath : "")}${(bSecure ? "; secure" : "")}` ;
+        let date : Date　=　new Date();
+        date.setFullYear(date.getFullYear() + 1);
+        let sExpires = date.toUTCString();
+        document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${(sPath ? sPath : "")}; expires=${sExpires}${(bSecure ? "; secure" : "")}` ;
     };
 
     // jsonを保持

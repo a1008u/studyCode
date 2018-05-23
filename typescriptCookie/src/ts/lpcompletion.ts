@@ -8,7 +8,7 @@ import { formtag } from "./service/formtag";
 
 export namespace lpcompletion {
 
-    //
+    // jsonのkeyとvalueを「key=value」にする（itpの場合は、itp対応確認をする）
     let getQueryParam = (paramJson: paramjson) : string[]  =>  {
         let formParam: string[] = [];
         Object.keys(paramJson).forEach((jsonKey) => {
@@ -26,23 +26,23 @@ export namespace lpcompletion {
         return formParam;
     };
 
-    //
+    // 取得したJsonのvalueが「undefined, 空, 空白, null」の時は、falseとする
     let confirmJson = (paramJson: paramjson) : boolean => {
         let count = 0;
         for (let i in paramJson) {
             ++count;
-            if (paramJson[i] === undefined) {
+            if (paramJson[i] === undefined || ''||  ' ' ||  null) {
                 count = 0;
                 break;
             }
         }
-        return (count !== 0);
+        return (count === 0);
     };
 
-    //
+    // AnchorタグとFormタグにパラメタを付与
     let setParam = (keys : string[], paramJson: paramjson, beforeResult: boolean = false) : boolean => {
         if (!beforeResult) {
-            if (!confirmJson(paramJson)) {
+            if (confirmJson(paramJson)) {
                 return false;
             }
 

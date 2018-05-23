@@ -1,7 +1,7 @@
 import { localstorage } from "../../../src/ts/service/localstorage";
 import {paramjson} from "../../../src/ts/model/paramjson";
 
-describe('【localstorage】テスト1', () =>  {
+describe('【localstorage】保持と取得確認_正常系', () =>  {
 
     // before
     let testParamJson: paramjson = {key:'test'};
@@ -24,7 +24,7 @@ describe('【localstorage】テスト1', () =>  {
     });
 });
 
-describe('【localstorage】テスト2', () =>  {
+describe('【localstorage】保持と取得確認_異常系', () =>  {
     it('localStorageに保持されていない場合、nullとなる', () =>  {
         // execute
         let paramJson: paramjson = localstorage.getLocalStorageJson('_atpm');

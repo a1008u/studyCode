@@ -10,6 +10,13 @@ describe('【formtag】テスト', () =>  {
         form.action = beforeURL;
         form.method = 'post';
         form.id = formId;
+
+        // すでにhiddenタグを保持している
+        let inputElement: HTMLInputElement = document.createElement('input');
+        inputElement.type = 'hidden';
+        inputElement.name = 'test';
+        inputElement.value = 'do not use';
+        form.appendChild(inputElement);
         document.body.appendChild(form);
     });
 
@@ -22,14 +29,14 @@ describe('【formtag】テスト', () =>  {
         formtag.setFormtg(beforequeryList);
 
         // URLが設定されていることを確認
-        [].forEach.call(document.getElementsByName('test1'), (afterFormtag) => {
-            expect(afterFormtag.value).toEqual(value1);
+        [].forEach.call(document.getElementsByName('test1'), (afterFormtag1) => {
+            expect(afterFormtag1.value).toEqual(value1);
         });
-        [].forEach.call(document.getElementsByName('test2'), (afterFormtag) => {
-            expect(afterFormtag.value).toEqual(value2);
+        [].forEach.call(document.getElementsByName('test2'), (afterFormtag2) => {
+            expect(afterFormtag2.value).toEqual(value2);
         });
-        [].forEach.call(document.getElementsByName('test3'), (afterFormtag) => {
-            expect(afterFormtag.value).toEqual(value3);
+        [].forEach.call(document.getElementsByName('test3'), (afterFormtag3) => {
+            expect(afterFormtag3.value).toEqual(value3);
         });
 
     });

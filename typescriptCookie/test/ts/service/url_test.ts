@@ -1,11 +1,9 @@
 import { url } from "../../../src/ts/service/url";
 import {paramjson} from "../../../src/ts/model/paramjson";
-import {cookies} from "../../../src/ts/service/cookies";
 
 describe('【url】getParamのテスト', () =>  {
 
     it('?を除くクエリパラメータを取得した場合、&と=でパラメタを連想配列にできている', () =>  {
-
         let paramJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
         for (let key in paramJson) {
             if (key === 'key') expect(paramJson[key]).toBe('test');
@@ -14,7 +12,7 @@ describe('【url】getParamのテスト', () =>  {
         }
     });
 
-    it('?を除くクエリパラメータを取得した場合、&と=でパラメタを連想配列にするがkeyが同じ場合は上書きされる', () =>  {
+    it('?を除くクエリパラメータを取得した場合、&と=でパラメタを連想配列にする(keyが同じ場合は上書きされる)', () =>  {
         let paramJson : paramjson = url.getParam("key=test&key=tom&iam3=sam");
         for (let key in paramJson) {
             if (key === 'key') {
@@ -39,7 +37,7 @@ describe('【url】checkParamのテスト', () =>  {
 
 describe('【url】containKeyのテスト', () =>  {
 
-    it('【keysとpreparaParamJsonのkeyに不一致の値を含む】keysに任意の値を入れて、任意のkeyだけを設定したjsonが取得できている確認', () =>  {
+    it('【keysとprepareParamJsonのkeyに不一致の値を含む】keysに任意の値を入れて、パラメタのkeyに一致するkey=valueだけを設定したjsonが取得できているか確認', () =>  {
         let keys = ['key','key2','tom'];
         let prepareParamJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
         let paramJson : paramjson = url.containKey(keys, prepareParamJson);
@@ -60,7 +58,7 @@ describe('【url】containKeyのテスト', () =>  {
         }
     });
 
-    it('【keysよりpreparaParamJsonのkeyが多い一致】keysに任意の値を入れて、任意のkeyだけを設定したjsonが取得できている確認', () =>  {
+    it('【keysよりprepareParamJsonのkeyが多い一致】keysに任意の値を入れて、パラメタのkeyに一致するkey=valueだけを設定したjsonが取得できているか確認', () =>  {
         let keys = ['key','key2'];
         let prepareParamJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
         let paramJson : paramjson = url.containKey(keys, prepareParamJson);
@@ -81,8 +79,24 @@ describe('【url】containKeyのテスト', () =>  {
         }
     });
 
-    it('【keysとpreparaParamJsonのkeyが一致】keysに任意の値を入れて、任意のkeyだけを設定したjsonが取得できている確認', () =>  {
+    it('【keysとprepareParamJsonのkeyが一致】keysに任意の値を入れて、パラメタのkeyに一致するkey=valueだけを設定したjsonが取得できているか確認', () =>  {
         let keys = ['key','key2','iam3'];
+        let prepareParamJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
+        let paramJson : paramjson = url.containKey(keys, prepareParamJson);
+
+        // 取得元と取得先のjsonが同じでないことを確認
+        expect(paramJson).toEqual(prepareParamJson);
+
+        // paramJsonには要求された　keyが取得されていること
+        for (let key in paramJson) {
+            if (key === 'key') expect(paramJson[key]).toBe('test');
+            if (key === 'key2') expect(paramJson[key]).toBe('tom');
+            if (key === 'iam3') expect(paramJson[key]).toBe('sam');
+        }
+    });
+
+    it('【keysnの方がprepareParamJsonよりkeyが多い】keysに任意の値を入れて、パラメタのkeyに一致するkey=valueだけを設定したjsonが取得できているか確認', () =>  {
+        let keys = ['key','key2','key3','key4','key5','iam3'];
         let prepareParamJson : paramjson = url.getParam("key=test&key2=tom&iam3=sam");
         let paramJson : paramjson = url.containKey(keys, prepareParamJson);
 
