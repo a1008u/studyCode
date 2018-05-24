@@ -1,34 +1,48 @@
-import {paramjson} from "../model/paramjson";
+import { paramjson } from '../model/paramjson';
 
-export namespace url  {
-    export let getParam = (query: string) : paramjson => {
-        let json: paramjson = {};
-        query.split("&").forEach( query => {
-            let [key, value] : string[] = query.split("=");
-            json[key] = value;
-        });
-        return json;
-    };
+export namespace url {
+  /**
+   * queryからparam(json状態)で取得
+   * @param {string} query
+   * @returns {paramjson}
+   */
+  export let getParam = (query: string): paramjson => {
+    let json: paramjson = {};
+    query.split('&').forEach(query => {
+      let [key, value]: string[] = query.split('=');
+      json[key] = value;
+    });
+    return json;
+  };
 
-    export let checkParam = (query: string) : boolean => query !== '';
+  /**
+   * 取得したqueryの確認
+   * @param {string} query
+   * @returns {boolean}
+   */
+  export let checkParam = (query: string): boolean => query !== '';
 
-    // urlのクエリパラメータとjsのクエリパラメータが一致するか確認（完全一致）
-    export let containKey = (keys: string[], paramJson: paramjson) : paramjson => {
-        let paramJsonkeys : string[] = [];
-        Object.keys(paramJson).forEach((paramJsonKey) => {
-            paramJsonkeys.push(paramJsonKey);
-        });
+  /**
+   * urlのクエリパラメータとjsのクエリパラメータが一致するか確認（完全一致）
+   * @param {string[]} keys
+   * @param {paramjson} paramJson
+   * @returns {paramjson}
+   */
+  export let containKey = (keys: string[], paramJson: paramjson): paramjson => {
+    let paramJsonkeys: string[] = [];
+    Object.keys(paramJson).forEach(paramJsonKey => {
+      paramJsonkeys.push(paramJsonKey);
+    });
 
-        let x : paramjson = {};
-        for (let key of keys) {
-            for (let paramJsonkey of paramJsonkeys) {
-                if (paramJsonkey === key) {
-                    x[paramJsonkey] = paramJson[paramJsonkey];
-                    break;
-                }
-            }
+    let resultJson: paramjson = {};
+    for (let key of keys) {
+      for (let paramJsonkey of paramJsonkeys) {
+        if (paramJsonkey === key) {
+          resultJson[paramJsonkey] = paramJson[paramJsonkey];
+          break;
         }
-        return x;
-    };
-
+      }
+    }
+    return resultJson;
+  };
 }

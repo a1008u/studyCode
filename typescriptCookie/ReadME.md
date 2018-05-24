@@ -20,7 +20,15 @@
     npm install
     export PATH=$PATH:./node_modules/.bin 
     npm run test
-    ```    
+    ```   
+
+## tslintの設定
+  - tslint (tslint.jsonに設定)
+    ```$npm
+      export PATH=$PATH:./node_modules/.bin 
+      npm run init
+    ```  
+ 
 ## typescriptの始め方  
 
  - pakage.jsonの作成
@@ -38,6 +46,7 @@
     npm i webpack webpack-cli assert chai mocha mocha-webpack ts-loader typings --save-dev
     npm install @types/mocha --save-dev
     npm i karma-spec-reporter karma-jasmine-html-reporter --save-dev
+    npm install --save-dev tslint prettier tslint-plugin-prettier tslint-config-prettier tslint-config-standard
     ```
  
   - test用のコマンド

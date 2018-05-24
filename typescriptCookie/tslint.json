@@ -1,0 +1,27 @@
+{
+  "rulesDirectory": [ "tslint-plugin-prettier" ]
+  ,"extends": [
+  "tslint-config-standard",
+  "tslint-config-prettier"
+  ]
+  , "rules": {
+  "no-console":{
+    "severity": "warning",
+    "options": [
+      "debug",
+      "info",
+      "log",
+      "time",
+      "timeEnd",
+      "trace"
+    ]}
+  ,
+  "max-len": [true, 120],
+  "prettier": [true, {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "semi": true,
+    "parser": "typescript"
+  }]
+}
+}

@@ -31,7 +31,12 @@
     "karma-spec-reporter": "0.0.32",
     "karma-typescript": "^3.0.12",
     "karma-webpack": "^3.0.0",
+    "prettier": "^1.12.1",
     "ts-loader": "^4.3.0",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-plugin-prettier": "^1.3.0",
     "typings": "^2.1.1",
     "webpack": "^4.8.1",
     "webpack-cli": "^2.1.3"
@@ -39,7 +44,9 @@
   "scripts": {
     "build-dev": "webpack --config ./webpack.config.js",
     "build-pro": "webpack --config ./webpack.config.product.js",
-    "test": "karma start"
+    "test": "karma start",
+    "lint": "tslint -c ./tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix **/*.ts",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "keywords": [
     "todo",
