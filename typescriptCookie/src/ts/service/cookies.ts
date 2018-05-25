@@ -43,7 +43,7 @@ export namespace cookies {
   };
 
   //
-  let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure) : void => {
+  let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure): void => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return;
     }
@@ -59,7 +59,7 @@ export namespace cookies {
    * jsonを保持
    * @param {paramjson} paramjson
    */
-  export let storeJsonInCookie = (paramjson: paramjson) : void => {
+  export let storeJsonInCookie = (paramjson: paramjson): void => {
     setItem(
       '_atpm',
       JSON.stringify(paramjson),

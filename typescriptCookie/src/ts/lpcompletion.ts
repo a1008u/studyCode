@@ -30,7 +30,12 @@ export namespace lpcompletion {
     let count = 0;
     for (let i in paramJson) {
       ++count;
-      if (paramJson[i] === undefined || null || '' || ' ' ) {
+      if (
+        paramJson[i] === undefined ||
+        paramJson[i] === null ||
+        paramJson[i] === '' ||
+        paramJson[i] === ' '
+      ) {
         count = 0;
         break;
       }
@@ -89,7 +94,7 @@ document.addEventListener(
   'DOMContentLoaded',
   event => {
     // jsの後ろに付いているパラメータを取得
-    let keys: string[] = (window as any).keys || [];
+    let keys: string[] = (window as any)._keys || [];
     if (keys.length !== 0) {
       console.log(lpcompletion.autoParamComplement(keys));
     }

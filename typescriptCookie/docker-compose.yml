@@ -7,8 +7,8 @@ services:
     environment:
           TZ: Asia/Tokyo
     ports:
-        - "8888:80"
+        - "7777:80"
     # マウントするディレクトリを指定(フロントの資材)
     volumes:
         - ./dist:/var/www/
-        # - /Users/akira/IdeaProjects/studyCode/cookie/dist:/usr/share/nginx
+        # - ./dist:/usr/share/nginx

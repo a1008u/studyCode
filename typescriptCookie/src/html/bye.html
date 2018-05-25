@@ -5,18 +5,48 @@
 	<title>Bye</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script>
-        var keys = ['atnct','test','taggggg'];
+        var _keys = ['atnct','test','taggggg'];
 	</script>
 	<script src="../js/ts_bundle.js"></script>
 </head>
 <body>
 <!-- この下に表示させたい内容を記載 -->
 <section>
-	<a href="../index.html">さようなら1</a><br />
-	<a href="../index.html">さようなら2</a><br />
-	<a href="../index.html">さようなら3</a><br />
-	<a href="../index.html">さようなら4</a><br />
-	<a href="../index.html">さようなら5</a>
+
+	<h2>httpが付いていた場合の確認</h2>
+	<a href="https://ja.wikipedia.org/wiki/TypeScript#型アノーテーション">
+		wiki(typescriptの型アノテーション)へ遷移<br />
+		「想定結果：https://ja.wikipedia.org/wiki/TypeScript?key=value#型アノーテーション」の形式
+	</a><br /><br />
+
+	<a href="https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#特徴">
+		wiki(kotlinの特徴)へ遷移<br />
+		「 想定結果：https://ja.wikipedia.org/wiki/Kotlin?java=kotlin&key=value#特徴」の形式
+	</a><br /><br /><br />
+
+	<h2>参照パス形式の確認</h2>
+	<a href="../index.html">index.htmlへ遷移「想定結果：../index.html?key=valueの形式」</a><br />
+	<a href="../index.html?tomlike">index.htmlへ遷移「想定結果：../index.html?tomlike&key=value#testの形式」</a><br />
+	<a href="../index.html?rrr=test1243">index.htmlへ遷移「想定結果：../index.html?rrr=test1243&key=valueの形式」</a><br />
+	<a href="../index.html#test">index.htmlへ遷移「想定結果：../index.html?key=value#testの形式」</a><br />
+	<a href="../index.html?te=tetete#test">index.htmlへ遷移「想定結果：../index.html?te=tetete&key=value#testの形式」</a><br />
+	<br />
+
+	<h2>ハッシュだけの確認</h2>
+	<a href="#test">byb.html内の遷移「想定結果：#testの形式」</a><br /><br />
+
+	<h2>mailtoの確認</h2>
+	<a href="mailto:info@example.com?subject=問い合わせ&amp;body=ご記入ください">
+		メールはこちらへ（mailto:info@example.com?subject=問い合わせ&amp;body=ご記入ください）<br />
+		「想定結果：mailto:info@example.com?subject=問い合わせ&amp;body=ご記入くださいの形式」<br />
+	</a><br /><br />
+
+	<h2>javascriptが含まれている時の確認</h2>
+	<a href="javascript:alert('Hello');">「Hello」ってでるよ「想定結果：javascript:alert('Hello');」</a><br /><br />
+
+	<h2>リンク先が画像の場合</h2>
+	<a href="../img/ts.png"><img src="../img/ts.png" style="width: 10%;height: 10%;"><br></a><br />
+
 </section>
 
 <br />
@@ -40,5 +70,6 @@
 </section>
 
 <!-- この上までに表示させたい内容を記載 -->
+<div id="test">ここにクリックされるかな</div>
 </body>
 </html>

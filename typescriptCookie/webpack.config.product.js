@@ -1,7 +1,7 @@
 module.exports = {
 
     entry: {
-        "ts":'./src/ts/test.ts'
+        "ts":'./src/ts/lpcompletion.ts'
     },
 
     output: {
