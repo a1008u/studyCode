@@ -1,0 +1,27 @@
+{
+  "env": {
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  "globals": {
+    "alert": false,
+    "document": false,
+    "$": false,
+    "console": false
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    ]
+  }
+  ,"parserOptions": {
+    "sourceType": "module",
+  }
+}

@@ -1,8 +1,11 @@
 import { paramjson } from '../model/paramjson';
 
+/**
+ * localstorage用の操作を格納
+ */
 export namespace localstorage {
   /**
-   *
+   *　localstorageに値を格納する
    * @param {paramjson} paramJson
    */
   export let storejsonInLocalStorage = (paramJson: paramjson) => {
@@ -10,7 +13,7 @@ export namespace localstorage {
   };
 
   /**
-   *
+   * localstorageからjsonを取得する
    * @param {string} key
    * @returns {paramjson}
    */

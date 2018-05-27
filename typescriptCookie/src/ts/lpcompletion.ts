@@ -25,7 +25,8 @@ export namespace lpcompletion {
     return formParam;
   };
 
-  // 取得したJsonのvalueが「undefined, 空, 空白, null」の時は、falseとする
+  // 連想配列(URLのクエリパラメタまたはcookieやlocalstorage)のvalueに値があるかを確認する。
+  // keyに値がない場合は、forの処理を行わない。
   let confirmJson = (paramJson: paramjson): boolean => {
     let count = 0;
     for (let i in paramJson) {
@@ -43,7 +44,8 @@ export namespace lpcompletion {
     return count === 0;
   };
 
-  // AnchorタグとFormタグにパラメタを付与
+  // AnchorタグとFormタグにパラメタを付与する。
+  // falseが返る場合：locaStorageからJSONが取得できている。または、取得したJSONのkeyまたはvalueがに値がない。
   let setParam = (
     keys: string[],
     paramJson: paramjson,
@@ -63,10 +65,11 @@ export namespace lpcompletion {
   };
 
   /**
-   * 2-1 URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納 <br />
-   * 2-2 URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換 <br />
-   * 2-3　URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換 <br />
-   * ex:　2-1から3までで、ない場合はaタグやformタグ変換をせずに終了  <br />
+   * 【処理パターン】
+   * 1-1. URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納 <br />
+   * 1-2. URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換 <br />
+   * 1-3. URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換 <br />
+   * ex:　1-1または、1-2と3で該当がないい場合は、aタグとformタグは補完されない<br />
    * @param {string[]} keys
    * @returns {string}
    */
@@ -87,9 +90,11 @@ export namespace lpcompletion {
   };
 }
 
-// 処理の流れ
-// 1.jsのクエリを取得(検索用)
-// 2.aタグやformタグのパラメータを変更
+/**
+ * 【処理の流れ】<br />
+ * 1.scriptタグで設定されている_keyを取得する。取得できない場合は、空の配列。<br />
+ * 2.配列が取得できている場合のみ、パラメタ補完処理を実行する<br />
+ */
 document.addEventListener(
   'DOMContentLoaded',
   event => {

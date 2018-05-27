@@ -2,7 +2,7 @@ import { paramjson } from '../model/paramjson';
 
 export namespace url {
   /**
-   * queryからparam(json状態)で取得
+   * パラメータを連想配列として今後利用する為、URLを連想配列に変更する
    * @param {string} query
    * @returns {paramjson}
    */
@@ -16,14 +16,15 @@ export namespace url {
   };
 
   /**
-   * 取得したqueryの確認
+   * URLのクエリパラメータを取得できているか確認
    * @param {string} query
    * @returns {boolean}
    */
-  export let checkParam = (query: string): boolean => query !== '';
+  export let checkParam = (query: string): boolean => query !== undefined && query !== null && query !== '' &&  query !== ' ';
 
   /**
-   * urlのクエリパラメータとjsのクエリパラメータが一致するか確認（完全一致）
+   * 連想配列の設定値を、aタグやformタグに設定する為、 <br />
+   * urlのクエリパラメータと連想配列の設定値が完全一致するのもだけを取得する<br />
    * @param {string[]} keys
    * @param {paramjson} paramJson
    * @returns {paramjson}

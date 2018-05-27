@@ -1,5 +1,8 @@
 import { paramjson } from '../model/paramjson';
 
+/**
+ * 目的：cookieの操作を行う
+ */
 export namespace cookies {
   /**
    * 正規表現を用いて、cookieに[_atpm]が存在しているか確認する
@@ -12,7 +15,6 @@ export namespace cookies {
     ).test(document.cookie);
   };
 
-  //
   let getItem = sKey => {
     if (!sKey || !hasItem(sKey)) {
       return null;
@@ -30,7 +32,7 @@ export namespace cookies {
   };
 
   /**
-   * Cookieから値を取得する
+   * CookieからJSONを取得する
    * @param {string} key
    * @returns {paramjson}
    */
@@ -42,7 +44,7 @@ export namespace cookies {
     return null;
   };
 
-  //
+  // cookieの有効期限を1年として保持させる
   let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure): void => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return;

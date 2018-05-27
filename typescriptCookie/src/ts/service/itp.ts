@@ -1,6 +1,6 @@
 export namespace itp {
   /**
-   *
+   *　itp対応ブラウザとOSのバージョンを確認する
    * @param userAgent
    * @returns {boolean}
    */

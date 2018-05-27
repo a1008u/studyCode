@@ -1,0 +1,47 @@
+{
+  "name": "babelwebpack",
+  "version": "1.0.0",
+  "description": "es6 -> es5",
+  "main": "index.js",
+  "scripts": {
+    "build-dev": "webpack --config ./webpack.config.js",
+    "build-pro": "webpack --config ./webpack.config.production.js",
+    "lint": "eslint --fix ./src/js/*.js",
+    "test": "karma start"
+  },
+  "keywords": [
+    "es6",
+    "es5"
+  ],
+  "author": "au",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "jasmine-core": "^3.1.0",
+    "karma": "^2.0.2",
+    "karma-babel-preprocessor": "^7.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-cli": "^1.0.1",
+    "karma-coverage": "^1.1.2",
+    "karma-edge-launcher": "^0.4.2",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-jasmine": "^1.1.2",
+    "karma-jasmine-html-reporter": "^1.1.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-webpack": "^3.0.0",
+    "prettier": "^1.12.1",
+    "source-map-loader": "^0.2.3",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4"
+  }
+}
