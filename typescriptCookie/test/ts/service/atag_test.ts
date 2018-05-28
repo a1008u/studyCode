@@ -68,4 +68,102 @@ describe('【atag】作成テスト', () => {
       }
     });
   });
+
+  it('【atagの設定】hrefが「https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid8" href="https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test"></a>
+    let anchorId8 = 'testid8';
+    let beforeURL = 'https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId8;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId8) {
+        let afterAtag = afterAtags.toString();
+        let [_, afterquerys]: string[] = afterAtag.split('?');
+        expect(afterAtag).not.toEqual(beforeURL);
+        expect(afterAtag).toEqual(
+          'https://ja.wikipedia.org/wiki/Kotlin?java=kotlin&test=aaaaaa&test2=sssssss&test3=ddddddd#test'
+        );
+      }
+    });
+  });
+
+  it('【atagの設定】hrefが「https://ja.wikipedia.org/wiki/Kotlin#test」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid9" href="https://ja.wikipedia.org/wiki/Kotlin#test"></a>
+    let anchorId9 = 'testid9';
+    let beforeURL = 'https://ja.wikipedia.org/wiki/Kotlin#test';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId9;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId9) {
+        let afterAtag = afterAtags.toString();
+        let [_, afterquerys]: string[] = afterAtag.split('?');
+        expect(afterAtag).not.toEqual(beforeURL);
+        expect(afterAtag).toEqual(
+          'https://ja.wikipedia.org/wiki/Kotlin?test=aaaaaa&test2=sssssss&test3=ddddddd#test'
+        );
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefが「javascript」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid3" href="javascript..."></a>
+    let anchorId3 = 'testid3';
+    let beforeURL = "javascript:alert('Hello');";
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId3;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId3) {
+        let afterAtag = afterAtags.toString();
+        let [_, afterquerys]: string[] = afterAtag.split('?');
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefが「mailto」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid5" href="mailto..."></a>
+    let anchorId5 = 'testid5';
+    let beforeURL = 'mailto:info@example.com';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId5;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId5) {
+        let afterAtag = afterAtags.toString();
+        let [_, afterquerys]: string[] = afterAtag.split('?');
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
 });

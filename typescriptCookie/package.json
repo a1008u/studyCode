@@ -45,7 +45,7 @@
     "build-dev": "webpack --config ./webpack.config.js",
     "build-pro": "webpack --config ./webpack.config.product.js",
     "test": "karma start",
-    "lint": "tslint -c ./tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix **/*.ts",
+    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix **/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "keywords": [

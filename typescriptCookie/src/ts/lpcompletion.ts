@@ -13,7 +13,14 @@ export namespace lpcompletion {
     Object.keys(paramJson).forEach(jsonKey => {
       let key: string = jsonKey;
       let value: string = paramJson[jsonKey];
-      if (decodeURIComponent(key) === '') return;
+      if (
+        decodeURIComponent(key) === undefined ||
+        decodeURIComponent(key) === null ||
+        decodeURIComponent(key) === '' ||
+        decodeURIComponent(key) === ' '
+      ) {
+        return;
+      }
       if (decodeURIComponent(key) !== 'atnct') {
         formParam.push(`${key}=${value}`);
         return;
@@ -46,22 +53,15 @@ export namespace lpcompletion {
 
   // AnchorタグとFormタグにパラメタを付与する。
   // falseが返る場合：locaStorageからJSONが取得できている。または、取得したJSONのkeyまたはvalueがに値がない。
-  let setParam = (
-    keys: string[],
-    paramJson: paramjson,
-    beforeResult: boolean = false
-  ): boolean => {
-    if (!beforeResult) {
-      if (confirmJson(paramJson)) {
-        return false;
-      }
-
-      let targetParamJson: paramjson = url.containKey(keys, paramJson);
-      atag.setAtg(getQueryParam(targetParamJson));
-      formtag.setFormtg(getQueryParam(targetParamJson));
-      return true;
+  let setParam = (keys: string[], paramJson: paramjson): boolean => {
+    if (confirmJson(paramJson)) {
+      return false;
     }
-    return false;
+
+    let targetParamJson: paramjson = url.containKey(keys, paramJson);
+    atag.setAtg(getQueryParam(targetParamJson));
+    formtag.setFormtg(getQueryParam(targetParamJson));
+    return true;
   };
 
   /**
@@ -84,9 +84,14 @@ export namespace lpcompletion {
       return 'we use URL';
     }
 
-    let result = setParam(keys, localstorage.getLocalStorageJson('_atpm'));
-    setParam(keys, cookies.getCookieJson('_atpm'), result);
-    return 'we use localstorage or cookie';
+    if (setParam(keys, localstorage.getLocalStorageJson('_atpm'))) {
+      return 'we use localstorage';
+    }
+
+    if (setParam(keys, cookies.getCookieJson('_atpm'))) {
+      return 'cookie';
+    }
+    return 'nothing';
   };
 }
 

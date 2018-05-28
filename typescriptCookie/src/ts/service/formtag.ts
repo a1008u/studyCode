@@ -1,6 +1,6 @@
 export namespace formtag {
   /**
-   *　formタグの場合は、hiddenとして保持させる
+   * formタグの場合は、hiddenとして保持させる
    * @param {string[]} formParam
    */
   export let setFormtg = (formParam: string[]) => {

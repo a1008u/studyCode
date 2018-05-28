@@ -20,7 +20,8 @@ export namespace url {
    * @param {string} query
    * @returns {boolean}
    */
-  export let checkParam = (query: string): boolean => query !== undefined && query !== null && query !== '' &&  query !== ' ';
+  export let checkParam = (query: string): boolean =>
+    query !== undefined && query !== null && query !== '' && query !== ' ';
 
   /**
    * 連想配列の設定値を、aタグやformタグに設定する為、 <br />

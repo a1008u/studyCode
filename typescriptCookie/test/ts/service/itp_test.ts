@@ -5,7 +5,6 @@ describe('【itp】containKeyのテスト1', () => {
     let result: boolean = itp.hasITP(window.navigator.userAgent);
     let ua = window.navigator.userAgent.toLowerCase();
 
-    console.log(ua + ' ======== ' + result);
     if (
       (ua.indexOf('macintosh') === 1 ||
         ua.indexOf('iphone') === 1 ||
@@ -22,7 +21,6 @@ describe('【itp】containKeyのテスト2', () => {
     let result: boolean = itp.hasITP(window.navigator.userAgent);
     let ua = window.navigator.userAgent.toLowerCase();
 
-    console.log(ua);
     if (ua.indexOf('macintosh') === 1 && ua.indexOf('safari') === 1) {
       let macVersion = ua.match(/mac os x 10_(\d{2})/);
       if (macVersion !== null && +macVersion[1] >= 13) {
@@ -37,7 +35,6 @@ describe('【itp】containKeyのテスト3', () => {
     let result: boolean = itp.hasITP(window.navigator.userAgent);
     let ua = window.navigator.userAgent.toLowerCase();
 
-    console.log(ua);
     if (
       (ua.indexOf('iphone') === 1 || ua.indexOf('ipad') === 1) &&
       ua.indexOf('safari') === 1
@@ -55,7 +52,6 @@ describe('【itp】containKeyのテスト4', () => {
     let result: boolean = itp.hasITP(window.navigator.userAgent);
     let ua = window.navigator.userAgent.toLowerCase();
 
-    console.log(ua);
     if (
       (ua.indexOf('macintosh') === -1 ||
         ua.indexOf('iphone') === -1 ||

@@ -12,11 +12,7 @@ export namespace atag {
       return false;
     }
 
-    if (ahref.slice(0, 1) === '#') {
-      return false;
-    }
-
-    return true;
+    return ahref.slice(0, 1) !== '#';
   };
 
   /**
