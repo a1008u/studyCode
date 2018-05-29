@@ -100,14 +100,51 @@ export namespace lpcompletion {
  * 1.scriptタグで設定されている_keyを取得する。取得できない場合は、空の配列。<br />
  * 2.配列が取得できている場合のみ、パラメタ補完処理を実行する<br />
  */
-document.addEventListener(
-  'DOMContentLoaded',
-  event => {
-    // jsの後ろに付いているパラメータを取得
+
+
+if( document.addEventListener ) {
+    document.addEventListener(
+        'DOMContentLoaded',
+        event => {
+            // jsの後ろに付いているパラメータを取得
+            let keys: string[] = (window as any)._keys || [];
+            if (keys.length !== 0) {
+                console.log(lpcompletion.autoParamComplement(keys));
+            }
+        },
+        false
+    );
+}
+else if( (document as any).attachEvent ) {
+    // DOMContentLoadedがサポートされない環境 (IE9より前) 向け
+    let CheckReadyState = function() {
+        if( document.readyState == 'complete' ) {
+            let keys: string[] = (document as any)._keys || [];
+            if (keys.length !== 0) {
+                console.log(lpcompletion.autoParamComplement(keys));
+            }
+        }
+    };
+    (document as any).attachEvent( 'onreadystatechange', CheckReadyState );
+
+    ( function() {
+        try {
+            (document as any).documentElement.doScroll( 'left' );
+        } catch( e ) {
+            setTimeout( arguments.callee, 10 );
+            return;
+        }
+
+        (document as any).detachEvent( 'onreadystatechange', CheckReadyState );
+        let keys: string[] = (window as any)._keys || [];
+        if (keys.length !== 0) {
+            console.log(lpcompletion.autoParamComplement(keys));
+        }
+    } )();
+} else {
+    // attachEvent()すらもサポートされない環境 (?) 向け
     let keys: string[] = (window as any)._keys || [];
     if (keys.length !== 0) {
-      console.log(lpcompletion.autoParamComplement(keys));
+        console.log(lpcompletion.autoParamComplement(keys));
     }
-  },
-  false
-);
+}
