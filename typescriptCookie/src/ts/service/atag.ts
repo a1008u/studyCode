@@ -12,6 +12,24 @@ export namespace atag {
       return false;
     }
 
+    if (ahref.indexOf('ftp') !== -1) {
+      return false;
+    }
+
+    if (ahref.indexOf('tel') !== -1) {
+      return false;
+    }
+
+    if (ahref.indexOf('://') !== -1) {
+      if (ahref.slice(0, 4) !== 'http' && ahref.slice(0, 5) !== 'https') {
+        return false;
+      }
+    }
+
+    if (ahref.length === 0) {
+      return false;
+    }
+
     return ahref.slice(0, 1) !== '#';
   };
 

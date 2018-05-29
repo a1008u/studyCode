@@ -8,7 +8,6 @@ class Friend extends Person {
   callName() {
     alert(this.name);
   }
-
 }
 
 const friend = new Friend('Ryo');
