@@ -70,23 +70,22 @@ describe('【atag】作成テスト', () => {
   });
 
   it('【atagの設定】hrefが「https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test」', () => {
-    // before(事前にanchorタグを作成する) <a id="testid8" href="https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test"></a>
-    let anchorId8 = 'testid8';
+    // before(事前にanchorタグを作成する) <a id="testid3" href="https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test"></a>
+    let anchorId3 = 'testid3';
     let beforeURL = 'https://ja.wikipedia.org/wiki/Kotlin?java=kotlin#test';
     let anchor: HTMLAnchorElement = document.createElement('a');
     anchor.href = beforeURL;
-    anchor.id = anchorId8;
+    anchor.id = anchorId3;
     document.body.appendChild(anchor);
 
     // execute
     let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
     atag.setAtg(beforequeryList);
 
-    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    // URLが設定されていることを確認(https://ja.wikipedia.org/wiki/Kotlin?java=kotlin&[?key=value]#test)
     [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
-      if (afterAtags.id === anchorId8) {
+      if (afterAtags.id === anchorId3) {
         let afterAtag = afterAtags.toString();
-        let [_, afterquerys]: string[] = afterAtag.split('?');
         expect(afterAtag).not.toEqual(beforeURL);
         expect(afterAtag).toEqual(
           'https://ja.wikipedia.org/wiki/Kotlin?java=kotlin&test=aaaaaa&test2=sssssss&test3=ddddddd#test'
@@ -96,23 +95,22 @@ describe('【atag】作成テスト', () => {
   });
 
   it('【atagの設定】hrefが「https://ja.wikipedia.org/wiki/Kotlin#test」', () => {
-    // before(事前にanchorタグを作成する) <a id="testid9" href="https://ja.wikipedia.org/wiki/Kotlin#test"></a>
-    let anchorId9 = 'testid9';
+    // before(事前にanchorタグを作成する) <a id="testid4" href="https://ja.wikipedia.org/wiki/Kotlin#test"></a>
+    let anchorId4 = 'testid4';
     let beforeURL = 'https://ja.wikipedia.org/wiki/Kotlin#test';
     let anchor: HTMLAnchorElement = document.createElement('a');
     anchor.href = beforeURL;
-    anchor.id = anchorId9;
+    anchor.id = anchorId4;
     document.body.appendChild(anchor);
 
     // execute
     let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
     atag.setAtg(beforequeryList);
 
-    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    // URLが設定されていることを確認(https://ja.wikipedia.org/wiki/Kotlin[?key=value]#testであるはず)
     [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
-      if (afterAtags.id === anchorId9) {
+      if (afterAtags.id === anchorId4) {
         let afterAtag = afterAtags.toString();
-        let [_, afterquerys]: string[] = afterAtag.split('?');
         expect(afterAtag).not.toEqual(beforeURL);
         expect(afterAtag).toEqual(
           'https://ja.wikipedia.org/wiki/Kotlin?test=aaaaaa&test2=sssssss&test3=ddddddd#test'
@@ -123,31 +121,8 @@ describe('【atag】作成テスト', () => {
 
   it('【atagの設定できない確認】hrefが「javascript」', () => {
     // before(事前にanchorタグを作成する) <a id="testid3" href="javascript..."></a>
-    let anchorId3 = 'testid3';
-    let beforeURL = "javascript:alert('Hello');";
-    let anchor: HTMLAnchorElement = document.createElement('a');
-    anchor.href = beforeURL;
-    anchor.id = anchorId3;
-    document.body.appendChild(anchor);
-
-    // execute
-    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
-    atag.setAtg(beforequeryList);
-
-    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
-    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
-      if (afterAtags.id === anchorId3) {
-        let afterAtag = afterAtags.toString();
-        let [_, afterquerys]: string[] = afterAtag.split('?');
-        expect(afterAtag).toEqual(beforeURL);
-      }
-    });
-  });
-
-  it('【atagの設定できない確認】hrefが「mailto」', () => {
-    // before(事前にanchorタグを作成する) <a id="testid5" href="mailto..."></a>
     let anchorId5 = 'testid5';
-    let beforeURL = 'mailto:info@example.com';
+    let beforeURL = "javascript:alert('Hello');";
     let anchor: HTMLAnchorElement = document.createElement('a');
     anchor.href = beforeURL;
     anchor.id = anchorId5;
@@ -157,11 +132,123 @@ describe('【atag】作成テスト', () => {
     let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
     atag.setAtg(beforequeryList);
 
-    // URLが設定されていることを確認(?がある場合は、&とする。?がない場合は、?をつける)
+    // URLが設定されていることを確認(javascript:alert('Hello');であるはず)
     [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
       if (afterAtags.id === anchorId5) {
         let afterAtag = afterAtags.toString();
-        let [_, afterquerys]: string[] = afterAtag.split('?');
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefが「mailto」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid5" href="mailto..."></a>
+    let anchorId6 = 'testid6';
+    let beforeURL = 'mailto:info@example.com';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId6;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(mailto:info@example.comであるはず)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId6) {
+        let afterAtag = afterAtags.toString();
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefが「ftp」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid7" href="ftp://xxx.yyy.zzz/dir/file.zip"></a>
+    let anchorId7 = 'testid7';
+    let beforeURL = 'ftp://xxx.yyy.zzz/dir/file.zip';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId7;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(ftp://xxx.yyy.zzz/dir/file.zipであるはず)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId7) {
+        let afterAtag = afterAtags.toString();
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefが「tel」', () => {
+    // before(事前にanchorタグを作成する) <a id="testid8" href="tel:0312345678"></a>
+    let anchorId8 = 'testid8';
+    let beforeURL = 'tel:0312345678';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId8;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(tel:0312345678であるはず)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId8) {
+        let afterAtag = afterAtags.toString();
+        expect(afterAtag).toEqual(beforeURL);
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefに「空」が含まれる', () => {
+    // before(事前にanchorタグを作成する) <a id="testid9" href=""></a>
+    let anchorId9 = 'testid19';
+    let beforeURL = '';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId9;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(空を補完する為、一旦htmlを設定(context.html)して確認する)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId9) {
+        let afterAtag = afterAtags.toString();
+        if (afterAtag.includes('?')) {
+          console.log(' afterquerys.lengthの結果　　　' + afterAtag.toString());
+          expect(afterAtag).toContain('context.html');
+        }
+      }
+    });
+  });
+
+  it('【atagの設定できない確認】hrefに「://」が含まれる', () => {
+    // before(事前にanchorタグを作成する) <a id="testid10" href="photos-redirect://"></a>
+    let anchorId10 = 'testid10';
+    let beforeURL = 'photos-redirect://';
+    let anchor: HTMLAnchorElement = document.createElement('a');
+    anchor.href = beforeURL;
+    anchor.id = anchorId10;
+    document.body.appendChild(anchor);
+
+    // execute
+    let beforequeryList = ['test=aaaaaa', 'test2=sssssss', 'test3=ddddddd'];
+    atag.setAtg(beforequeryList);
+
+    // URLが設定されていることを確認(photos-redirect://であるはず)
+    [].forEach.call(document.getElementsByTagName('a'), afterAtags => {
+      if (afterAtags.id === anchorId10) {
+        let afterAtag = afterAtags.toString();
         expect(afterAtag).toEqual(beforeURL);
       }
     });

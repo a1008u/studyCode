@@ -4,6 +4,7 @@
 export namespace atag {
   // 早期リターンには、クエリ要素追加不可の条件を指定する
   let modifyQuerry = (ahref: string): boolean => {
+    
     if (ahref.indexOf('javascript') !== -1) {
       return false;
     }
@@ -39,6 +40,7 @@ export namespace atag {
    */
   export let setAtg = (queryValues: string[]) => {
     [].forEach.call(document.getElementsByTagName('a'), aTag => {
+
       queryValues.forEach(queryValue => {
         let targetAtagHref: string = aTag.getAttribute('href');
         let need: boolean = modifyQuerry(targetAtagHref);

@@ -37,14 +37,15 @@ export namespace url {
     });
 
     let resultJson: paramjson = {};
+
     for (let key of keys) {
-      for (let paramJsonkey of paramJsonkeys) {
-        if (paramJsonkey === key) {
-          resultJson[paramJsonkey] = paramJson[paramJsonkey];
-          break;
-        }
-      }
+      paramJsonkeys
+        .filter(paramJsonkey => paramJsonkey === key)
+        .forEach(
+          paramJsonkey => (resultJson[paramJsonkey] = paramJson[paramJsonkey])
+        );
     }
+
     return resultJson;
   };
 }

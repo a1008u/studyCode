@@ -9,11 +9,10 @@ export namespace cookies {
    * @param {string} sKey
    * @returns {boolean}
    */
-  export let hasItem = (sKey: string) => {
-    return new RegExp(
+  export let hasItem = (sKey: string) =>
+    new RegExp(
       '(?:^|;\\s*)' + escape(sKey).replace(/[\-\.\+\*]/g, '\\$&') + '\\s*\\='
     ).test(document.cookie);
-  };
 
   let getItem = sKey => {
     if (!sKey || !hasItem(sKey)) {
@@ -44,17 +43,16 @@ export namespace cookies {
     return null;
   };
 
-  // cookieの有効期限を1年として保持させる
+  // cookieの有効期限を90日として保持させる
   let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure): void => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return;
     }
     let date: Date = new Date();
-    date.setFullYear(date.getFullYear() + 1);
-    let sExpires = date.toUTCString();
+    date.setDate(date.getDate() + 90);
     document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
       sPath ? sPath : ''
-    }; expires=${sExpires}${bSecure ? '; secure' : ''}`;
+    }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
   };
 
   /**

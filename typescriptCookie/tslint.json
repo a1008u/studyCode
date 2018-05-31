@@ -16,7 +16,15 @@
       "trace"
     ]}
   ,
-  "max-len": [true, 120],
+  "jsdoc-format": true,
+  "no-var-requires": true,
+  "no-var-keyword": true,
+  "only-arrow-functions": [ true ],
+  "indent": [true, "spaces", 2],
+  "arrow-return-shorthand": [ true, "multiline" ],
+  "max-line-length": [ true, 120 ],
+  "switch-final-break": [ true, "always" ],
+  "new-parens": true,
   "prettier": [true, {
     "singleQuote": true,
     "trailingComma": "es5",
