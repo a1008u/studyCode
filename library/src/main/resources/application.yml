@@ -1,0 +1,10 @@
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.springframework.web: DEBUG
+    io:
+      tomcat:DEBUG
+    reactor: DEBUG
+
+
+
