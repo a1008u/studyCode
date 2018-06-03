@@ -53,7 +53,7 @@ export namespace lpcompletion {
 
   // AnchorタグとFormタグにパラメタを付与する。
   // falseが返る場合：locaStorageからJSONが取得できている。または、取得したJSONのkeyまたはvalueがに値がない。
-  let setParam = (keys: string[], paramJson: paramjson): boolean => {
+  export let setParam = (keys: string[], paramJson: paramjson): boolean => {
     if (confirmJson(paramJson)) {
       return false;
     }
@@ -69,7 +69,7 @@ export namespace lpcompletion {
    * 1-1. URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納 <br />
    * 1-2. URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換 <br />
    * 1-3. URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換 <br />
-   * ex:　1-1または、1-2と3で該当がないい場合は、aタグとformタグは補完されない<br />
+   * ex:　1-1または、1-2と3で該当がないい場合は、aタグとformタグは補完ず、notingを返す<br />
    * @param {string[]} keys
    * @returns {string}
    */
@@ -89,7 +89,7 @@ export namespace lpcompletion {
     }
 
     if (setParam(keys, cookies.getCookieJson('_atpm'))) {
-      return 'cookie';
+      return 'we use cookie';
     }
     return 'nothing';
   };
@@ -112,3 +112,18 @@ document.addEventListener(
   },
   false
 );
+
+// declare let _keys: string[] ;
+//
+// document.addEventListener(
+//     'DOMContentLoaded',
+//     event => {
+//         // jsの後ろに付いているパラメータを取得
+//
+//         let keys: string[] = _keys || [];
+//         if (keys.length !== 0) {
+//             console.log(lpcompletion.autoParamComplement(keys));
+//         }
+//     },
+//     false
+// );

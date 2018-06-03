@@ -1,0 +1,35 @@
+{
+  "rulesDirectory": [ "tslint-plugin-prettier" ]
+  ,"extends": [
+  "tslint-config-standard",
+  "tslint-config-prettier"
+  ]
+  , "rules": {
+  "no-console":{
+    "severity": "warning",
+    "options": [
+      "debug",
+      "info",
+      "log",
+      "time",
+      "timeEnd",
+      "trace"
+    ]}
+  ,
+  "jsdoc-format": true,
+  "no-var-requires": true,
+  "no-var-keyword": true,
+  "only-arrow-functions": [ true ],
+  "indent": [true, "spaces", 2],
+  "arrow-return-shorthand": [ true, "multiline" ],
+  "max-line-length": [ true, 120 ],
+  "switch-final-break": [ true, "always" ],
+  "new-parens": true,
+  "prettier": [true, {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "semi": true,
+    "parser": "typescript"
+  }]
+}
+}

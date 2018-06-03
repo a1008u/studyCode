@@ -1,14 +1,14 @@
 version: '2'
 
 services:
-  nginx:
+  nginxts:
     # Dockerfileで設定している設定ファイルを格納したnginxを利用する（設定なしの場合：image: nginx:latest）
     build: ./server/nginx
     environment:
           TZ: Asia/Tokyo
     ports:
-       - "80:80"
-       - "443:443"
+        - "80:80"
+        - "443:443"
     # マウントするディレクトリを指定(フロントの資材)
     volumes:
         - ./dist:/var/www/

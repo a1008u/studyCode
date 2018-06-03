@@ -17,6 +17,7 @@ module.exports = function(config) {
         files: [
             'src/ts/lpcompletion.ts'
             , 'test/ts/lpcompletion_test.ts'
+            , 'test/ts/lpcompletion_test2.ts'
             , 'src/ts/service/*.ts'
             , 'test/ts/service/*.ts'
         ],
@@ -30,6 +31,7 @@ module.exports = function(config) {
         preprocessors: {
             'src/ts/lpcompletion.ts': ['webpack',"karma-typescript",'coverage']
             , 'test/ts/lpcompletion_test.ts': ['webpack',"karma-typescript"]
+            , 'test/ts/lpcompletion_test2.ts': ['webpack',"karma-typescript"]
             , 'src/ts/service/*.ts': ['webpack',"karma-typescript",'coverage']
             ,'test/ts/service/*.ts': ['webpack',"karma-typescript"]
         },

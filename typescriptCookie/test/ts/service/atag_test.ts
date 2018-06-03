@@ -225,7 +225,6 @@ describe('【atag】作成テスト', () => {
       if (afterAtags.id === anchorId9) {
         let afterAtag = afterAtags.toString();
         if (afterAtag.includes('?')) {
-          console.log(' afterquerys.lengthの結果　　　' + afterAtag.toString());
           expect(afterAtag).toContain('context.html');
         }
       }

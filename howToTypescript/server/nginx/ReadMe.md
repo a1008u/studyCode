@@ -1,8 +1,7 @@
 # dockerの利用
 
 Dockerfileに利用イメージに設定ファイルなどを追加
-docker-compose.ymlを利用して、イメージを起動させる  
-httpsの対応済み。  
+docker-compose.ymlを利用して、イメージを起動させる
 
 ## 起動方法
  - docker-composeの起動
