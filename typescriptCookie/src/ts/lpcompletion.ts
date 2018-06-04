@@ -5,6 +5,7 @@ import { url } from './service/url';
 import { paramjson } from './model/paramjson';
 import { atag } from './service/atag';
 import { formtag } from './service/formtag';
+import { storejson } from './service/storejson';
 
 export namespace lpcompletion {
   // jsonのkeyとvalueを「key=value」にする（itpの場合は、itp対応確認をする）
@@ -78,8 +79,7 @@ export namespace lpcompletion {
       let paramJson: paramjson = url.getParam(location.search.substring(1));
       let result = setParam(keys, paramJson);
       if (result) {
-        localstorage.storejsonInLocalStorage(paramJson);
-        cookies.storeJsonInCookie(paramJson);
+        storejson.set(paramJson, 90);
       }
       return 'we use URL';
     }

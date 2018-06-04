@@ -22,7 +22,7 @@ describe('【lpcompleteion1】のテスト', () => {
     // before
     history.replaceState('', '', '');
     let paramjson: paramjson = { key: 'test' };
-    cookies.storeJsonInCookie(paramjson);
+    cookies.storeJsonInCookie(paramjson, 90);
 
     // spyを用いて、cookie取得メソッドが動くようにする
     spyOn(lpcompletion, 'autoParamComplement').and.callThrough();
@@ -39,7 +39,7 @@ describe('【lpcompleteion1】のテスト', () => {
     // before
     history.replaceState('', '', '');
     let testParamJson: paramjson = { key: 'test' };
-    localstorage.storejsonInLocalStorage(testParamJson);
+    localstorage.storeJsonInLocalStorage(testParamJson, 90);
 
     // spyを用いて、localStorage取得メソッドが動くようにする
     spyOn(lpcompletion, 'autoParamComplement').and.callThrough();

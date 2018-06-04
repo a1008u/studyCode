@@ -1,3 +1,3 @@
 export interface paramjson {
-    [key: string]: string
+    [key: string]: string;
 }

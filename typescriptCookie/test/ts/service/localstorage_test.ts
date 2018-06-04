@@ -5,7 +5,7 @@ describe('【localstorage】保持と取得確認_正常系', () => {
   // before
   let testParamJson: paramjson = { key: 'test' };
   beforeEach(() => {
-    localstorage.storejsonInLocalStorage(testParamJson);
+    localstorage.storeJsonInLocalStorage(testParamJson, 90);
   });
 
   it('localStorageに保持できているか確認', () => {

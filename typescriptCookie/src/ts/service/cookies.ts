@@ -44,12 +44,19 @@ export namespace cookies {
   };
 
   // cookieの有効期限を90日として保持させる
-  let setItem = (sKey, sValue, vEnd, sPath, sDomain, bSecure): void => {
+  let setItem = (
+    sKey: string,
+    sValue: string,
+    deadline: number,
+    sPath: string,
+    sDomain: string,
+    bSecure: boolean
+  ): void => {
     if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) {
       return;
     }
     let date: Date = new Date();
-    date.setDate(date.getDate() + 90);
+    date.setDate(date.getDate() + deadline);
     document.cookie = `${escape(sKey)}=${escape(sValue)}; path=${
       sPath ? sPath : ''
     }; expires=${date.toUTCString()}${bSecure ? '; secure' : ''}`;
@@ -58,12 +65,16 @@ export namespace cookies {
   /**
    * jsonを保持
    * @param {paramjson} paramjson
+   * @param deadline
    */
-  export let storeJsonInCookie = (paramjson: paramjson): void => {
+  export let storeJsonInCookie = (
+    paramjson: paramjson,
+    deadline: number
+  ): void => {
     setItem(
       '_atpm',
       JSON.stringify(paramjson),
-      Infinity,
+      deadline,
       '/',
       location.hostname,
       false

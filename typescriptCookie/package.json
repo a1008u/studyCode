@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@types/jasmine": "^2.8.7",
+    "@types/storejs": "^2.0.2",
     "jasmin": "0.0.2",
     "jasmine-core": "^3.1.0",
     "karma": "^2.0.2",
@@ -32,6 +33,7 @@
     "karma-typescript": "^3.0.12",
     "karma-webpack": "^3.0.0",
     "prettier": "^1.12.1",
+    "store": "^2.0.12",
     "ts-loader": "^4.3.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",

@@ -5,7 +5,7 @@ describe('【cookie】テスト', () => {
   // before
   let paramjson: paramjson = { key: 'test' };
   beforeEach(() => {
-    cookies.storeJsonInCookie(paramjson);
+    cookies.storeJsonInCookie(paramjson, 90);
   });
 
   let atpm: string = '_atpm';
