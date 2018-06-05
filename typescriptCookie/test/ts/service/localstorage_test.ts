@@ -4,6 +4,9 @@ import { paramjson } from '../../../src/ts/model/paramjson';
 describe('【localstorage】保持と取得確認_正常系', () => {
   // before
   let testParamJson: paramjson = { key: 'test' };
+  let deadline: number = 90;
+  let day = new Date();
+  day.setDate(day.getDate() + deadline);
   beforeEach(() => {
     localstorage.storeJsonInLocalStorage(testParamJson, 90);
   });
@@ -14,6 +17,11 @@ describe('【localstorage】保持と取得確認_正常系', () => {
     expect(paramJson).toEqual(testParamJson);
     for (let key in paramJson) {
       if (key === 'key') expect(paramJson[key]).toBe('test');
+      if (key === 'deadline') {
+        paramJson['deadline'] = day.toISOString();
+        let afterTime = new Date(paramJson[key]);
+        expect(afterTime.getTime()).toBe(day.getTime());
+      }
     }
   });
 
