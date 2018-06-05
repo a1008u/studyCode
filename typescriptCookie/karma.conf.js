@@ -5,6 +5,10 @@ module.exports = function(config) {
         mime: {
             'text/x-typescript': ['ts','tsx']
         },
+        captureTimeout: 110000,
+        browserDisconnectTolerance: 3, 
+        browserDisconnectTimeout : 110000,
+        browserNoActivityTimeout : 110000,
 
         // base path that will be used to resolve all patterns (eg. files, exclude)
         basePath: '',
