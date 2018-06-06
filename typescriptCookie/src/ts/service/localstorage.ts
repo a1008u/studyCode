@@ -15,7 +15,7 @@ export namespace localstorage {
   ) => {
     let day = new Date();
     day.setDate(day.getDate() + deadline);
-    paramJson['deadline'] = day.toISOString();
+    paramJson['deadline'] = [day.toISOString()];
 
     localStorage.setItem('_atpm', JSON.stringify(paramJson));
   };
@@ -38,7 +38,7 @@ export namespace localstorage {
     }
 
     let js: paramjson = JSON.parse(value);
-    let deadlineISO: string = js['deadline'];
+    let deadlineISO: string = js['deadline'][0];
 
     if (
       deadlineISO === undefined ||

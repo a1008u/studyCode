@@ -2,7 +2,7 @@
 resource "aws_instance" "web_part3" {
   ami             = "${lookup(var.amis, var.region)}"
   instance_type   = "t2.micro"
-  key_name        = "${aws_key_pair.auth_part3.id}"
+  key_name        = "testkey"
   security_groups = ["${aws_security_group.WEB-SG_part3.id}"]
   subnet_id       = "${aws_subnet.public_part3.id}"
 
@@ -23,17 +23,9 @@ resource "aws_eip_association" "eip_assoc_part3" {
   allocation_id = "eipalloc-03db255a0a65c4686"
 }
 
-# network_interface
-resource "aws_network_interface" "ani_part3" {
-  subnet_id       = "${aws_subnet.public_part3.id}"
-  private_ips     = ["10.0.1.10"]
-  security_groups = ["${aws_security_group.WEB-SG_part3.id}"]
 
-  attachment {
-    instance     = "${aws_instance.web_part3}"
-    device_index = 1
-  }
-}
+
+
 
 # security_group
 resource "aws_security_group" "WEB-SG_part3" {
@@ -44,7 +36,7 @@ resource "aws_security_group" "WEB-SG_part3" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["58.5.162.34/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {

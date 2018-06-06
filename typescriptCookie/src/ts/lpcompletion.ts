@@ -13,7 +13,7 @@ export namespace lpcompletion {
     let formParam: string[] = [];
     Object.keys(paramJson).forEach(jsonKey => {
       let key: string = jsonKey;
-      let value: string = paramJson[jsonKey];
+      let value: string[] = paramJson[jsonKey];
       if (
         decodeURIComponent(key) === undefined ||
         decodeURIComponent(key) === null ||
@@ -39,17 +39,22 @@ export namespace lpcompletion {
     let count = 0;
     for (let i in paramJson) {
       ++count;
-      if (
-        paramJson[i] === undefined ||
-        paramJson[i] === null ||
-        paramJson[i] === '' ||
-        paramJson[i] === ' '
-      ) {
+      if (paramJson[i] === undefined || paramJson[i] === null) {
         count = 0;
         break;
       }
     }
     return count === 0;
+  };
+
+  let confirmJsons = (keys: string[], paramJson: paramjson): boolean => {
+    let count = 0;
+    for (let i in paramJson) {
+      if (keys.indexOf(i) === 1) {
+        ++count;
+      }
+    }
+    return count !== 0;
   };
 
   // AnchorタグとFormタグにパラメタを付与する。

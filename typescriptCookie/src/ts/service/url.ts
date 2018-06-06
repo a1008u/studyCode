@@ -8,9 +8,21 @@ export namespace url {
    */
   export let getParam = (query: string): paramjson => {
     let json: paramjson = {};
+    let tempkeys = [];
     query.split('&').forEach(query => {
       let [key, value]: string[] = query.split('=');
-      json[key] = value;
+
+      tempkeys.push(key);
+
+      if (!Object.keys(json).length) {
+        json[key] = [value];
+      } else {
+        if (Object.keys(json).indexOf(key) === -1) {
+          json[key] = [value];
+        } else {
+          json[key].push(value);
+        }
+      }
     });
     return json;
   };
