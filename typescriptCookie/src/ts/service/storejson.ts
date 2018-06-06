@@ -9,8 +9,14 @@ export namespace storejson {
    * @param {paramjson} paramJson
    * @param {number} deadline
    */
-  export let set = (paramJson: paramjson, deadline: number): void => {
-    localstorage.storeJsonInLocalStorage(paramJson, deadline);
-    cookies.storeJsonInCookie(paramJson, deadline);
+  export let set = (
+    paramJson: paramjson,
+    deadline: number,
+    notConfirmJson: (paramJson: paramjson) => boolean
+  ): void => {
+    if (!notConfirmJson(paramJson)) {
+      localstorage.storeJsonInLocalStorage(paramJson, deadline);
+      cookies.storeJsonInCookie(paramJson, deadline);
+    }
   };
 }

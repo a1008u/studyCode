@@ -17,7 +17,22 @@ export namespace localstorage {
     day.setDate(day.getDate() + deadline);
     paramJson['deadline'] = [day.toISOString()];
 
-    localStorage.setItem('_atpm', JSON.stringify(paramJson));
+    let value: string = localStorage.getItem('_atpm');
+    if (
+      value === undefined ||
+      value === null ||
+      value === '' ||
+      value === ' '
+    ) {
+      localStorage.setItem('_atpm', JSON.stringify(paramJson));
+    } else {
+      let js: paramjson = JSON.parse(value);
+
+      for (let tempjs in js) {
+        paramJson[tempjs] = js[tempjs];
+      }
+      localStorage.setItem('_atpm', JSON.stringify(paramJson));
+    }
   };
 
   /**

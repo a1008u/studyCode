@@ -13,7 +13,7 @@ export namespace lpcompletion {
     let formParam: string[] = [];
     Object.keys(paramJson).forEach(jsonKey => {
       let key: string = jsonKey;
-      let value: string[] = paramJson[jsonKey];
+      let values: string[] = paramJson[jsonKey];
       if (
         decodeURIComponent(key) === undefined ||
         decodeURIComponent(key) === null ||
@@ -23,11 +23,15 @@ export namespace lpcompletion {
         return;
       }
       if (decodeURIComponent(key) !== 'atnct') {
-        formParam.push(`${key}=${value}`);
+        values.forEach(value => {
+          formParam.push(`${key}=${value}`);
+        });
         return;
       }
       if (itp.hasITP(window.navigator.userAgent)) {
-        formParam.push(`${key}=${value}`);
+        values.forEach(value => {
+          formParam.push(`${key}=${value}`);
+        });
       }
     });
     return formParam;
@@ -35,7 +39,7 @@ export namespace lpcompletion {
 
   // 連想配列(URLのクエリパラメタまたはcookieやlocalstorage)のvalueに値があるかを確認する。
   // keyに値がない場合は、forの処理を行わない。
-  let confirmJson = (paramJson: paramjson): boolean => {
+  let notConfirmJson = (paramJson: paramjson): boolean => {
     let count = 0;
     for (let i in paramJson) {
       ++count;
@@ -47,20 +51,27 @@ export namespace lpcompletion {
     return count === 0;
   };
 
-  let confirmJsons = (keys: string[], paramJson: paramjson): boolean => {
-    let count = 0;
-    for (let i in paramJson) {
-      if (keys.indexOf(i) === 1) {
-        ++count;
-      }
+  let extractJson = (keys: string[], paramJson: paramjson): paramjson => {
+    let resultJson: paramjson = {};
+    for (let key of keys) {
+      Object.keys(paramJson)
+        .filter(paramJsonkey => paramJsonkey === key)
+        .forEach(
+          paramJsonkey => (resultJson[paramJsonkey] = paramJson[paramJsonkey])
+        );
     }
-    return count !== 0;
+
+    return resultJson;
   };
 
   // AnchorタグとFormタグにパラメタを付与する。
   // falseが返る場合：locaStorageからJSONが取得できている。または、取得したJSONのkeyまたはvalueがに値がない。
   export let setParam = (keys: string[], paramJson: paramjson): boolean => {
-    if (confirmJson(paramJson)) {
+    if (paramJson === undefined || paramJson === null) {
+      return false;
+    }
+
+    if (notConfirmJson(paramJson)) {
       return false;
     }
 
@@ -80,12 +91,13 @@ export namespace lpcompletion {
    * @returns {string}
    */
   export let autoParamComplement = (keys: string[]) => {
+    let originalParamJson: paramjson = url.getParam(location.search.substring(1));
+    let extractedParamJson: paramjson = extractJson(keys, originalParamJson);
     if (url.checkParam(location.search.substring(1))) {
-      let paramJson: paramjson = url.getParam(location.search.substring(1));
-      let result = setParam(keys, paramJson);
-      if (result) {
-        storejson.set(paramJson, 90);
-      }
+      storejson.set(extractedParamJson, 90, notConfirmJson);
+    }
+
+    if (setParam(keys, extractedParamJson)) {
       return 'we use URL';
     }
 
@@ -109,7 +121,12 @@ export namespace lpcompletion {
 document.addEventListener(
   'DOMContentLoaded',
   event => {
-    // jsの後ろに付いているパラメータを取得
+
+    // default
+    let def: string[] = ['atnct'];
+    console.log(lpcompletion.autoParamComplement(def));
+
+    // option
     let keys: string[] = (window as any)._keys || [];
     if (keys.length !== 0) {
       console.log(lpcompletion.autoParamComplement(keys));

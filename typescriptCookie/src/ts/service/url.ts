@@ -8,11 +8,8 @@ export namespace url {
    */
   export let getParam = (query: string): paramjson => {
     let json: paramjson = {};
-    let tempkeys = [];
     query.split('&').forEach(query => {
       let [key, value]: string[] = query.split('=');
-
-      tempkeys.push(key);
 
       if (!Object.keys(json).length) {
         json[key] = [value];
@@ -53,9 +50,9 @@ export namespace url {
     for (let key of keys) {
       paramJsonkeys
         .filter(paramJsonkey => paramJsonkey === key)
-        .forEach(
-          paramJsonkey => (resultJson[paramJsonkey] = paramJson[paramJsonkey])
-        );
+        .map(paramJsonkey => {
+          resultJson[paramJsonkey] = paramJson[paramJsonkey];
+        });
     }
 
     return resultJson;
