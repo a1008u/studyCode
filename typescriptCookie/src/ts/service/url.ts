@@ -50,9 +50,9 @@ export namespace url {
     for (let key of keys) {
       paramJsonkeys
         .filter(paramJsonkey => paramJsonkey === key)
-        .map(paramJsonkey => {
-          resultJson[paramJsonkey] = paramJson[paramJsonkey];
-        });
+        .map(
+          paramJsonkey => (resultJson[paramJsonkey] = paramJson[paramJsonkey])
+        );
     }
 
     return resultJson;

@@ -5,37 +5,6 @@ import { paramjson } from '../model/paramjson';
  */
 export namespace localstorage {
   /**
-   * localstorageに値 + localstorageの有効期限を格納する
-   * @param {paramjson} paramJson
-   * @param deadline
-   */
-  export let storeJsonInLocalStorage = (
-    paramJson: paramjson,
-    deadline: number
-  ) => {
-    let day = new Date();
-    day.setDate(day.getDate() + deadline);
-    paramJson['deadline'] = [day.toISOString()];
-
-    let value: string = localStorage.getItem('_atpm');
-    if (
-      value === undefined ||
-      value === null ||
-      value === '' ||
-      value === ' '
-    ) {
-      localStorage.setItem('_atpm', JSON.stringify(paramJson));
-    } else {
-      let js: paramjson = JSON.parse(value);
-
-      for (let tempjs in js) {
-        paramJson[tempjs] = js[tempjs];
-      }
-      localStorage.setItem('_atpm', JSON.stringify(paramJson));
-    }
-  };
-
-  /**
    * localstorageからjsonを取得 + 有効期限内かを確認する
    * @param {string} key
    * @returns {paramjson}
@@ -73,5 +42,17 @@ export namespace localstorage {
     }
 
     return JSON.parse(value);
+  };
+
+  /**
+   * localstorageに値 + localstorageの有効期限を格納する
+   * @param {paramjson} paramJson
+   * @param deadline
+   */
+  export let storeJsonInLocalStorage = (
+    paramJson: paramjson,
+    deadline: number
+  ) => {
+    localStorage.setItem('_atpm', JSON.stringify(paramJson));
   };
 }

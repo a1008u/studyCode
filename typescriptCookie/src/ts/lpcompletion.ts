@@ -8,7 +8,7 @@ import { formtag } from './service/formtag';
 import { storejson } from './service/storejson';
 
 export namespace lpcompletion {
-  // jsonのkeyとvalueを「key=value」にする（itpの場合は、itp対応確認をする）
+  // パラメタ補完時にjsonのkeyとvalueをURLで利用するクエリの形「key=value」にする（itpの場合は、itp対応確認をする）
   let getQueryParam = (paramJson: paramjson): string[] => {
     let formParam: string[] = [];
     Object.keys(paramJson).forEach(jsonKey => {
@@ -51,6 +51,11 @@ export namespace lpcompletion {
     return count === 0;
   };
 
+  /**
+   * defaultとoptionで設定しているkeyだけを抽出し、localStorageとcookieに保持するために抽出したparamjsonを作成する
+   * @param keys
+   * @param paramJson
+   */
   let extractJson = (keys: string[], paramJson: paramjson): paramjson => {
     let resultJson: paramjson = {};
     for (let key of keys) {
@@ -64,13 +69,9 @@ export namespace lpcompletion {
     return resultJson;
   };
 
-  // AnchorタグとFormタグにパラメタを付与する。
+  // AnchorタグとFormタグにパラメタ補完を実施する。
   // falseが返る場合：locaStorageからJSONが取得できている。または、取得したJSONのkeyまたはvalueがに値がない。
   export let setParam = (keys: string[], paramJson: paramjson): boolean => {
-    if (paramJson === undefined || paramJson === null) {
-      return false;
-    }
-
     if (notConfirmJson(paramJson)) {
       return false;
     }
@@ -83,22 +84,25 @@ export namespace lpcompletion {
 
   /**
    * 【処理パターン】
-   * 1-1. URLを取得の後ろにクエリがある場合は、URL取得処理 -> aタグやformタグ変換 -> localstorageとcookieに格納 <br />
+   * 1-1. URLを取得の後ろにクエリがある場合は、URL取得処理 -> localstorageとcookieに格納 -> aタグやformタグ変換 <br />
    * 1-2. URLのクエリがない場合、localstorageを確認と取得 -> aタグやformタグ変換 <br />
    * 1-3. URLのクエリがないかつlocalstorageにもない場合、cookieを確認と取得 -> aタグやformタグ変換 <br />
-   * ex:　1-1または、1-2と3で該当がないい場合は、aタグとformタグは補完ず、notingを返す<br />
+   * ex:　1-1または、1-2と3で該当がない場合は、aタグとformタグは補完されない<br />
    * @param {string[]} keys
    * @returns {string}
    */
   export let autoParamComplement = (keys: string[]) => {
-    let originalParamJson: paramjson = url.getParam(location.search.substring(1));
-    let extractedParamJson: paramjson = extractJson(keys, originalParamJson);
-    if (url.checkParam(location.search.substring(1))) {
-      storejson.set(extractedParamJson, 90, notConfirmJson);
-    }
-
-    if (setParam(keys, extractedParamJson)) {
-      return 'we use URL';
+    let query: string = location.search.substring(1);
+    if (url.checkParam(query)) {
+      let originalParamJson: paramjson = url.getParam(query);
+      const extractedParamJson: paramjson = extractJson(
+        keys,
+        originalParamJson
+      );
+      let p: paramjson = storejson.set(extractedParamJson, 90, notConfirmJson);
+      if (setParam(keys, p)) {
+        return 'we use URL';
+      }
     }
 
     if (setParam(keys, localstorage.getLocalStorageJson('_atpm'))) {
@@ -114,22 +118,20 @@ export namespace lpcompletion {
 
 /**
  * 【処理の流れ】<br />
- * 1.scriptタグで設定されている_keyを取得する。取得できない場合は、空の配列。<br />
- * 2.配列が取得できている場合のみ、パラメタ補完処理を実行する<br />
+ * 1.defaultの動作 事前に指定している値でパラメータの保持やパラメタ補完処理を実施する。<br />
+ * 2.scriptタグで設定されている__attpを取得、パラメタ補完処理を実施。取得できない場合は、処理を実施しない。<br />
  */
-
 document.addEventListener(
   'DOMContentLoaded',
   event => {
-
     // default
     let def: string[] = ['atnct'];
-    console.log(lpcompletion.autoParamComplement(def));
+    lpcompletion.autoParamComplement(def);
 
-    // option
+    // option(lpページの__attpの設定値を確認する)
     let keys: string[] = (window as any)._keys || [];
     if (keys.length !== 0) {
-      console.log(lpcompletion.autoParamComplement(keys));
+      lpcompletion.autoParamComplement(keys);
     }
   },
   false
