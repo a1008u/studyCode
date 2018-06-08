@@ -1,11 +1,13 @@
 import { cookies } from '../../../src/ts/service/cookies';
 import { paramjson } from '../../../src/ts/model/paramjson';
+import {storejson} from "../../../src/ts/service/storejson";
 
 describe('【cookie】テスト_配列の中身が単体', () => {
   // before
   let paramjson: paramjson = { key: ['test'] };
+  storejson.setDeadline(paramjson, 90);
   beforeEach(() => {
-    cookies.storeJsonInCookie(paramjson, 90);
+    cookies.storeJsonInCookie(paramjson, 90, storejson.deleteDeadline);
   });
 
   let atpm: string = '_atpm';
@@ -16,6 +18,7 @@ describe('【cookie】テスト_配列の中身が単体', () => {
     let executeParamjston: paramjson = cookies.getCookieJson(atpm);
     Object.keys(executeParamjston).forEach(key => {
       expect(executeParamjston[key][0]).toEqual('test');
+      expect(executeParamjston['deadline']).toEqual(undefined);
     });
   });
 
@@ -39,7 +42,7 @@ describe('【cookie】テスト_配列の中身が複数', () => {
   let testlist: string[] = ['test1', 'test2'];
   let paramjson: paramjson = { key: testlist };
   beforeEach(() => {
-    cookies.storeJsonInCookie(paramjson, 90);
+    cookies.storeJsonInCookie(paramjson, 90, storejson.deleteDeadline);
   });
 
   let atpm: string = '_atpm';
@@ -48,6 +51,7 @@ describe('【cookie】テスト_配列の中身が複数', () => {
   it('【cookieの設定および取得確認】cookieに存在する値(Json)を取得', () => {
     // execute
     let executeParamjston: paramjson = cookies.getCookieJson(atpm);
+      expect(executeParamjston['deadline']).toEqual(undefined);
     executeParamjston['key'].forEach(value => {
       expect(testlist).toContain(value);
     });

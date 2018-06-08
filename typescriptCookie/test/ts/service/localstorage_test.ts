@@ -1,5 +1,6 @@
 import { localstorage } from '../../../src/ts/service/localstorage';
 import { paramjson } from '../../../src/ts/model/paramjson';
+import { storejson } from '../../../src/ts/service/storejson';
 
 describe('【localstorage】保持と取得確認_正常系_単体', () => {
   // before
@@ -9,7 +10,11 @@ describe('【localstorage】保持と取得確認_正常系_単体', () => {
   let day = new Date();
   day.setDate(day.getDate() + deadline);
   beforeEach(() => {
-    localstorage.storeJsonInLocalStorage(testParamJson, 90);
+    localstorage.storeJsonInLocalStorage(
+      testParamJson,
+      90,
+      storejson.setDeadline
+    );
   });
 
   it('localStorageに保持できているか確認_単体', () => {
@@ -45,12 +50,20 @@ describe('【localstorage】保持と取得確認_正常系_複数', () => {
     let deadline: number = 90;
     let day = new Date();
     day.setDate(day.getDate() + deadline);
-    localstorage.storeJsonInLocalStorage(testParamJson, 90);
+    localstorage.storeJsonInLocalStorage(
+      testParamJson,
+      90,
+      storejson.setDeadline
+    );
 
     let testList2: string[] = ['ddddd22222'];
     testParamJson2 = { key2: testList2 };
     day.setDate(day.getDate() + deadline);
-    localstorage.storeJsonInLocalStorage(testParamJson2, 90);
+    localstorage.storeJsonInLocalStorage(
+      testParamJson2,
+      90,
+      storejson.setDeadline
+    );
   });
 
   it('localStorageに保持できているか確認_複数', () => {
@@ -66,18 +79,24 @@ describe('【localstorage】保持と取得確認_正常系_複数', () => {
 });
 
 describe('【localstorage】保持と取得確認_異常系', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
   it('localStorageに保持されていない場合、nullとなる', () => {
     // execute
-    localStorage.clear();
     let paramJson: paramjson = localstorage.getLocalStorageJson('_atpm');
     expect(paramJson).toEqual(null);
   });
 
   it('localStorageに保持さていたが、期限切れのため、nullとなる', () => {
     // execute
-    localStorage.clear();
     let testParamJson: paramjson = { key: ['test'] };
-    localstorage.storeJsonInLocalStorage(testParamJson, -1);
+    localstorage.storeJsonInLocalStorage(
+      testParamJson,
+      -1,
+      storejson.setDeadline
+    );
     let paramJson: paramjson = localstorage.getLocalStorageJson('_atpm');
     expect(paramJson).toEqual(null);
   });

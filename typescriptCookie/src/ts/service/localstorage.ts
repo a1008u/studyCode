@@ -51,8 +51,10 @@ export namespace localstorage {
    */
   export let storeJsonInLocalStorage = (
     paramJson: paramjson,
-    deadline: number
+    deadline: number,
+    setDeadline: (extractedParamJson: paramjson, deadline: number) => void
   ) => {
+    setDeadline(paramJson, deadline);
     localStorage.setItem('_atpm', JSON.stringify(paramJson));
   };
 }

@@ -3,18 +3,33 @@ import { cookies } from './cookies';
 import { paramjson } from '../model/paramjson';
 
 export namespace storejson {
-  let store = (deadline: number, extractedParamJson: paramjson): void => {
+  export let setDeadline = (
+    extractedParamJson: paramjson,
+    deadline: number
+  ): void => {
     let day = new Date();
     day.setDate(day.getDate() + deadline);
     extractedParamJson['deadline'] = [day.toISOString()];
-    localstorage.storeJsonInLocalStorage(extractedParamJson, deadline);
-    cookies.storeJsonInCookie(extractedParamJson, deadline);
+  };
+
+  export let deleteDeadline = (extractedParamJson: paramjson): void => {
+    if (extractedParamJson['deadline'] !== undefined) {
+      delete extractedParamJson['deadline'];
+    }
+  };
+
+  let store = (deadline: number, extractedParamJson: paramjson): void => {
+    localstorage.storeJsonInLocalStorage(
+      extractedParamJson,
+      deadline,
+      setDeadline
+    );
+    cookies.storeJsonInCookie(extractedParamJson, deadline, deleteDeadline);
   };
 
   let createJson = (
     storeParamJson: paramjson,
-    extractedParamJson: paramjson,
-    deadline
+    extractedParamJson: paramjson
   ): paramjson => {
     for (let tempjs in storeParamJson) {
       if (
@@ -45,22 +60,14 @@ export namespace storejson {
         '_atpm'
       );
       if (localStorageParamJson !== null) {
-        targetParamJson = createJson(
-          localStorageParamJson,
-          extractedParamJson,
-          deadline
-        );
+        targetParamJson = createJson(localStorageParamJson, extractedParamJson);
         store(deadline, targetParamJson);
         return targetParamJson;
       }
 
       let cookiesParamJson: paramjson = cookies.getCookieJson('_atpm');
       if (cookiesParamJson !== null) {
-        targetParamJson = createJson(
-          cookiesParamJson,
-          extractedParamJson,
-          deadline
-        );
+        targetParamJson = createJson(cookiesParamJson, extractedParamJson);
         store(deadline, targetParamJson);
         return targetParamJson;
       }

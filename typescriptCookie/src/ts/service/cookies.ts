@@ -64,16 +64,19 @@ export namespace cookies {
 
   /**
    * jsonを保持
-   * @param {paramjson} paramjson
+   * @param paramJson
    * @param deadline
+   * @param deleteDeadline
    */
   export let storeJsonInCookie = (
-    paramjson: paramjson,
-    deadline: number
+    paramJson: paramjson,
+    deadline: number,
+    deleteDeadline: (extractedParamJson: paramjson) => void
   ): void => {
+    deleteDeadline(paramJson);
     setItem(
       '_atpm',
-      JSON.stringify(paramjson),
+      JSON.stringify(paramJson),
       deadline,
       '/',
       location.hostname,

@@ -3,6 +3,7 @@ import { paramjson } from '../../src/ts/model/paramjson';
 import { localstorage } from '../../src/ts/service/localstorage';
 import { cookies } from '../../src/ts/service/cookies';
 import { url } from '../../src/ts/service/url';
+import {storejson} from "../../src/ts/service/storejson";
 
 const deleteLocalStorageAndCookies = (): void => {
   history.replaceState('', '', '');
@@ -22,7 +23,7 @@ describe('【lpcompleteion1】のテスト', () => {
     // before
     history.replaceState('', '', '');
     let paramjson: paramjson = { key: ['test'] };
-    cookies.storeJsonInCookie(paramjson, 90);
+    cookies.storeJsonInCookie(paramjson, 90, storejson.deleteDeadline);
 
     // spyを用いて、cookie取得メソッドが動くようにする
     spyOn(lpcompletion, 'autoParamComplement').and.callThrough();
@@ -39,7 +40,7 @@ describe('【lpcompleteion1】のテスト', () => {
     // before
     history.replaceState('', '', '');
     let testParamJson: paramjson = { key: ['test'] };
-    localstorage.storeJsonInLocalStorage(testParamJson, 90);
+    localstorage.storeJsonInLocalStorage(testParamJson, 90, storejson.setDeadline);
 
     // spyを用いて、localStorage取得メソッドが動くようにする
     spyOn(lpcompletion, 'autoParamComplement').and.callThrough();
