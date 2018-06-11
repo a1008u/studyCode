@@ -34,11 +34,11 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?atnct=re
   pageTitle('Hello');
 
   // ページ遷移の確認
-  let exceptUrl: string = 'https://localhost/html/bye.html?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google&not=thisisnottest';
+  let exceptUrl: string = 'https://localhost/';
   checkUrl(exceptUrl);
 
   // storageの確認
-  // checkCookie('test1');
+  checkCookie('test1');
   checkLocalStorage('test1');
 
   it('atagの確認(answer1)', () => {
@@ -313,6 +313,8 @@ function checkUrl(exceptUrl: string) {
 function checkCookie(targetId: string) {
   it('Cookieの確認', () => {
     element(by.id(targetId)).click();
+    browser.sleep(500);
+
     browser
       .manage()
       .getCookie('_atpm')
@@ -351,6 +353,8 @@ function checkCookie(targetId: string) {
 function checkLocalStorage(targetId: string) {
   it('localStorageの確認', () => {
     element(by.id(targetId)).click();
+    browser.sleep(500);
+
     browser
       .executeScript("return window.localStorage.getItem('_atpm');")
       .then((atpm: string) => {

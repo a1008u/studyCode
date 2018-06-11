@@ -307,7 +307,7 @@ function checkCookie(targetId: string) {
       .then(atpm => {
         let jsonData: paramjson = JSON.parse(unescape(atpm.value));
         const jsonkeys: string[] = Object.keys(jsonData);
-        expect(jsonkeys.length).toBe(2);
+        expect(jsonkeys.length).toBe(1);
         jsonkeys.forEach(key => {
           console.dir(`log ========== ${key} ---- ${jsonData[key]}`);
           if (key === 'test') {
@@ -340,7 +340,7 @@ function checkLocalStorage(targetId: string) {
         let jsonData: paramjson = JSON.parse(atpm);
         console.log(` ++=++++++++== ${jsonData}`);
         const jsonkeys: string[] = Object.keys(jsonData);
-        expect(jsonkeys.length).toBe(3);
+        expect(jsonkeys.length).toBe(2);
         jsonkeys.forEach(key => {
           console.dir(`log ========== ${key} ---- ${jsonData[key]}`);
           if (key === 'test') {

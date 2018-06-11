@@ -24,6 +24,13 @@ npm run teste2e
 
 テストの入れ物作成（コード化予定）
 ``` $ shell
+mkdir ./capture/
+mkdir ./capture/safari
+mkdir ./capture/safari/test1nesAndeu
+mkdir ./capture/safari/test2nesAndneu
+mkdir ./capture/safari/test3nesAndeu
+mkdir ./capture/safari/test4nesAndeu
+mkdir ./capture/safari/test5nesAndeu
 mkdir ./capture/test1nesAndeu
 mkdir ./capture/test2nesAndneu
 mkdir ./capture/test3nesAndeu

@@ -292,6 +292,7 @@ function checkUrl(exceptUrl: string, clickId: string) {
 function checkCookie(targetId: string) {
   it('Cookieの確認', () => {
     browser.manage().deleteAllCookies();
+      browser.manage().deleteCookie('_atpm');
 
     element(by.id(targetId)).click();
     browser.sleep(500);

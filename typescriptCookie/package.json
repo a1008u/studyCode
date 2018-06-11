@@ -53,7 +53,7 @@
     "build-dev": "webpack --config ./webpack.config.js",
     "build-pro": "webpack --config ./webpack.config.product.js",
     "test": "karma start",
-    "e2e": "webpack --config ./webpack.config.e2e.js",
+    "testtool": "webpack --config ./webpack.config.testtool.js",
     "tsce2e": "tsc --project ./e2e/e2etsconfig.json",
     "teste2e": "Protractor ./e2e/dist/e2e/e2econf.js",
     "testsafarie2e": "Protractor ./e2e/dist/e2e/e2econf_safari.js",
