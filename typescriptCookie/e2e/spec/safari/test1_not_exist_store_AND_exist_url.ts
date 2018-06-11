@@ -1,9 +1,9 @@
 import { browser, element, by } from 'protractor';
-import { paramjson } from '../../src/ts/model/paramjson';
+import { paramjson } from '../../../src/ts/model/paramjson';
 let fs = require('fs');
 
 const writeScreenShot = (data, filename) => {
-  let stream = fs.createWriteStream('./capture/test1nesAndeu/' + filename);
+  let stream = fs.createWriteStream('./capture/safari/test1nesAndeu/' + filename);
   stream.write(new Buffer(data, 'base64'));
   stream.end();
 };
@@ -14,10 +14,10 @@ const screeenShot = (i: number | string) => {
   });
 };
 
-describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=microsoft&test=apple&test=google&not=thisisnottest"]】', () => {
+describe('localStorageとCookieに未設定かつ[href="./html/bye.html?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google&not=thisisnottest"]】', () => {
   let width: number = 1440;
   let height: number = 900;
-  beforeEach(() => {
+  beforeEach(function() {
     browser.driver
       .manage()
       .window()
@@ -34,15 +34,12 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
   pageTitle('Hello');
 
   // ページ遷移の確認
-  let exceptUrl: string =
-    'https://localhost/html/bye.html?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google¬=thisisnottest';
+  let exceptUrl: string = 'https://localhost/html/bye.html?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google&not=thisisnottest';
   checkUrl(exceptUrl);
 
   // storageの確認
-  checkCookie('test1');
+  // checkCookie('test1');
   checkLocalStorage('test1');
-
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
   it('atagの確認(answer1)', () => {
     let domainWiki: string = 'https://ja.wikipedia.org/wiki/TypeScript';
@@ -51,10 +48,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest1'))
+    element(by.id('answer1'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}?test=microsoft&test=apple&test=google${id}`;
+        let exceptHref =`${domainWiki}${querry}?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer1')).click();
         browser.sleep(1500);
@@ -69,10 +66,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest2'))
+    element(by.id('answer2'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}&test=microsoft&test=apple&test=google${id}`;
+        let exceptHref =`${domainWiki}${querry}&atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer2')).click();
         browser.sleep(1000);
@@ -88,10 +85,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest3'))
+    element(by.id('answer3'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}?test=microsoft&test=apple&test=google${id}`;
+        let exceptHref = `${domainWiki}${querry}?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer3')).click();
         browser.sleep(500);
@@ -107,10 +104,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest4'))
+    element(by.id('answer4'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}&test=microsoft&test=apple&test=google${id}`;
+        let exceptHref = `${domainWiki}${querry}&atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer4')).click();
         browser.sleep(500);
@@ -126,10 +123,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest5'))
+    element(by.id('answer5'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}&test=microsoft&test=apple&test=google${id}`;
+        let exceptHref = `${domainWiki}${querry}&atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer5')).click();
         browser.sleep(500);
@@ -138,6 +135,8 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
       });
   });
 
+
+
   it('atagの確認(answer6)', () => {
     let domainWiki: string = 'https://localhost/index.html';
     let querry: string = '';
@@ -145,10 +144,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest6'))
+    element(by.id('answer6'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domainWiki}${querry}?test=microsoft&test=apple&test=google${id}`;
+        let exceptHref = `${domainWiki}${querry}?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer6')).click();
         browser.sleep(500);
@@ -164,10 +163,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest7'))
+    element(by.id('answer7'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domain}${querry}&test=microsoft&test=apple&test=google${id}`;
+        let exceptHref = `${domain}${querry}&atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer7')).click();
         browser.sleep(500);
@@ -186,7 +185,7 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     element(by.id('answer8'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domain}${querry}${id}`;
+        let exceptHref = `${id}`;
         // expect(targetHref).toBe(exceptHref);
         element(by.id('answer8')).click();
         browser.sleep(500);
@@ -202,7 +201,7 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-    element(by.linkText('atagTest9'))
+    element(by.id('answer9'))
       .getAttribute('href')
       .then(targetHref => {
         let exceptHref = `${domain}${querry}mailto:info@example.com?subject=問い合わせ&body=ご記入ください${id}`;
@@ -224,7 +223,7 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
         let exceptHref = "javascript:alert('Hello');";
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer10')).click();
-        browser.sleep(1000);
+        browser.sleep(500);
         browser
           .switchTo()
           .alert()
@@ -244,10 +243,10 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     element(by.id('answer11'))
       .getAttribute('href')
       .then(targetHref => {
-        let exceptHref = `${domain}${querry}?test=microsoft&test=apple&test=google${id}`;;
+        let exceptHref = `${domain}${querry}?atnct=reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142&test=microsoft&test=apple&test=google${id}`;;
         expect(unescape(decodeURIComponent(targetHref))).toBe(exceptHref);
         element(by.id('answer11')).click();
-        browser.sleep(1000);
+        browser.sleep(500);
         screeenShot('answer11');
         console.log(' answer11------------ ' + targetHref);
       });
@@ -257,13 +256,18 @@ describe('localStorageとCookieに未設定かつ[href="./html/bye.html?test=mic
     pageTitle('Hello');
     element(by.id('test1')).click();
     browser.sleep(500);
-
     element
       .all(by.name('atnct'))
       .getAttribute('value')
       .then((values: string) => {
-        expect(values).toEqual([]);
-      });
+      console.log(' answer11------------ ' + values);
+      let exceptValues = [
+        'reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142',
+        'reden_0100mn87000005-2ad9c0efe7e45eaa4895c28506c7a142'
+      ];
+      expect(values.length).toBe(exceptValues.length);
+      expect(values).toEqual(exceptValues);
+    });
 
     element
       .all(by.name('test'))
@@ -297,17 +301,18 @@ function checkUrl(exceptUrl: string) {
     element(by.id('test1')).click();
     browser.sleep(1000);
 
-    // urlの確認
-    // browser.getCurrentUrl().then(targetUrl => {
-    //   expect(targetUrl).toEqual(exceptUrl);
-    // });
+    //urlの確認
+    browser
+    .getCurrentUrl()
+    .then(targetUrl => {
+      expect(targetUrl).toEqual(exceptUrl);
+    });
   });
 }
 
 function checkCookie(targetId: string) {
   it('Cookieの確認', () => {
     element(by.id(targetId)).click();
-    browser.sleep(500);
     browser
       .manage()
       .getCookie('_atpm')

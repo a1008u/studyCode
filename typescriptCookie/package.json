@@ -56,6 +56,7 @@
     "e2e": "webpack --config ./webpack.config.e2e.js",
     "tsce2e": "tsc --project ./e2e/e2etsconfig.json",
     "teste2e": "Protractor ./e2e/dist/e2e/e2econf.js",
+    "testsafarie2e": "Protractor ./e2e/dist/e2e/e2econf_safari.js",
     "linte2e": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./e2e/spec/*.ts",
     "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix **/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"

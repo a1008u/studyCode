@@ -1,6 +1,6 @@
 import { cookies } from '../../../src/ts/service/cookies';
 import { paramjson } from '../../../src/ts/model/paramjson';
-import {storejson} from "../../../src/ts/service/storejson";
+import { storejson } from '../../../src/ts/service/storejson';
 
 describe('【cookie】テスト_配列の中身が単体', () => {
   // before
@@ -51,7 +51,7 @@ describe('【cookie】テスト_配列の中身が複数', () => {
   it('【cookieの設定および取得確認】cookieに存在する値(Json)を取得', () => {
     // execute
     let executeParamjston: paramjson = cookies.getCookieJson(atpm);
-      expect(executeParamjston['deadline']).toEqual(undefined);
+    expect(executeParamjston['deadline']).toEqual(undefined);
     executeParamjston['key'].forEach(value => {
       expect(testlist).toContain(value);
     });

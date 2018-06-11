@@ -4,13 +4,8 @@ import { Configuration } from 'jasmine-spec-reporter/built/configuration';
 
 export let config: Config = {
   framework: 'jasmine',
-  multiCapabilities: [
-    { browserName: 'chrome' },
-    // { browserName: 'safari' },
-    // tslint:disable-next-line:max-line-length
-    // ,{ 'browserName': 'firefox', 'marionette': true, "firefox_binary": "$HOME/Applications/Firefox.app/Contents/MacOS/firefox-bin" }
-  ],
-  specs: ['./spec/*.js'],
+  multiCapabilities: [{ browserName: 'safari' }],
+  specs: ['./spec/safari/*.js'],
   seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // You could set no globals to true to avoid jQuery '$' and protractor '$'
