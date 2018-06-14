@@ -58,7 +58,7 @@
     "teste2e": "Protractor ./e2e/dist/e2e/e2econf.js",
     "testsafarie2e": "Protractor ./e2e/dist/e2e/e2econf_safari.js",
     "linte2e": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./e2e/spec/*.ts",
-    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix **/*.ts",
+    "lint": "tslint -c tslint.json --exclude **/*.d.ts --exclude ./node_modules --project . --fix ./src/**/*.ts --fix ./src/ts/*/*.ts",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
   "keywords": [

@@ -46,13 +46,14 @@ document.addEventListener(
     });
 
     // form
-    console.log('++++++++ form ++++++++');
+    console.log('++++++++ form(hidden) ++++++++');
     [].forEach.call(document.getElementsByTagName('input'), hiddenTag => {
-      console.log(
-        `name --- ${hiddenTag.getAttribute(
-          'name'
-        )} ___ value --- ${hiddenTag.getAttribute('value')}`
-      );
+      console.log(`name --- ${hiddenTag.getAttribute('name')} ___ value --- ${hiddenTag.getAttribute('value')}`);
+    });
+
+      console.log('++++++++ form(action) ++++++++');
+    [].forEach.call(document.getElementsByTagName('form'), formTag => {
+      console.log(`action --- ${formTag.getAttribute('action')}`);
     });
 
     console.log(
