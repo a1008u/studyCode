@@ -16,6 +16,7 @@
   "include": [
     "./*.ts",
     "./spec/*.ts",
+    "./resemble/*.ts",
     "./spec/safari/*.ts"
   ]
 }

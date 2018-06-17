@@ -9,7 +9,7 @@ const writeScreenShot = (data, filename) => {
 
 const screeenShot = (i: number | string) => {
   browser.takeScreenshot().then(png => {
-    writeScreenShot(png, `StrongestCSSDesign_${i}.png`);
+    writeScreenShot(png, `case_${i}.png`);
   });
 };
 

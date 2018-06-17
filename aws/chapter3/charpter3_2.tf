@@ -14,12 +14,6 @@ resource "aws_instance" "web_part3" {
   }
 }
 
-# key_pair(もしpemを利用する場合は、不要)
-resource "aws_key_pair" "auth_part3" {
-  key_name   = "${var.key_name}"
-  public_key = "${file(var.public_key_path)}"
-}
-
 # eip_association(固定でEIPを設定する)
 resource "aws_eip_association" "eip_assoc_part3" {
   instance_id   = "${aws_instance.web_part3.id}"

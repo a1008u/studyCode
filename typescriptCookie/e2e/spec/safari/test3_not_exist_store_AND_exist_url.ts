@@ -3,14 +3,14 @@ import { paramjson } from '../../../src/ts/model/paramjson';
 let fs = require('fs');
 
 const writeScreenShot = (data, filename) => {
-  let stream = fs.createWriteStream('./capture/safari/test1nesAndeu/' + filename);
+  let stream = fs.createWriteStream('./capture/safari/test3nesAndeu/' + filename);
   stream.write(new Buffer(data, 'base64'));
   stream.end();
 };
 
 const screeenShot = (i: number | string) => {
   browser.takeScreenshot().then(png => {
-    writeScreenShot(png, `StrongestCSSDesign_${i}.png`);
+    writeScreenShot(png, `case_${i}.png`);
   });
 };
 
