@@ -1,0 +1,6 @@
+/capture/*
+/coverage/*
+/dist/*
+/e2e/dist/*
+/e2e/report/*
+yarn.lock
