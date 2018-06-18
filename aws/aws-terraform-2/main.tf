@@ -3,6 +3,7 @@ variable "secret_key" {}
 variable "region" {}
 variable "key_name" {}
 variable "eip" {}
+variable "availability_zone" {}
 
 provider "aws" {
   access_key = "${var.access_key}"

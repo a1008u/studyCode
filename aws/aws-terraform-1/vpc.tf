@@ -69,6 +69,7 @@ resource "aws_subnet" "vpc-1-private-subnet" {
   vpc_id            = "${aws_vpc.vpc-1.id}"
   cidr_block        = "10.0.100.0/24"
   availability_zone = "ap-northeast-1a"
+  map_public_ip_on_launch = "0"
 
   tags {
     Name = "vpc-1-private-subnet"
@@ -91,10 +92,10 @@ resource "aws_route_table" "vpc-1-private-rt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_instance.web-server.id}"
+    instance_id = "${aws_instance.nat.id}"
   }
 
   tags {
-    Name = "vpc-1-public-rt"
+    Name = "vpc-1-private-rt"
   }
 }
