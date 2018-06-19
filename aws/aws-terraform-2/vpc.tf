@@ -28,7 +28,7 @@ resource "aws_internet_gateway" "vpc-1-igw" {
 resource "aws_subnet" "vpc-1-public-subnet" {
   vpc_id            = "${aws_vpc.vpc-1.id}"
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "${availability_zone}"
+  availability_zone = "${var.availability_zone}"
 
   tags {
     Name = "vpc-1-public-subnet"
@@ -68,7 +68,7 @@ resource "aws_route_table" "vpc-1-public-rt" {
 resource "aws_subnet" "vpc-1-private-subnet" {
   vpc_id                  = "${aws_vpc.vpc-1.id}"
   cidr_block              = "10.0.100.0/24"
-  availability_zone       = "${availability_zone}"
+  availability_zone       = "${var.availability_zone}"
   map_public_ip_on_launch = "0"
 
   tags {

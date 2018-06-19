@@ -1,6 +1,5 @@
 resource "aws_elb" "dev_elb" {
   name               = "dev-elb"
-  availability_zones = ["${availability_zone}"]
   subnets            = ["${aws_subnet.vpc-1-public-subnet.id}"]
 
   security_groups = [

@@ -31,6 +31,4 @@ sudo chkconfig nginx on
 cd /var/www/html
 touch index.html
 vim index.html
-
-
 ```
