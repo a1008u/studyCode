@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES5",
+    "sourceMap": true,
+    "lib": [
+      "es2015.promise",
+      "es2015",
+      "webworker"
+    ],
+    "outDir": "../dist"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./conf/*.ts",
+    "./ts/*.ts",
+    "./resemble/*.ts"
+  ]
+}
+

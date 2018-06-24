@@ -8,7 +8,6 @@ webページを起動させたのちに下記を行う
 
 ``` $node
 export PATH=$PATH:./node_modules/.bin
-npm i cucumber-html-reporter --save-dev
 
 webdriver-manager update
 webdriver-manager start 
