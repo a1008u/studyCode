@@ -121,21 +121,51 @@ export namespace lpcompletion {
  * 1.defaultの動作 事前に指定している値でパラメータの保持やパラメタ補完処理を実施する。<br />
  * 2.scriptタグで設定されている__attpを取得、パラメタ補完処理を実施。取得できない場合は、処理を実施しない。<br />
  */
-document.addEventListener(
-  'DOMContentLoaded',
-  event => {
-    // default
-    let def: string[] = ['atnct'];
-    lpcompletion.autoParamComplement(def);
 
-    // option(lpページの__attpの設定値を確認する)
-    let keys: string[] = (window as any)._keys || [];
-    if (keys.length !== 0) {
-      lpcompletion.autoParamComplement(keys);
-    }
-  },
-  false
-);
+// default
+let def: string[] = ['atnct'];
+lpcompletion.autoParamComplement(def);
+
+// option(lpページの__attpの設定値を確認する)
+let keys: string[] = (window as any).__attp || [];
+if (keys.length !== 0) {
+  lpcompletion.autoParamComplement(keys);
+}
+
+// document.addEventListener(
+//   'DOMContentLoaded',
+//   event => {
+//     // default
+//     let def: string[] = ['atnct'];
+//     lpcompletion.autoParamComplement(def);
+//
+//     // option(lpページの__attpの設定値を確認する)
+//     let keys: string[] = (window as any).__attp || [];
+//     if (keys.length !== 0) {
+//       lpcompletion.autoParamComplement(keys);
+//     }
+//
+//     console.log("実行したよ")
+//   },
+//   false
+// );
+
+// window
+//   .addEventListener(
+//       'load'
+//       , () =>  {
+//           // default
+//           let def: string[] = ['atnct'];
+//           lpcompletion.autoParamComplement(def);
+//
+//           // option(lpページの__attpの設定値を確認する)
+//           let keys: string[] = (window as any).__attp || [];
+//           if (keys.length !== 0) {
+//               lpcompletion.autoParamComplement(keys);
+//           }
+//
+//           console.log("実行したよ")
+//       });
 
 // declare let _keys: string[] ;
 //
