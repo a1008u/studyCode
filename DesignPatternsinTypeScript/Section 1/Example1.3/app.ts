@@ -7,15 +7,10 @@ export class ErrorHandler {
     }
 
     wrapError(err, publicResponse, severity) {
-        let error = {
-            originalError: err,
-            publicResponse, 
-            severity
-        }
+        let error = {originalError: err, publicResponse, severity}
         if(severity < 5) {
             this.handleWarning("Warning", publicResponse);
-        }
-        else {
+        } else {
             this.handleError("Critical Error", publicResponse);
         }
     }
@@ -31,7 +26,7 @@ export class ErrorHandler {
 
 export class ErrorLogger {
     private _endpoint: string = "api/log";
-    
+
     constructor(private _httpClient) {
 
     }
@@ -43,15 +38,15 @@ export class ErrorLogger {
 
 export class ErrorHandlerWithLogging extends ErrorHandler {
     private _logger: ErrorLogger;
-    
+
     constructor(messageBox, httpClient, logger: ErrorLogger) {
         super(messageBox, httpClient);
         this._logger = logger;
     }
 
     wrapError(err, publicResponse, severity) {
-        return this._logger.logError(err).then(() => {
-            super.wrapError(err, publicResponse, severity);
-        });
+        return this._logger
+                .logError(err)
+                .then(() => super.wrapError(err, publicResponse, severity));
     }
 }

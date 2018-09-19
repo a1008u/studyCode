@@ -1,6 +1,6 @@
-import { IPostsService } from "./iposts-service";
+import { IPostsService } from "./interface/iposts-service";
 import { Post } from "./post";
-import { IExportPostsService } from "./iexport-posts-service";
+import { IExportPostsService } from "./interface/iexport-posts-servicets-service";
 
 export class MockPostsService implements IPostsService {
     posts: Post[] = [];
@@ -21,6 +21,8 @@ export class MockPostsService implements IPostsService {
     }
 
     export(service: IExportPostsService): Promise<string> {
-        return this.getAll().then(posts => service.export(posts));
+        return this
+                .getAll()
+                .then(posts => service.export(posts));
     }
 }

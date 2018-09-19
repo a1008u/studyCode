@@ -1,7 +1,6 @@
 import { GameCharactersPool } from "./game-characters-pool";
 
 let level = 12;
-
 let pool = new GameCharactersPool(level);
 
 // Load 40 warriors

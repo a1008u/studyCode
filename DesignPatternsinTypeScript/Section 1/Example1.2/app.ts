@@ -1,5 +1,4 @@
-
-var httpClient = new HttpClient();
+let httpClient = new HttpClient();
 filterEmployees(httpClient, []).then(employees => {
     displayEmployees(employees);
     recordEmployee(employees, httpClient);
@@ -8,14 +7,11 @@ filterEmployees(httpClient, []).then(employees => {
 export function filterEmployees(httpClient, filters): Promise<any> {
     try {
         filters = removeDuplicateFilters(filters);
-        return httpClient.get("/api/employees").then(employees => {
-            let result = applyFilters(employees);
-            return result;
-        }).catch(err => {
-            handleError(err, "Something went wrong while processing the employees");
-        });
-    }
-    catch(err) {
+        return httpClient
+                .get("/api/employees")
+                .then(employees => applyFilters(employees))
+                .catch(err => handleError(err, "Something went wrong while processing the employees"));
+    } catch(err) {
         handleError(err, "Application critical error");
     }
 }

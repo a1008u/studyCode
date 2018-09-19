@@ -14,17 +14,11 @@ export interface IPostsService {
 
 export class PostsService implements IPostsService {
     private _fileName: string = "posts.json";
-    
-    constructor() {
-
-    }
-    
+    constructor() {}
     getAll(): Promise<Post[]> {
         return new Promise((resolve, reject) => {
             fs.readFile(this._fileName, "utf8", (err, data) => {
-                if(err) {
-                    reject(err);
-                }
+                if(err) {reject(err);}
                 resolve(JSON.parse(data));
             });
         });
@@ -36,8 +30,7 @@ export class PostsService implements IPostsService {
                 fs.writeFile(this._fileName, posts, err => {
                     if(err) {
                         reject(err);
-                    }
-                    else {
+                    } else {
                         resolve();
                     }
                 })
@@ -56,7 +49,7 @@ export class MockPostsService implements IPostsService {
             {id: 4, title: 'Test Post 4', body: 'Test Post 4', postedBy: 'Me'},
         ]
     }
-    
+
     getAll(): Promise<Post[]> {
         return Promise.resolve(this.posts);
     }
@@ -67,16 +60,14 @@ export class MockPostsService implements IPostsService {
 }
 
 export class NewsFeed {
-    constructor(private _service: IPostsService) {
-
-    }
-
+    constructor(private _service: IPostsService) {}
     show() {
-        this._service.getAll().then(posts => {
-            posts.forEach(post => {
-                console.log(`${post.title} - ${post.body}`);
-            })
-        });
+        this._service
+            .getAll()
+            .then(posts => {
+                posts.forEach(post => {
+                    console.log(`${post.title} - ${post.body}`);
+                })});
     }
 }
 

@@ -2,7 +2,6 @@ import {StatsTracker} from './stats-tracker';
 import { test } from './test';
 
 let tracker = StatsTracker.instance;
-
 tracker.widgetViews = 90;
 tracker.buttonClicks = 64;
 tracker.facebookShares = 20;

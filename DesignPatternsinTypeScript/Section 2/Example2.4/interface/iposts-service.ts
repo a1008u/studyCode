@@ -1,5 +1,5 @@
-import { Post } from "./post";
-import { IExportPostsService } from "./iexport-posts-service";
+import { Post } from "../post";
+import { IExportPostsService } from "./interface/iexport-posts-servicets-service";
 
 export interface IPostsService {
     getAll(): Promise<Post[]>;

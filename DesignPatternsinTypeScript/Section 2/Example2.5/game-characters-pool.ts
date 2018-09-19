@@ -1,4 +1,4 @@
-import { GameCharacter } from "./game-character";
+import { GameCharacter } from "./interface/game-character-character";
 import { GameCharactersFactory } from "./game-characters-factory";
 
 export class GameCharactersPool {
@@ -34,6 +34,7 @@ export class GameCharactersPool {
     }
 
     public getWarrior(): GameCharacter {
+        // bind関数はFunction.prototypeに属し、新たな関数を生成して返します。
         return this.getPoolItem(this._warriorsPool, this.loadWarriorsPool.bind(this));
     }
 

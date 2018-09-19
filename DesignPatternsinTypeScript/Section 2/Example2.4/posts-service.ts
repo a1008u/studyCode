@@ -1,7 +1,7 @@
-import { IPostsService } from "./iposts-service";
+import { IPostsService } from "./interface/iposts-service";
 import { Post } from "./post";
 import * as fs from 'fs'
-import { IExportPostsService } from "./iexport-posts-service";
+import { IExportPostsService } from "./interface/iexport-posts-servicets-service";
 
 export class PostsService implements IPostsService {
     private _fileName: string = "posts.json";

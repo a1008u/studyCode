@@ -1,4 +1,4 @@
-import { GameCharacter } from "./game-character";
+import { GameCharacter } from "./interface/game-character-character";
 
 export class GameCharactersFactory {
     public static getWarrior(level: number): GameCharacter {
@@ -10,8 +10,7 @@ export class GameCharactersFactory {
                 health: 20,
                 magic: 0
             }
-        }
-        else {
+        } else {
             warrior = {
                 strength: 30,
                 dexterity: 21,
@@ -31,8 +30,7 @@ export class GameCharactersFactory {
                 health: 10,
                 magic: 32
             }
-        }
-        else {
+        } else {
             mage = {
                 strength: 2,
                 dexterity: 12,

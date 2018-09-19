@@ -1,3 +1,4 @@
+// 選択クイズ用
 export class QuizQuestion {
     private _question: string;
     private _answer1: string;
@@ -40,6 +41,7 @@ export class QuizQuestion {
     }
 }
 
+// 2択クイズ
 export class TrueFalseQuestion extends QuizQuestion {
     constructor(question) {
         super(question, "TRUE", "FALSE", null, null, 1);
@@ -54,8 +56,10 @@ function formatQuestion(quizQuestion: QuizQuestion) {
     console.log(`4. ${quizQuestion.answer4}`);
 }
 
+// 選択クイズ
 let quizQuestion = new QuizQuestion("Which framework is using TypeScript", "React", "Vue", "Angular", "Cycle", 3);
-// formatQuestion(quizQuestion);
+formatQuestion(quizQuestion);
 
+// 2択クイズ
 let trueFalseQuestion = new TrueFalseQuestion("TypeScript is a superset of JavaScript");
 formatQuestion(trueFalseQuestion);
