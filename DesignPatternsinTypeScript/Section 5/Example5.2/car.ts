@@ -29,6 +29,7 @@ export class Car {
         }
     }
 
+    // 現在のスピード表示およびスピードチェック用の関数を保持する
     registerCurrentSpeedObserver(observer: Function) {
         if(!this._currentSpeedObservers.find(o => o == observer)) {
             this._currentSpeedObservers.push(observer);

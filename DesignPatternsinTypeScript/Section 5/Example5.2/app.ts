@@ -3,12 +3,9 @@ import { resolve } from "url";
 
 testObservers();
 
-async function sleep(duration: number): Promise<any> {
-    return new Promise((resolve, reject) => {
-       setTimeout(resolve, duration); 
-    });
-}
-
+/**
+ * 
+ */
 async function testObservers(): Promise<any> {
     let car = new Car(200);
     car.registerCurrentSpeedObserver(reportCurrentSpeed);
@@ -20,19 +17,40 @@ async function testObservers(): Promise<any> {
     }
 }
 
+/**
+ * 
+ * @param newValue 
+ * @param oldValue 
+ */
 function reportCurrentSpeed(newValue: number, oldValue: number) {
     console.log("Car running at " + newValue + " km/h");
 }
 
+/**
+ * 
+ * @param newValue 
+ * @param oldValue 
+ */
 function checkSpeedLimit(newValue: number, oldValue: number) {
     const speedLimit = 100;
     if(newValue < speedLimit && newValue > (speedLimit - 30)) {
-        console.log("Approaching speed limit!!");
-    }
-    else if(newValue == speedLimit) {
-        console.log("Running at speed limit!!!");
-    }
-    else if(newValue > speedLimit) {
-        console.log("You have exceeded the speed limit");
+        console.log("Approaching speed limit!!（法定速度以下）");
+    } else if(newValue == speedLimit) {
+        console.log("Running at speed limit!!!（法定速度）");
+    } else if(newValue > speedLimit) {
+        console.log("You have exceeded the speed limit（違反）");
     }
 }
+
+/**
+ * 
+ * @param duration 
+ */
+async function sleep(duration: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, duration);
+    });
+}
+
+
+

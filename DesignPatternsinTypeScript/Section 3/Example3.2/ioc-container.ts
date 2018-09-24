@@ -15,7 +15,7 @@ export class IoCContainer {
 
     register(name: string, dependencies: string[], implementation: any) {
         if(this._dependencies[name]) {
-            throw new Error("Dependency already registered");   
+            throw new Error("Dependency already registered");
         }
         let dependenciesImplementations = this.getDependenciesImplementations(dependencies);
         this._dependencies[name] = new implementation(...dependenciesImplementations);
@@ -25,7 +25,7 @@ export class IoCContainer {
         if(!this._dependencies[name]) {
             throw new Error(`Unresolved dependency ${name}`);
         }
-        return this._dependencies[name] as T; 
+        return this._dependencies[name] as T;
     }
 
     private getDependenciesImplementations(names: string[]): Object[] {

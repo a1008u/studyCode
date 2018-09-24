@@ -17,7 +17,6 @@ countriesRepo
         console.log(`Number of north american countries stored: ${northAmerica.length}`);
     });
 
-
 // Demo code
 
 

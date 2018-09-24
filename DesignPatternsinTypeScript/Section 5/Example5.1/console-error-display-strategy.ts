@@ -1,4 +1,4 @@
-import { IErrorDisplayStrategy } from "./ierror-display-strategy";
+import { IErrorDisplayStrategy } from "./interface/ierror-display-strategy";
 import chalk from 'chalk';
 
 export class ConsoleErrorDisplayStrategy implements IErrorDisplayStrategy {

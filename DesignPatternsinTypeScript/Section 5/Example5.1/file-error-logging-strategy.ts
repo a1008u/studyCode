@@ -1,4 +1,4 @@
-import { IErrorLoggingStrategy } from "./ierror-logging-strategy";
+import { IErrorLoggingStrategy } from "./interface/ierror-logging-strategy";
 import fs from 'fs'
 
 export class FileErrorLoggingStrategy implements IErrorLoggingStrategy {
@@ -8,8 +8,7 @@ export class FileErrorLoggingStrategy implements IErrorLoggingStrategy {
                 if(error) {
                     console.error("Error Logging failed");
                     resolve(error);
-                }
-                else {
+                } else {
                     resolve();
                 }
             });

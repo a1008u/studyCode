@@ -76,8 +76,8 @@ class ComputerWithDedicatedGPU extends ComputerComponentDecorator {
     }
 }
 
-let server = new ServerComputer();
-let serverWithPrinter = new ComputerWithPrinterDecorator(server);
+let server: Computer = new ServerComputer();
+let serverWithPrinter: Computer = new ComputerWithPrinterDecorator(server);
 let serverWithPrinterAndDedicatedGPU = new ComputerWithDedicatedGPU(serverWithPrinter);
 
 serverWithPrinterAndDedicatedGPU.print();
