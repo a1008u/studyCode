@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<title>JavaScript本格入門</title>
+</head>
+<body>
+  <div class="container">
+      <div class="notification">
+          <div class="columns">
+              <div class="column is-four-fifths">
+                <h1 class="title is-3">Functionコンストラクタ</h1>
+              </div>
+              <div class="column">
+                  <a class="button is-info" href="./2_function_obj.html">Normal</a>
+              </div>
+              <div class="column">
+                  <a class="button  is-success" href="./5_arrow.html">Normal</a>
+              </div>
+            </div>
+      </div>
+
+      <article class="box media">
+        <figure class="media-left">
+            <p class="image is-96x96">
+              <img src="./js.jpg"">
+            </p>
+        </figure>
+
+        <div class="media-content">
+            <div class="content">
+              <h2><strong>関数リテラル表現</strong><h2>
+                  <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                </p>
+            </div>
+            <article class="media">
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                      <img src="./hint.jpg">
+                  </p>
+                </figure>
+                <div class="media-content">
+                  <div class="content">
+                    <h3><strong>書き方</strong><h3>
+                    <code class='is-size-6'>
+                      let 変数名 = function(引数...){ 関数の本体 };
+                    </code>
+  
+                    <h3><strong>サンプル</strong><h3>
+                    <code class='is-size-6'>
+                      let getTriangle = function(base, height) {<br />
+                        &nbsp;&nbsp;return base * height / 2;<br />
+                      };<br />
+                      console.log('三角形の面積：' + getTriangle(5, 2));<br />
+                    </code>
+                    </p>
+                  </div>
+                  <article class="media">
+                    <h3><strong>特徴</strong><h3>
+                    <div class="content">
+                      <ol type="1">
+                        <li>リテラルとして表現できる</li>
+                        <li>関数リテラルを変数に代入したり、ある関数の引数として渡したり、はたまた、戻り値として関数を返すことすら可能</li>
+                      </ol>
+                    </div>
+                  </article>
+                </div>
+            </article>
+        </div>
+      </article>
+    </div>
+<script src="scripts/4_function_literal.js"></script>
+</body>
+</html>
