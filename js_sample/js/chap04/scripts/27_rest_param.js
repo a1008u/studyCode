@@ -10,7 +10,8 @@ function sum(...nums) {
 }
 
 try {
-  console.log(sum(1, 3, 5, 7, 9));
+  const sumValue = sum(1, 3, 5, 7, 9);
+  console.log(sumValue);
 } catch(e) {
   window.alert(e.message);
 }

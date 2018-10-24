@@ -3,5 +3,5 @@ function getTriangle(args) {
   if (args.height === undefined) { args.height = 1; }
   return args.base * args.height / 2;
 }
-
-console.log(getTriangle({ base:5, height:4 }));
+const value = getTriangle({ base:5, height:4 });
+console.log(value);
