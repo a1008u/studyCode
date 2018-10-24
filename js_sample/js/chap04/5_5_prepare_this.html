@@ -22,6 +22,8 @@
             </div>
       </div>
 
+      
+
       <article class="box media">
         <figure class="media-left">
             <p class="image is-96x96">
@@ -36,43 +38,53 @@
                 </p>
             </div>
             <article class="media">
+
+                
+
                 <figure class="media-left">
                   <p class="image is-64x64">
                       <img src="./hint.jpg">
                   </p>
                 </figure>
-                
-                <div class="media-content">
-                  <div class="content">
-                    <h3><strong>functionリテラル</strong><h3>
-                    <code class='is-size-6'>
-                      this.data = 'this is within global';<br />
-                      &nbsp;function func() {<br />
-                        &nbsp;&nbsp;console.log(this.data);<br />
-                        &nbsp;}<br />
-                      &nbsp;const f = {<br />
-                        &nbsp;&nbsp;data: 'within object',<br />
-                        &nbsp;&nbsp;execute: func<br />
-                        &nbsp;};<br />
-                      &nbsp;f.execute();<br />
-                    </code>
-                  </div>
 
-                  <div class="content">
-                    <h3><strong>アロー関数</strong><h3></h3>
-                    <code class='is-size-6'>
-                      this.data = 'this is within global';<br />
-                      &nbsp;const arrowFunc = () => {<br />
-                        &nbsp;&nbsp;console.log(this.data);<br />
-                        &nbsp;};<br />
-                        &nbsp;const af = {<br />
-                        &nbsp;&nbsp;data: 'this is within object',<br />
-                        &nbsp;&nbsp;execute: arrowFunc<br />
-                        &nbsp;};<br />
-                        &nbsp;af.execute();<br />
-                    </code>
-                    </p>
-                  </div>
+                <div class="media-content">
+
+                    <div class="columns">
+                      <div class="column is-half">
+                        <div class="content">
+                          <h3><strong>functionリテラル</strong><h3>
+                          <code class='is-size-6'>
+                            this.data = 'this is within global';<br />
+                            &nbsp;function func() {<br />
+                              &nbsp;&nbsp;console.log(this.data);<br />
+                              &nbsp;}<br />
+                            &nbsp;const f = {<br />
+                              &nbsp;&nbsp;data: 'within object',<br />
+                              &nbsp;&nbsp;execute: func<br />
+                              &nbsp;};<br />
+                            &nbsp;f.execute();<br />
+                          </code>
+                        </div>
+                      </div>
+
+                      <div class="column is-half">
+                        <div class="content">
+                          <h3><strong>アロー関数</strong><h3></h3>
+                          <code class='is-size-6'>
+                            this.data = 'this is within global';<br />
+                            &nbsp;const arrowFunc = () => {<br />
+                              &nbsp;&nbsp;console.log(this.data);<br />
+                              &nbsp;};<br />
+                              &nbsp;const af = {<br />
+                              &nbsp;&nbsp;data: 'this is within object',<br />
+                              &nbsp;&nbsp;execute: arrowFunc<br />
+                              &nbsp;};<br />
+                              &nbsp;af.execute();<br />
+                          </code>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
 
                   <article class="media">
                     <h3><strong>特徴</strong><h3>
@@ -82,12 +94,13 @@
                       </ol>
                     </div>
                   </article>
+
                 </div>
             </article>
         </div>
       </article>
     </div>
-<script src="scripts/5_arrow.js"></script>
+<script src="scripts/5_5_prepare_this.js"></script>
 <!-- <script src="scripts_es5/5_arrow.js"></script> -->
 </body>
 </html>

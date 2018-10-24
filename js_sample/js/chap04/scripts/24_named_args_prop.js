@@ -11,8 +11,13 @@ function show({name}) {
 };
 show(member);
 
-// 関数2
-function show2(name) {
-  console.log(name);
+function show2({mid, name}) {
+  console.log(`mid === ${mid}  name === ${name}`);
 };
 show2(member);
+
+// 関数2
+function show3(name) {
+  console.log(name);
+};
+show3(member);

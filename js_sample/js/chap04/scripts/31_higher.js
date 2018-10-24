@@ -1,8 +1,12 @@
-function arrayWalk(data, f) {
-  for (var key in data) {
-    f(data[key], key);
+// high order function
+
+function arrayWalk(ary, f) {
+  for (var key in ary) {
+    f(ary[key], key);
   }
 }
+
+// コールバック関数
 function showElement(value, key) {
   console.log(key + '：' + value);
 }
@@ -10,9 +14,9 @@ var ary = [1, 2, 4, 8, 16];
 arrayWalk(ary, showElement);
 
 /* -------------------------------- */
-function arrayWalk2(data, f) {
-  for (var key in data) {
-    f(data[key], key);
+function arrayWalk2(ary2, f) {
+  for (let key of ary2) {
+    f(val, key);
   }
 }
 var result2= 0;

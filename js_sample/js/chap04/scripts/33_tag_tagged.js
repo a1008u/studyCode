@@ -16,5 +16,9 @@ function e(templates, ...values) {
   return result;
 }
 
+/**
+ * ・引数として「テンプレート文字列（分解したもの）」「埋め込む変数（可変長引数）」を受け取ること
+ * ・戻り値として加工済みの文字列を返すこと
+ */
 let name = '<"Mario" & \'Luigi\'>';
 console.log(e`こんにちは、${name}さん！`);
