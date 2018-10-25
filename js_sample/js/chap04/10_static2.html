@@ -5,6 +5,97 @@
 <title>JavaScript本格入門</title>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./5_5_prepare_this.html">Back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./11_scope.html">Next</a>
+                </div>
+              </div>
+        </div>
+
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>関数リテラル表現</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+  
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>functionリテラル</strong><h3>
+                            <code class='is-size-6'>
+                              this.data = 'this is within global';<br />
+                              &nbsp;function func() {<br />
+                                &nbsp;&nbsp;console.log(this.data);<br />
+                                &nbsp;}<br />
+                              &nbsp;const f = {<br />
+                                &nbsp;&nbsp;data: 'within object',<br />
+                                &nbsp;&nbsp;execute: func<br />
+                                &nbsp;};<br />
+                              &nbsp;f.execute();<br />
+                            </code>
+                          </div>
+                        </div>
+  
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>アロー関数</strong><h3></h3>
+                            <code class='is-size-6'>
+                              this.data = 'this is within global';<br />
+                              &nbsp;const arrowFunc = () => {<br />
+                                &nbsp;&nbsp;console.log(this.data);<br />
+                                &nbsp;};<br />
+                                &nbsp;const af = {<br />
+                                &nbsp;&nbsp;data: 'this is within object',<br />
+                                &nbsp;&nbsp;execute: arrowFunc<br />
+                                &nbsp;};<br />
+                                &nbsp;af.execute();<br />
+                            </code>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+  
+                    <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                          <li>アロー関数式は既存の関数式より文字数が短くなるだけではなく、宣言時のthisを束縛して不変のものにするという効果を持っている</li>
+                          <li><a href="https://qiita.com/takeharu/items/9935ce476a17d6258e27">参考1</a></li>
+                          <li><a href="https://qiita.com/may88seiji/items/4a49c7c78b55d75d693b">参考２</a></li>
+                        </ol>
+                      </div>
+                    </article>
+  
+                  </div>
+              </article>
+          </div>
+        </article>
+      </div>
 <script src="scripts/10_static2.js"></script>
 </body>
 </html>
