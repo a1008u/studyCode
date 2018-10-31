@@ -3,11 +3,140 @@
 <head>
 <meta charset="UTF-8" />
 <title>JavaScript本格入門</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="../lib/polyfill.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./15_block.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./17_args.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>スコープ</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>let</strong><h3>
+                            <code class='is-size-6'>
+                              if (true) {<br />
+                              &nbsp;let i = 5;<br />
+                              }<br /><br />
+                              &nbsp;console.log(i);<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>let命令は、ブロックスコープに対応した変数宣言</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>letと即時実行関数</strong><h3>
+                            <code class='is-size-6'>
+                              {<br />
+                              &nbsp;let i = 5;<br />
+                              &nbsp;console.log(i);<br />
+                              }<br /><br />
+                              &nbsp;console.log(i);<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>let命令はブロックスコープに対応しているため、ブロックで囲めば即実行関数は不要</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+
+        <article class="media">
+  
+            <figure class="media-left">
+              <p class="image is-64x64">
+                  <img src="./hint.jpg">
+              </p>
+            </figure>
+
+            <div class="media-content">
+                <div class="columns">
+                  <div class="column is-half">
+                    <div class="content">
+                      <h3><strong>letとswitch</strong><h3>
+                      <code class='is-size-6'>
+                        switch(x) {<br />
+                        &nbsp;case 0:<br />
+                        &nbsp;&nbsp;let value = 'x:0';<br />
+                        &nbsp;case 1:<br />
+                        &nbsp; &nbsp;let value = 'x:1';<br />
+                        }
+                      </code>
+                    </div>
+                  </div>
+            </div>
+            <article class="media">
+                <h3><strong>特徴</strong><h3>
+                <div class="content">
+                  <ol type="1">
+                      <li>caseはラベルで修飾された句でありブロックでないため、重複となる</li>
+                  </ol>
+                </div>
+              </article>
+        </article>
+      </div>
 <!-- <script src="scripts/16_1_let.js"></script> -->
-<script src="scripts/16_2_let_block.js"></script>
-<!-- <script src="scripts/16_3_let_switch.js"></script> -->
+<!-- <script src="scripts/16_2_let_block.js"></script> -->
+<script src="scripts/16_3_let_switch.js"></script>
 </body>
 </html>

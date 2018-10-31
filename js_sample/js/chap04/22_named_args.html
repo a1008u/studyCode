@@ -2,9 +2,79 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./21_variable_args2.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./23_named_args_new.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>名前付き引数</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column">
+                          <div class="content">
+                            <h3><strong>名前付き引数</strong><h3>
+                            <code class='is-size-6'>
+                              function getTriangle(args) {<br />
+                              &nbsp;if (args.base === undefined) { args.base = 1; }<br />
+                              &nbsp;if (args.height === undefined) { args.height = 1; }<br />
+                              &nbsp;return args.base * args.height / 2;<br />
+                              }<br /><br />
+                              const value = getTriangle({ base:5, height:4 });<br />
+                              console.log(value);<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>可引数が多くなっても、コードの意味がわかりやすくなる</li>
+                            <li>省略可能な引数をスマートに表現できる</li>
+                            <li>引数の順番を自由に変更できる</li>
+                            <li></li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+          </div>
+        </article>
+      </div>
 <script src="scripts/22_named_args.js"></script>
 </body>
 </html>

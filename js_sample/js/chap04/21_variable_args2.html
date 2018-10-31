@@ -2,9 +2,77 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 </head>
 <body>
+  <div class="container">
+      <div class="notification">
+          <div class="columns">
+              <div class="column is-four-fifths">
+                <h1 class="title is-3">Functionコンストラクタ</h1>
+              </div>
+              <div class="column">
+                  <a class="button is-info" href="./20_variable_args.html">back</a>
+              </div>
+              <div class="column">
+                  <a class="button  is-success" href="./22_named_args.html">next</a>
+              </div>
+            </div>
+      </div>
+
+      <article class="box media">
+        <figure class="media-left">
+            <p class="image is-96x96">
+              <img src="./js.jpg"">
+            </p>
+        </figure>
+
+        <div class="media-content">
+            <div class="content">
+              <h2><strong>明示的に宣言された変数と可変長引数</strong><h2>
+                  <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                </p>
+            </div>
+            <article class="media">
+
+                <figure class="media-left">
+                  <p class="image is-64x64">
+                      <img src="./hint.jpg">
+                  </p>
+                </figure>
+
+                <div class="media-content">
+                    <div class="columns">
+                      <div class="column">
+                        <div class="content">
+                          <h3><strong>明示的に宣言された変数と可変長引数</strong><h3>
+                          <code class='is-size-6'>
+                            function printf(format) {<br />
+                            &nbsp;for (var i = 0, len = arguments.length; i < len; i++) {<br />
+                            &nbsp;&nbsp;var pattern = new RegExp('\\{' + (i - 1) + '\\}', 'g');<br />
+                            &nbsp;&nbsp;format = format.replace(pattern, arguments[i]);<br />
+                            &nbsp;}<br />
+                            &nbsp;console.log(format);<br />
+                            }<br /><br />
+                            printf('こんにちは、{0}さん。私は{1}です。', '掛谷', '山田');<br />
+                          </code>
+                        </div>
+                      </div>
+                </div>
+                <article class="media">
+                    <h3><strong>特徴</strong><h3>
+                    <div class="content">
+                      <ol type="1">
+                          <li>可読性が低くなるので、やめましょう</li>
+                      </ol>
+                    </div>
+                  </article>
+            </article>
+        </div>
+      </article>
+    </div>
 <script src="scripts/21_variable_args2.js"></script>
 </body>
 </html>

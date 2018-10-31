@@ -2,10 +2,90 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 <script src="../lib/polyfill.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./23_named_args_new.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./25_default_new.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>引数の利用</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column">
+                          <div class="content">
+                            <h3><strong>引数</strong><h3>
+                            <code class='is-size-6'>
+                              let member = {<br />
+                                &nbsp;mid: 'Y0001',<br />
+                                &nbsp;name: '山田太郎',<br />
+                                &nbsp;address: 't_yamada@example.com'<br />
+                              };<br />
+                              <br />
+                              function show({name}) {<br />
+                                &nbsp;console.table(name);<br />
+                              };<br />
+                              show(member);<br />
+                              <br />
+                              function show2({mid, name}) {<br />
+                                &nbsp;console.log(`mid === ${mid}  name === ${name}`);<br />
+                              };<br />
+                              show2(member);<br />
+                              <br />
+                              function show3(name) {<br />
+                                &nbsp;console.table(name);<br />
+                              };<br />
+                              show3(member);<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>引数にJsonを利用していると、Jsonのkeyを仮引数に設定するとvalueを取得できる</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+          </div>
+        </article>
+      </div>
 <script src="scripts/24_named_args_prop.js"></script>
 <!-- <script src="scripts_es5/named_args_prop.js"></script> -->
 </body>

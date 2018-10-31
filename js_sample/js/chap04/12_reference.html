@@ -2,9 +2,78 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./11_scope.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./13_reference2.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>関数リテラル表現</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>仮引数</strong><h3>
+                            <code class='is-size-6'>
+                              var value = 10;<br />
+                              &nbsp;function decrementValue(value /*仮*/ ) { <br />
+                              &nbsp;&nbsp;value--;<br />
+                              &nbsp;&nbsp;return value;<br />
+                              &nbsp;}<br /><br />
+
+                              &nbsp;console.log(decrementValue(100));<br />
+                              &nbsp;console.log(value);
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>仮引数とは、呼び出し元から関数に渡された値を受け取るための変数</li>
+                            <li>仮引数は、基本的にローカル変数として処理されます</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+          </div>
+        </article>
+      </div>
 <script src="scripts/12_reference.js"></script>
 </body>
 </html>

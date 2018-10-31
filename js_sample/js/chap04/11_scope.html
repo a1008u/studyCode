@@ -2,12 +2,201 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 </head>
 <body>
-<!-- <script src="scripts/11_1_scope.js"></script> -->
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./10_static2.html">Normal</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./12_reference.html">Normal</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>スコープ</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+  
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>スコープ①</strong><h3>
+                            <code class='is-size-6'>
+                              var scope = 'Global Variable';<br /><br />
+                              &nbsp;function getValue() {<br />
+                              &nbsp;&nbsp; var scope = 'Local Variable';<br />
+                              &nbsp;&nbsp; return scope;<br />
+                              &nbsp;&nbsp;}<br />
+                              &nbsp;&nbsp; <br />
+                              &nbsp;&nbsp; console.log(getValue());<br />
+                              &nbsp;&nbsp; console.log(scope);<br />
+                            </code>
+                          </div>
+                        </div>
+                    </div>
+                    <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                          <li>var命令で定義された変数は、定義する場所によって変数のスコープが決まる</li>
+                          <li>スコープが異なる場合、それぞれの変数は（同名であっても）別物として認識されているわけです</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+  
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>スコープ②</strong><h3>
+                            <code class='is-size-6'>
+                              scope = 'Global Variable';<br /><br />
+                              &nbsp;function getValue() {<br />
+                              &nbsp;&nbsp; scope = 'Local Variable';<br />
+                              &nbsp;&nbsp; return scope;<br />
+                              &nbsp;&nbsp;}<br />
+                              &nbsp;&nbsp;<br />
+                              &nbsp;&nbsp;console.log(getValue());<br />
+                              &nbsp;&nbsp;console.log(scope);<br />
+                            </code>
+                          </div>
+                        </div>
+                    </div>
+                    <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                          <li>var命令を使わずに宣言された変数は全てグローバル変数とみなす</li>
+                          <li>var命令で定義された変数は、定義する場所によって変数のスコープが決まる<br />
+                              ローカル変数を定義するには、必ずvar命令を使用する
+                          </li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+  
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>スコープ③</strong><h3>
+                            <code class='is-size-6'>
+                              var scope = 'Global Variable';<br /><br />
+                              &nbsp;function getValue() {<br />
+                              &nbsp;&nbsp; console.log(scope);<br />
+                              &nbsp;&nbsp; var scope = 'Local Variable';<br />
+                              &nbsp;&nbsp; return scope;<br />
+                              &nbsp;&nbsp;}<br />
+                              &nbsp;&nbsp; <br />
+                              &nbsp;&nbsp; console.log(getValue());<br />
+                              &nbsp;&nbsp; console.log(scope);<br />
+                            </code>
+                          </div>
+                        </div>
+                    </div>
+                    <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                          <li>変数の巻き上げが起こると未定義（undefined）となる</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+  
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>スコープ④</strong><h3>
+                            <code class='is-size-6'>
+                              var scope = 'Global Variable';<br /><br />
+                              &nbsp;function checkScope() {<br />
+                              &nbsp;&nbsp;var scope = 'Local Variable';<br />
+                              &nbsp;&nbsp; <br />
+                              &nbsp;&nbsp; var f_lit = function() { return scope; };<br />
+                              &nbsp;&nbsp; console.log(f_lit());<br />
+                              &nbsp;&nbsp; <br />
+                              &nbsp;&nbsp; var f_con = new Function('return scope;');<br />
+                              &nbsp;&nbsp; console.log(f_con());<br />
+                              &nbsp;}<br /><br />
+                              checkScope();
+                            </code>
+                          </div>
+                        </div>
+                    </div>
+                    <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                          <li>Functionコンストラクタは、常にグローバルスコープと見なされる</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+          </div>
+        </article>
+      </div>
+<script src="scripts/11_1_scope.js"></script>
 <!-- <script src="scripts/11_2_scope2.js"></script> -->
 <!-- <script src="scripts/11_3_scope3.js"></script> -->
-<script src="scripts/11_4_scope4.js"></script>
+<!-- <script src="scripts/11_4_scope4.js"></script> -->
 </body>
 </html>

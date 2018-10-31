@@ -2,9 +2,112 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./16_let.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./18_args_check.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>引数</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>通常の引数</strong><h3>
+                            <code class='is-size-6'>
+                              function showMessage(value) {<br />
+                              &nbsp;console.log(value);<br />
+                              }<br /><br />
+                              showMessage();<br />
+                              showMessage('山田');<br />
+                              showMessage('山田', '鈴木');<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                    <h3><strong>特徴</strong><h3>
+                    <div class="content">
+                      <ol type="1">
+                          <li>与える引数の数が、関数側で要求する数と異なる場合も、引数チェックをしない</li>
+                          <li>showMessage('山田', '鈴木')の場合、argumentsオブジェクトで引数は格納されている</li>
+                        </ol>
+                    </div>
+                  </article>
+              </article>
+
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column is-half">
+                          <div class="content">
+                            <h3><strong>デフォルト引数</strong><h3>
+                            <code class='is-size-6'>
+                              function showMessage2(value = 'test') {<br />
+                              &nbsp;console.log(value);<br />
+                              }<br /><br />
+                              showMessage2();<br />
+                              showMessage2('山田');<br />
+                              showMessage2('山田', '鈴木');<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                    <h3><strong>特徴</strong><h3>
+                    <div class="content">
+                      <ol type="1">
+                          <li>関数実行時に引数がない場合に評価されて、デフォルト値を代入する</li>
+                          <li>引数がある場合は、引数の値を優先して利用する</li>
+                        </ol>
+                    </div>
+                  </article>
+              </article>
+
+          </div>
+        </article>
+      </div>
 <script src="scripts/17_args.js"></script>
 </body>
 </html>

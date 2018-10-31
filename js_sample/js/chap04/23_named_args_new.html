@@ -2,10 +2,79 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <title>JavaScript本格入門</title>
 <script src="../lib/polyfill.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./22_named_args.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./24_named_args_prop.html">next</a>
+                </div>
+              </div>
+        </div>
+  
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+  
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>名前付き引数</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+              <article class="media">
+  
+                  <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="./hint.jpg">
+                    </p>
+                  </figure>
+  
+                  <div class="media-content">
+                      <div class="columns">
+                        <div class="column">
+                          <div class="content">
+                            <h3><strong>名前付き引数</strong> {プロパティ名 = デフォルト値, ... }<h3>
+                            <code class='is-size-6'>
+                              function getTriangle({ base = 1, height = 1 }) {<br />
+                              &nbsp;return base * height / 2;<br />
+                              }<br /><br />
+                              const value = getTriangle({ base:5, height:4 });<br />
+                              console.log(value);<br />
+                              <br />
+                              const value2 = getTriangle({});<br />
+                              console.log(value2);<br />
+                            </code>
+                          </div>
+                        </div>
+                  </div>
+                  <article class="media">
+                      <h3><strong>特徴</strong><h3>
+                      <div class="content">
+                        <ol type="1">
+                            <li>省略可能な引数をスマートに表現できる</li>
+                            <li>引数の順番を自由に変更できる</li>
+                        </ol>
+                      </div>
+                    </article>
+              </article>
+          </div>
+        </article>
+      </div>
 <script src="scripts/23_named_args_new.js"></script>
 <!-- <script src="scripts_es5/named_args_new.js"></script> -->
 </body>
