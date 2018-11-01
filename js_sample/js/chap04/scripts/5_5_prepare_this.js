@@ -1,27 +1,29 @@
-var data = ' ====== this is within global ====== ';
-function func() {
-  console.log(this.data);
-}
+// // 
+// function func() {
+//   console.log(this.data);
+// }
 
 const arrowFunc = () => {
   console.log(this.data);
 };
 
 
-console.log(this);
+// console.log(this);
 
-const f = {
-  data: 'within object',
-  execute: func
-};
-f.execute();
-// => 'within object'
+// const f = {
+//   data: 'within object',
+//   execute: func
+// };
+
+// f.execute();
+// // => 'within object'
 
 
 
 const af = {
   data: 'this is within object',
-  execute: tt.arrowFunc
+  execute: arrowFunc
 };
+var data = ' ====== this is within global ====== ';
 af.execute();
 // => 'this is within global'
