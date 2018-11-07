@@ -3,10 +3,116 @@
 <head>
 <meta charset="UTF-8" />
 <title>JavaScript本格入門</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="../lib/polyfill.js"></script>
 </head>
 <body>
-<!--<script src="scripts/default_required.js"></script>-->
-<script src="scripts_es5/default_required.js"></script>
+
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./25_default_new.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./27_rest_param.html">next</a>
+                </div>
+              </div>
+        </div>
+
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>引数のデフォルト値</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+
+
+              <div class="media-content">
+                  <div class="content">
+                    <h2><strong>引数</strong><h2>
+                        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                      </p>
+                  </div>
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                          <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>通常の引数</strong><h3>
+                                <code class='is-size-6'>
+                                  function show(x, y = 1) {<br />
+                                  &nbsp;console.log('x = ' + x);<br />
+                                  &nbsp;console.log('y = ' + y);<br />
+                                  }<br />
+                                  show();<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>値が渡されなかったからといって、引数の不足を通知してくれるわけではないのです</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>デフォルト引数</strong><h3>
+                                <code class='is-size-6'>
+                                  function required() {<br />
+                                  &nbsp;throw new Error('引数が不足しています');<br />
+                                  }<br />
+                                  function hoge(value = required()) {<br />
+                                  &nbsp;return value;<br />
+                                  }<br />
+                                  hoge();<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>独自のrequiredメソッドの利用で対応する</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+              </div>
+      </div>
+
+<script src="scripts/26_default_required.js"></script>
+<!-- <script src="scripts_es5/default_required.js"></script> -->
 </body>
 </html>

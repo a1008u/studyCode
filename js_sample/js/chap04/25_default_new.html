@@ -3,9 +3,203 @@
 <head>
 <meta charset="UTF-8" />
 <title>JavaScript本格入門</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="../lib/polyfill.js"></script>
 </head>
 <body>
+    <div class="container">
+        <div class="notification">
+            <div class="columns">
+                <div class="column is-four-fifths">
+                  <h1 class="title is-3">Functionコンストラクタ</h1>
+                </div>
+                <div class="column">
+                    <a class="button is-info" href="./24_named_args_prop.html">back</a>
+                </div>
+                <div class="column">
+                    <a class="button  is-success" href="./26_default_required.html">next</a>
+                </div>
+              </div>
+        </div>
+
+        <article class="box media">
+          <figure class="media-left">
+              <p class="image is-96x96">
+                <img src="./js.jpg"">
+              </p>
+          </figure>
+
+          <div class="media-content">
+              <div class="content">
+                <h2><strong>引数のデフォルト値</strong><h2>
+                    <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                  </p>
+              </div>
+
+
+              <div class="media-content">
+                  <div class="content">
+                    <h2><strong>引数</strong><h2>
+                        <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+                      </p>
+                  </div>
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                          <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>通常の引数</strong><h3>
+                                <code class='is-size-6'>
+                                  function getTriangle(base = 1, height = 1) {<br />
+                                  &nbsp;return base * height / 2;{<br />
+                                  }{<br /><br />
+                                  console.log(getTriangle(5));{<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>与える引数の数が、関数側で要求する数と異なる場合も、引数チェックをしない</li>
+                              <li>showMessage('山田', '鈴木')の場合、argumentsオブジェクトで引数は格納されている</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>デフォルト引数</strong><h3>
+                                <code class='is-size-6'>
+                                  function multi(a, b = a) {<br />
+                                  &nbsp;return a * b;<br />
+                                  }<br />
+                                  console.log(multi(10, 5));<br />
+                                  console.log(multi(3));<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>関数実行時に引数がない場合に評価されて、デフォルト値を代入する</li>
+                              <li>引数がある場合は、引数の値を優先して利用する</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>デフォルト引数</strong><h3>
+                                <code class='is-size-6'>
+                                  function multi2(a = b, b = 5) {<br />
+                                  &nbsp;return a * b;<br />
+                                  }<br />
+                                  console.log(multi2());<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>ほかの引数をデフォルト値とする場合、参照できるのは、自身より前に定義されたものだけである点に注意してください</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>デフォルト引数</strong><h3>
+                                <code class='is-size-6'>
+                                    function getTriangle2(base = 1, height = 1) {<br />
+                                    &nbsp;return base * height / 2;<br />
+                                    }<br />
+                                    console.log(getTriangle2(5, null));<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>デフォルト値が適用されるのは、引数が明示的に渡されなかった場合だけです。</li>
+                              <li>たとえばnull／false／0／空文字列など、意味的に空を表すような値でも、それらが明示的に渡された場合は、デフォルト値が適用されることはありません。</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+                  <article class="media">
+                      <figure class="media-left">
+                        <p class="image is-64x64">
+                            <img src="./hint.jpg">
+                        </p>
+                      </figure>
+                      <div class="media-content">
+                          <div class="columns">
+                            <div class="column is-half">
+                              <div class="content">
+                                <h3><strong>デフォルト引数</strong><h3>
+                                <code class='is-size-6'>
+                                    function getTriangle2(base = 1, height) {<br />
+                                    &nbsp;return base * height / 2;<br />
+                                    }<br />
+                                    console.log(getTriangle2(10));<br />
+                                </code>
+                              </div>
+                            </div>
+                      </div>
+                      <article class="media">
+                        <h3><strong>特徴</strong><h3>
+                        <div class="content">
+                          <ol type="1">
+                              <li>デフォルト値を持った仮引数は、引数リストの末尾で宣言すべきです</li>
+                            </ol>
+                        </div>
+                      </article>
+                  </article>
+
+              </div>
+      </div>
 <script src="scripts/25_default_new.js"></script>
 <!-- <script src="scripts_es5/default_new.js"></script> -->
 </body>

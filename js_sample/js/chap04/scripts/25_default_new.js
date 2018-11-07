@@ -20,8 +20,14 @@ function multi2(a = b, b = 5) {
 console.log(multi2());
 
 /* -------------------------------- */
-function getTriangle2(base = 1, height) {
+function getTriangle2(base = 1, height = 1) {
   return base * height / 2;
 }
-console.log(getTriangle2(10));
+console.log(getTriangle2(5, null));     // 結果：0
+
+/* -------------------------------- */
+function getTriangle3(base = 1, height) {
+  return base * height / 2;
+}
+console.log(getTriangle3(10));
 
